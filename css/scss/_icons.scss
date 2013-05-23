@@ -27,8 +27,8 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-tick, .icon-twitter, .icon-stars, .icon-shopping-bag, .icon-ribbon-bear, .icon-pinterest, .icon-phone, .icon-person, .icon-open-quote, .icon-info, .icon-google-plus, .icon-facebook, .icon-expand, .icon-camera, .icon-arrow-up-sml, .icon-arrow-right-sml, .icon-arrow-left-sml, .icon-arrow-down-sml, .icon-alert, .icon-untitled {
-	font-family: 'icomoon';
+.icon-tick, .icon-twitter, .icon-stars, .icon-ribbon-bear, .icon-pinterest, .icon-phone, .icon-person, .icon-open-quote, .icon-info, .icon-google-plus, .icon-facebook, .icon-expand, .icon-camera, .icon-arrow-up, .icon-arrow-right, .icon-arrow-left, .icon-arrow-down, .icon-alert, .icon-untitled, .icon-shopping-bag {
+	font-family: 'icons';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -45,9 +45,6 @@ you can use the generic selector below, but it's slower:
 }
 .icon-stars:before {
 	content: "\39";
-}
-.icon-shopping-bag:before {
-	content: "\30";
 }
 .icon-ribbon-bear:before {
 	content: "\71";
@@ -79,16 +76,16 @@ you can use the generic selector below, but it's slower:
 .icon-camera:before {
 	content: "\75";
 }
-.icon-arrow-up-sml:before {
+.icon-arrow-up:before {
 	content: "\69";
 }
-.icon-arrow-right-sml:before {
+.icon-arrow-right:before {
 	content: "\6f";
 }
-.icon-arrow-left-sml:before {
+.icon-arrow-left:before {
 	content: "\31";
 }
-.icon-arrow-down-sml:before {
+.icon-arrow-down:before {
 	content: "\32";
 }
 .icon-alert:before {
@@ -96,4 +93,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon-untitled:before {
 	content: "\70";
+}
+.icon-shopping-bag:before {
+	content: "\73";
 }

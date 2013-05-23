@@ -65,25 +65,8 @@
 				$('.main-navigation', header).slideToggle(200);
 			});
 
-			var launchDate = new Date(2013, 10, 31); 
-			
-			$('#countdown').countdown({until: launchDate, 
-				labels: ['Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs'],
-				labels1: ['Year', 'Month', 'Week', 'Day', 'Hr', 'Min', 'Sec']
-			});
-
 			$(window).resize(this.resize);
 			this.resize();
-
-			var memorabiliaForm = $('#memorabilia-form');
-			if(memorabiliaForm.length > 0){
-				$('.gf_page_steps .gf_step', memorabiliaForm).each(function(){
-					var step = $(this),
-						pageId = step.attr('id').replace('gf_step_', '');
-
-					$('.gform_body #gform_page_' + pageId, memorabiliaForm).before(step);
-				});
-			}
 		},
 
 		loaded: function(){

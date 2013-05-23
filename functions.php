@@ -51,8 +51,7 @@ function gbteddybear_setup() {
 	 * This theme uses wp_nav_menu() in one location.
 	 */
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'gbteddybear' ),
-		'footer' => __( 'Footer Menu', 'gbteddybear' )
+		'primary_header' => __( 'Primary Menu', 'gbteddybear' )
 	) );
 
 	add_image_size( 'custom_large', 530, 650, true);

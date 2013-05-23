@@ -1,0 +1,36 @@
+
+.arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+@mixin crimson {
+	font-family: 'Crimson Text', TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.crimson {
+	@include crimson;
+}
+
+@mixin crimson-bold {
+	font-family: 'Crimson Text', TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+
+.crimson-bold {
+	@include crimson-bold;
+}
+
+@mixin crimson-italic {
+	font-family: 'Crimson Text', TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+
+.crimson-italic {
+	@include crimson-italic;
+}

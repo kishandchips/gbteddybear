@@ -42,14 +42,15 @@ function theme_options_do_page() {
 
 			<table class="form-table">
 
-				<tr valign="top"><th scope="row"><?php _e( 'Tickets Page ID', 'gbteddybear' ); ?></th>
+				<tr valign="top"><th scope="row"><?php _e( 'Account Page ID', 'gbteddybear' ); ?></th>
 					<td>
-						 <input id="gbteddybear_theme_options[tickets_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[tickets_page_id]" value="<?php esc_attr_e( $options['tickets_page_id'] ); ?>" />
+						 <input id="gbteddybear_theme_options[account_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[account_page_id]" value="<?php esc_attr_e( $options['account_page_id'] ); ?>" />
 					</td>
 				</tr>
-				<tr valign="top"><th scope="row"><?php _e( 'Terms &amp; Conditions Page ID', 'gbteddybear' ); ?></th>
+
+				<tr valign="top"><th scope="row"><?php _e( 'Cart Page ID', 'gbteddybear' ); ?></th>
 					<td>
-						 <input id="gbteddybear_theme_options[tnc_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[tnc_page_id]" value="<?php esc_attr_e( $options['tnc_page_id'] ); ?>" />
+						 <input id="gbteddybear_theme_options[cart_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[cart_page_id]" value="<?php esc_attr_e( $options['cart_page_id'] ); ?>" />
 					</td>
 				</tr>
 				
@@ -66,7 +67,7 @@ function theme_options_do_page() {
  * Sanitize and validate input. Accepts an array, return a sanitized array.
  */
 function theme_options_validate( $input ) {
-	$input['tickets_page_id'] = wp_filter_nohtml_kses( $input['tickets_page_id'] );
-	$input['tnc_page_id'] = wp_filter_nohtml_kses( $input['tnc_page_id'] );
+	$input['account_page_id'] = wp_filter_nohtml_kses( $input['account_page_id'] );
+	$input['cart_page_id'] = wp_filter_nohtml_kses( $input['cart_page_id'] );
 	return $input;
 }
