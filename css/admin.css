@@ -1,0 +1,17 @@
+.wp_themeSkin .mceStatusbar a.mceResize {
+	top: 0 !important;
+	margin: 0 !important;
+}
+
+.wp_themeSkin .mceIframeContainer {
+	background: #FFF;
+}
+
+.wp-editor-area, .quicktags-toolbar input.ed_button {
+	display: inline-block;
+}
+
+
+#toplevel_page_edit-post_type-acf {
+	display: none;
+}

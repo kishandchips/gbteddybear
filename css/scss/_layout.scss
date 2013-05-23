@@ -1,0 +1,878 @@
+html {
+	height: 100%;
+	font-size: 62.5%;
+
+	// @include device-height(14){
+	// 	font-size: 60%;
+	// }
+	@include device-height(12){
+		font-size: 58%;
+	}
+	@include device-height(10){
+		font-size: 54%;
+	}
+	
+	@include device-height(8){
+		font-size: 50%;
+	}
+	
+	@include device-height(6){
+		font-size: 48%;
+	}
+	
+	@include device-height(4){
+		font-size: 44%;
+	}
+
+
+	@include device-width(14){
+		font-size: 56%;
+	}
+
+	@include device-width(12){
+		font-size: 52%;
+	}
+	
+	@include device-width(10){
+		font-size: 48%;
+	}
+	
+	@include device-width(8){
+		font-size: 44%;
+	}
+	@include device-width(6){
+		font-size: 40%;
+	}
+	@include device-width(4){
+		font-size: 36%;
+	}
+}
+
+body {
+	height: 100%;
+	background: #FFF url(../images/backgrounds/main.jpg) repeat-y center top;
+	color: #333333;
+	@include open-sans;
+	@include font-size(14);
+	overflow-x: hidden;
+}
+
+#wrap {
+	height: 100%;
+}
+
+#header {
+	padding: 0;
+	position: relative;
+	z-index: 1000;
+	background: #00a3e0;
+	color: #000;
+	@include box-shadow(0px 2px 2px 0px rgba(#000, 0.6));
+	a {
+		color: #FFF;
+
+		&:hover {
+			color: #000;
+		}
+	}
+
+	> .inner {
+		position: relative;
+
+		// @media only screen and (max-width: (860px)){
+		//  	width: auto;
+		// 	padding-left: 0;
+		// 	padding-right: 0;
+		// 	margin-left: 5%;
+		// 	margin-right: 5%;
+		// }
+	}
+
+	.info {
+		@include transition(all 0.3s ease);
+		@include device-width(13){
+			width: 70%;
+			margin-left: 30%;
+		}
+
+		@include device-width(6){
+			width: 100% !important;
+			margin-left: 0;
+			padding-left: 0;
+		}
+	}
+
+	.logo-container {
+		margin-top: 0;
+		margin-bottom: 0;
+		position: absolute;
+		height: 100%;
+		@include transition(all 0.3s ease);
+		z-index: 0;
+
+		@include device-width(13){
+			margin-left: 0;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			width: 120%;
+			height: 100%;
+			margin-left: -10%;
+			position: absolute;
+			background-color: #6fd4fc;
+			@include background-image(radial-gradient(center, ellipse contain,  #6fd4fc 2%,#00a3e0 100%));
+			@include device-width(5){
+				display: none;
+			}
+			.lt-ie10 & {
+				display: none;
+			}
+		}
+
+		@include device-width(5){
+			height: 70px;
+		}
+	}
+
+	.logo {
+		z-index: 100;
+		@include transition(all 0.3s ease);
+		background: url(../images/logos/gbteddybear_header.png) no-repeat center center;
+		background-size: contain;
+		width: 100%;
+		height: 100%;
+		text-indent: -9999px;
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		@include device-width(13){
+			height: 80%;
+		}
+
+		@include device-width(6){
+			height: 70%;
+		}
+
+		@include device-width(5){
+			height: 100%;
+		}
+	}
+
+	
+	.mobile-navigation-btn {
+		display: none;
+		background: #FFF;
+		border: 0;
+		width: 30px;
+		height: 30px;
+		padding: 7px;
+
+		@include border-radius(3px);
+		position: absolute;
+		right: 0;
+		top: -40px;
+		&:hover {
+			background: #b1e200;
+		}
+		@include device-width(5){
+			display: block;
+		}
+
+		.line {
+			background: #000;
+			height: 2px;
+			margin: 2px 0;
+		}
+	}
+
+	.navigation-container {
+		position: relative;
+		margin-top: 1.5em;
+		@include device-width(7){
+			margin-top: 1em;
+		}
+		@include device-width(13){
+			margin-left: -46%;
+		}
+
+		@include device-width(6){
+			margin-left: 0;
+			margin-top: 4em;
+		}
+	}
+
+	.main-navigation { 
+		padding: 0;
+		margin: 0;
+		border-top: 1px solid #4dbfe9;		
+ 		border-left: 1px solid #4dbfe9;
+
+
+ 		@include device-width(5){
+ 			display: none;
+ 			border-right: none;
+ 		}
+		> ul {
+			margin: 0;
+			padding: 0;
+
+
+			> li {
+			 	float: left;
+				padding: 0;
+			 	position: relative;
+			 	@include device-width(5){
+			 		float: none;
+			 	}
+
+			 	&#menu-item-120,
+			 	&#menu-item-151 {			 		
+				 	@include device-width(9){
+				 			display: none;
+				 	}
+
+				 	@include device-width(5){
+				 			display: block;
+				 	}
+				}
+
+			 	// @include device-width(9){
+			 	// 	&.menu-item-4 {
+			 	// 		display: none;
+			 	// 	}
+			 	// }
+
+			 	> a {
+			 		border-right: 1px solid #4dbfe9;
+			 		display: inline-block;
+					padding: 14px 20px;
+					text-transform: uppercase;
+			 		@include font-size(16);
+			 		@include roboto-bold;
+				 	position: relative;
+
+				 	@include device-width(8){
+				 		padding: 12px 14px;
+				 		font-size: 13px;
+				 	}
+
+				 	@include device-width(6){
+				 		padding: 10px;
+				 		@include font-size(14);
+				 	}
+
+				 	@include device-width(5){
+						display: block;
+						border-bottom: 1px solid #4dbfe9;
+						border-left: none;
+				 	}
+
+			 	}
+
+			 	> a:hover,
+			 	&.current-menu-item > a,
+			 	&.current-category-ancestor > a,
+			 	&.current-page-ancestor > a,
+			 	&.current-post-ancestor > a,
+			 	&.current-menu-parent > a,
+			 	&.current-post-parent > a,
+			 	&.current > a {
+			 		background: #b1e200;
+			 		color: #000;
+			 	}
+
+			 	&.green {
+			 		a {
+			 			color: #c2ed00;
+			 		}
+
+			 		> a:hover {
+			 			background: #FFF;
+			 			color: #000;
+			 		}
+
+			 		&.current-menu-item > a,
+				 	&.current-category-ancestor > a,
+				 	&.current-page-ancestor > a,
+				 	&.current-post-ancestor > a,
+				 	&.current-menu-parent > a,
+				 	&.current-post-parent > a,
+				 	&.current > a {
+				 		background: none;
+				 		color: #c2ed00;
+				 	}
+			 	}
+			 	&.right {
+			 		float: right;
+
+			 		@include device-width(5){
+			 			float: none;
+			 		}
+			 	}
+			}
+		} 
+	}
+
+	.social-container {
+		padding: 0.5em 0;
+		border-bottom: 1px solid #4dbfe9;
+
+		@include device-width(6){
+			border-bottom: 0;
+		}
+
+		.addthis_toolbox {
+			@include device-width(11){
+				display: none;
+			}
+		}
+		.social {
+			@include device-width(11){
+				width: 100%;
+			}
+
+			@include device-width(3){
+				display: none;
+			}
+			.follow-us {
+				@include device-width(5){
+					display: none;
+				}
+			}
+		}
+	}
+
+	.countdown-container {
+		margin: 1.2em 0 0 0;
+
+
+		@include device-width(7){
+			margin-top: 1em;
+		}
+
+		@include device-width(6){
+			display: none
+		}
+
+		> .title {
+			@include device-width(8){
+				@include font-size(20);
+			}
+		}
+		.countdown {
+			margin: 0.2em 0 0 0;
+			background: #FFF;
+			position: relative;
+
+			.countdown-header {
+				padding: 20px 290px 20px 20px;
+
+				@include device-width(10){
+					padding: 12px 210px 12px 12px;
+				}
+
+				@include device-width(9){
+					padding-right: 180px;
+				}
+
+				.tower {
+					position: absolute;
+					bottom: 0;
+					right: 280px;
+					z-index: 0;
+					@include device-width(13){
+						right: 220px;
+					}
+					@include device-width(12){
+						display: none;
+					}
+				}
+
+				.date {
+					position: relative;
+					z-index: 100;
+					@include device-width(8){
+						@include font-size(30);
+					}
+
+					@include device-width(7){
+						@include font-size(26);
+					}
+				}
+				.location {
+					position: relative;
+					z-index: 200;
+
+					@include device-width(8){
+						@include font-size(20);
+					}
+
+					@include device-width(7){
+						@include font-size(16);
+					}
+				}
+			}
+
+			#countdown {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				background: #0057a6;
+				border-right: 10px solid #c0e900;
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 100%;
+				width: 280px;
+
+				@include device-width(10){
+					width: 220px;
+				}
+
+				@include device-width(9){
+					width: 200px;
+				}
+
+				@include device-width(8){
+					padding-top: 5px;
+				}
+
+				.countdown_row {
+					display: table;
+					margin: 0 auto;
+					@extend .clearfix;
+					.countdown_section {
+						text-align: center;
+						display: inline-block;
+						margin-right: 10px;
+						color: #FFF;
+						text-transform: uppercase;
+						@include font-size(13);
+
+						@include device-width(9){
+							margin-right: 5px;
+							@include font-size(11);
+						}
+							
+						.countdown_amount {
+							color: #000;
+							margin-bottom: 4px;
+							@include font-size(30);
+							@include roboto-bold;
+							display: inline-block;
+							@include filter-gradient(#FFF, #F0F0F0);
+							@include background(linear-gradient(top, #FFF, #F0F0F0));
+							@include border-radius(5px);
+							@include box-shadow(1px 1px 1px 1px rgba(#000, 0.6));
+							padding: 8px 10px;
+
+							@include device-width(10){
+								@include font-size(20);
+							}
+
+							@include device-width(8){
+								padding: 6px 10px;
+								margin-bottom: 2px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+		
+			
+#main {
+	padding: 4em 0 0 0;
+}
+		
+#sidebar {}
+	
+#footer {
+	background: url(../images/backgrounds/footer.png) no-repeat center top;
+	padding: 430px 0 0 0;
+	color: #FFF;
+
+	> .top {
+		background: #1e0a05;
+		border-top: 6px solid #0366c2;
+		padding: 2em 0;  
+	}
+
+	> .bottom {
+		background: #000;
+	}
+
+	a {
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	.main-navigation {
+		margin: 0 0 10px 0;
+		padding: 0 40% 0 0;
+		
+		@include device-width(7){
+			padding-right: 0;
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			li {
+				margin: 0 0 5px 0;
+			}
+			> li {
+				@include roboto;
+				float: left;
+				padding-right: 1em;
+				margin-right: 1em;
+			 	position: relative;
+			 	&:after {
+			 		content: '\002F';
+			 		position: absolute;
+			 		top: 0;
+			 		right: -2px;
+			 	}
+
+			 	&:last-child {
+			 		&:after {
+			 			content: '';
+			 		}
+			 	}
+
+				> a {
+					color: #FFF;
+					display: inline-block;
+					padding: 0;
+					text-transform: uppercase;
+			 		@include font-size(16);
+				}
+
+				&.small a {
+					@include font-size(14);
+				}
+			}
+		}
+	}
+
+	.newsletter {
+		width: 100%;
+		position: absolute;
+		top: -120px;
+		@include box-sizing(border-box);
+		background: #006cce url(../images/misc/newsletter.png) no-repeat 10px center;
+		border: 1px solid #0b3257;
+		border-top: 5px solid #aed400;
+		padding: 10px 10px 10px 70px;
+
+		.gform_wrapper {
+			margin: 0;
+			max-width: 100%;
+			form {
+				position: relative;
+				padding: 0 0 0 13em;
+
+				@include device-width(7) {
+					padding-left: 0;
+				}
+			}
+
+			.validation_error {
+			   color: #A40000;
+			   font-style: italic;
+			   margin-bottom: 5px;
+			}
+		}
+		
+		.gform_heading {
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin: 0;
+			z-index: 0;
+			width: auto;
+			.gform_title {
+				color: #FFF;
+				@include font-size(20);
+				text-align: left;
+				margin: 0;
+				line-height: 30px;
+				text-transform: uppercase;
+				line-height: 1;
+			}
+
+			.gform_description {
+				line-height: 1.5;
+				vertical-align: top;
+				@include font-size(14);
+				@include roboto;
+			}
+
+			@include device-width(7) {
+				display: none;
+			}
+		}
+
+		.gform_body {
+			margin: 0;
+			position: relative;
+			z-index: 100;
+			ul {
+				padding: 0;
+				margin: 0;
+
+				li {
+					padding: none;
+					margin: none;
+					list-style-type: none;
+					margin: 0;
+
+					.gfield_label {
+						display: none;
+					}
+
+					.ginput_container {
+						input { 
+							padding-right: 88px;
+							background: #0b3257;
+							margin: 0;
+							border: none;
+							color: #FFF;
+							border-bottom: 1px solid #FFF;
+						}
+					}
+
+					.validation_message {
+						position: absolute;
+					} 
+				}
+			}
+		}
+
+		.gform_footer {
+			z-index: 200;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			padding: 0;
+			margin: 0;
+		}
+	}
+}
+
+
+#ajax-page {
+	position: relative;
+	.loader {
+		display: block;
+		padding: 10px 0;
+		width: 32px;
+		height: 32px;
+		background: url(../images/icons/loader.gif) no-repeat center center;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-top: -16px - 10px;
+		margin-left: -16px;
+	}
+}
+#breadcrumbs {
+	background: #000;
+	background: rgba(#000, 0.8);
+	padding: 10px 0;
+	text-transform: uppercase;
+	color: #FFF;
+	position: relative;
+	z-index: 100;
+	a {
+		color: #FFF;
+	}
+
+	@include device-width(6){
+		font-size: 11px;
+	}
+}
+/* =============================================================================
+   Pages
+   ========================================================================== */
+
+
+#front-page {
+
+	#homepage-scroller {
+		height: 414px;
+		z-index: 100;
+		
+		@include device-width(14){
+			height: 393px;
+		}
+
+		@include device-width(13){
+			height: 360px;
+		}
+
+		@include device-width(12){
+			height: 338px;
+		}
+
+		@include device-width(11){
+			height: 300px;
+		}
+		
+		@include device-width(8){
+			height: 230px;
+		}
+		
+		@include device-width(7){
+			height: 196px;
+		}
+		
+		@include device-width(6){
+			height: 172px;
+		}
+
+		// @include device-width(7){
+		// 	height: 34em;
+		// }
+
+		// @include device-width(5){
+		// 	height: 30em;
+		// }
+
+		.scroller-mask {
+			height: 100%;
+		}
+	
+		.scroll-item {
+			height: 100%;
+			background-position: center center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+
+		.scroller-navigation {
+			.prev-btn {
+				@include device-width(7){
+					left: 0;
+				}
+			}
+
+			.next-btn {
+				@include device-width(7){
+					right: 0;
+				}
+			}
+		}
+	}
+
+	#content {
+		margin: 4em 0;
+		position: relative;
+		z-index: 200;
+
+		.boxes {
+			margin: 0 -10px;
+
+			.box {
+				margin: 0 0 3em 0;
+				position: relative;
+				@include device-width(7){
+					width: 50%;
+				}
+
+				@include device-width(3){
+					width: 100%;
+				}
+
+				> a {
+					display: block;
+					cursor: pointer;
+					
+					&:hover {
+						.box-meta {
+							color: #000;
+							background: #FFF;
+						}
+					}
+				}
+				.box-meta {
+					border-bottom: 4px solid #00a3e0;
+					@include transition(all 0.3s ease);
+					color: #FFF;
+					padding: 1em 1em 1.5em 1em;
+					background: #000; 
+					height: 4.6em;
+					overflow: hidden;
+
+					@include device-width(9){
+						padding-right: 0.5em;
+					}
+				}
+
+				.content {
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 500;
+					width: 100%;
+					padding: 0 10px;
+					@include box-sizing(border-box);
+					
+					> .inner {
+						padding: 3em;
+
+						@include device-width(10){
+							padding: 2em;
+						}
+
+						@include device-width(9){
+							padding: 1em;
+						}
+					}
+
+					.social-links {
+						list-style: none;
+						padding-left: 0;
+						margin: 0;
+						li {
+							@include border-radius(4px);
+							border: 1px solid #666;
+							background: #f1f1f1;
+							padding: 1em;
+							margin-bottom: 1em;
+
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+#index {
+	
+}
+
+#single {
+	
+}
+
+#category {
+
+}
+
+
+#search {
+
+}
+
+#error {}
+
+#page {}

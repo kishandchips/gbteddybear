@@ -1,0 +1,1 @@
+Wordpress theme for GB Teddybear
