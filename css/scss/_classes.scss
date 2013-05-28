@@ -60,6 +60,27 @@ h1 {
 	&:before {
 		font-size: 70%;
 	}
+
+	@include device-width(12){
+		@include font-size(45);
+	}
+
+	@include device-width(10){
+		@include font-size(42);
+	}
+
+	@include device-width(8){
+		@include font-size(38);
+	}
+
+	@include device-width(6){
+		@include font-size(34);
+	}
+
+	@include device-width(4){
+		@include font-size(30);
+	}
+
 }
 
 h2 {
@@ -69,6 +90,26 @@ h2 {
 	line-height: 0.9;
 	&:before {
 		font-size: 70%;
+	}
+
+	@include device-width(12){
+		@include font-size(38);
+	}
+
+	@include device-width(10){
+		@include font-size(36);
+	}
+
+	@include device-width(8){
+		@include font-size(32);
+	}
+
+	@include device-width(6){
+		@include font-size(28);
+	}
+
+	@include device-width(4){
+		@include font-size(24);
 	}
 }
 
@@ -296,7 +337,7 @@ a.light-brown:hover {
 
 
 .hide-on-tablet {
-	@include device-width(7){
+	@include device-width(8){
 		display: none;
 	}
 }
@@ -471,6 +512,10 @@ hr {
 		height: 0;
 		z-index: 200;
 
+		@include device-width(8){
+			font-size: 0.8em;
+		}
+
 		.prev-btn,
 		.next-btn {
 			width: 3em;
@@ -494,6 +539,8 @@ hr {
 				margin-top: -0.5em;
 				@extend [data-icon]:before;
 			}
+
+			
 		}
 
 
@@ -959,9 +1006,6 @@ a.thumbnail {
 
 	margin-bottom: 8px;
 	
-	.widget-title  {
-		padding: 5px 0;
-	}
 
 
 	#twitter-feed {
@@ -971,10 +1015,16 @@ a.thumbnail {
 
 		.tweet {
 			list-style: none;
-			padding: 10px 0;
+			padding: 1.5em 0;
 			border-bottom: 1px solid #C6C6C6;
 
+			.tweet-authorphoto {
+				@include border-radius(10em);
+				border: 1px solid #c2c2c2;
+			}
+
 			.tweet-text {
+				margin: 0.5em 0;
 			}
 
 			.tweet-meta {
@@ -1338,6 +1388,10 @@ button {
 	strong, b, .bold {
 		line-height: 1;
 	}
+
+	@include device-width(8){
+		font-size: 0.8em;
+	}
 }
 
 .facebook-btn,
@@ -1501,7 +1555,7 @@ $i: 1;
 }
 
 .span.break-on-tablet {
-	@include device-width(7){
+	@include device-width(8){
 		width: auto !important;
 	}
 }

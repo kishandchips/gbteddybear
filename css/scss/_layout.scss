@@ -123,7 +123,8 @@ body {
 				}
 			}
 
-			&.account {
+			&.account, 
+			&.logout {
 				@include device-width(6){
 					display: none;
 				}
@@ -141,17 +142,7 @@ body {
 			}
 		}
 		@include device-width(6){
-			top: auto;
-			bottom: 0;
-		}
-	}
-	
-	.mobile-navigation-btn {
-		display: none;
-		padding: 1em 2em;
-		border-right: 1px solid #cecece;
-		@include device-width(6){
-			display: block;
+			display: none;
 		}
 	}
 
@@ -161,7 +152,29 @@ body {
 		border-top: 1px solid #cecece;
 		border-bottom: 1px solid #cecece;
 	
+		.mobile-navigation-btn {
+			display: none;
+			padding: 1em 2em;
+			border-right: 1px solid #cecece;
+			@include device-width(6){
+				display: block;
+			}
+		}
+
+		.cart-btn {
+			display: none;
+			padding: 1em 2em;
+			text-transform: uppercase;
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			@include device-width(6){
+				display: inline-block;
+			}
+		}
 	}
+	
 
 	.main-navigation { 
 		padding: 0;
@@ -275,7 +288,7 @@ body {
 		
 			
 #main {
-	padding: 4em 0 0 0;
+	padding: 1.4em 0 0 0;
 }
 		
 #sidebar {}
@@ -414,8 +427,6 @@ body {
 				position: absolute;
 				top: 0;
 				right: 0;
-				box-sizing: border-box;
-				padding: 4% 1em 0 1em;
 				height: 100%;
 				width: 34%;
 				color: #FFF;
@@ -426,12 +437,51 @@ body {
 				}
 
 				@include device-width(11){
-					padding-top: 1%;
+					//padding-top: 1%;
 					width: 38%;
 				}
 				@include device-width(10){
 					width: 40%;
 				}
+
+				@include device-width(6){
+					width: 44%;
+				}
+
+				&:before {
+					content: '';
+					display: inline-block;
+					height: 100%; 
+					vertical-align: middle;
+					margin-right: -0.25em;
+				}
+
+				> .inner {
+					padding: 0 1em;
+					display: inline-block;
+					vertical-align: middle;
+
+					@include device-width(4){
+						padding: 0 0.5em;
+					}
+				}
+
+				.title {
+					-ms-word-break: break-all;
+					word-break: break-all;
+					word-break: break-word;
+
+					-webkit-hyphens: auto;
+					-moz-hyphens: auto;
+					hyphens: auto;
+				}
+			}
+		}
+
+		.scroller-navigation {
+			@include device-width(6){
+				left: 0;
+				right: auto;
 			}
 		}
 	}
@@ -443,7 +493,22 @@ body {
 			padding: 4em 0;
 		}
 		.widget {
+			> .inner {
+				background: #FFF;
+				border-top: 3px solid #000;
+			}
 
+
+			&.widget_twitter_feed {
+				#twitter-feed {
+					// height: 100%;
+					// overflow: auto;
+				}
+
+				.twitter-footer {
+					padding: 0.3em;
+				}
+			}
 		}
 	}
 

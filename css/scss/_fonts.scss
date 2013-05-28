@@ -59,3 +59,15 @@
 }
 
 
+@mixin open-sans {
+	font-family: "Open Sans", sans-serif;;
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.open-sans {
+	@include open-sans;
+}
+
+

@@ -29,7 +29,7 @@ get_header(); ?>
 						?>
 						<div class="scroll-item <?php if($i == 0) echo 'current'; ?>" data-id="<?php echo $i;?>" style="background-image: url(<?php echo $image[0];?>)">
 							<div class="content" style="background-image: url(<?php echo $background_image[0]; ?>);">
-								<?php the_sub_field('content'); ?>
+								<div class="inner"><?php the_sub_field('content'); ?></div>
 							</div>
 						</div>
 						<?php $i++; ?>

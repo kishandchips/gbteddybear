@@ -62,27 +62,27 @@
 			<ul class="ecommerce-options clearfix">
 				<li class="currency">
 					<span class="label uppercase"><?php _e("Currency:", 'gbteddybear'); ?></span>&nbsp;&nbsp;
-					<select data-icon="&#x69;">
+					<select data-icon="&#x69;" class="currency-select">
 						<option>&pound;GB</option>
 						<option></option>
 						<option></option>
 					</select>
 				</li>
 				<li class="account">
-					<a href="<?php echo get_permalink(get_gbteddybear_option('account_page_id')); ?>" class="white-btn" >
+					<a href="<?php echo get_permalink(get_gbteddybear_option('account_page_id')); ?>" class="white-btn account-btn" >
 						<i aria-hidden="true" class="icon-person"></i>&nbsp;&nbsp;<?php echo get_the_title(get_gbteddybear_option('account_page_id')); ?>
 					</a>
 				</li>
 				<?php global $woocommerce; ?>
 				<li class="cart">
-					<a href="<?php echo get_permalink(get_gbteddybear_option('cart_page_id')); ?>" class="white-btn" >
+					<a href="<?php echo get_permalink(get_gbteddybear_option('cart_page_id')); ?>" class="white-btn cart-btn" >
 						<i aria-hidden="true" class="icon-shopping-bag"></i>&nbsp;&nbsp;<?php echo get_the_title(get_gbteddybear_option('cart_page_id')); ?>:
 						<strong class="items"><?php echo sprintf(_n('%d Bear', '%d Bears', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></strong>
 					</a>
 				</li>
 				<?php if ( is_user_logged_in() ): ?>
 				<li class="logout">
-					<a href="<?php echo wp_logout_url('/'); ?>" class="white-btn" >
+					<a href="<?php echo wp_logout_url('/'); ?>" class="white-btn logout-btn" >
 						<?php _e("Logout") ?>
 					</a>
 				</li>
@@ -94,6 +94,10 @@
 				</h4>
 			</div>
 			<div class="navigation-container">
+				<a href="<?php echo get_permalink(get_gbteddybear_option('cart_page_id')); ?>" class="cart-btn" >
+					<i aria-hidden="true" class="icon-shopping-bag"></i>&nbsp;&nbsp;<?php echo get_the_title(get_gbteddybear_option('cart_page_id')); ?>:
+					<strong class="items"><?php echo sprintf(_n('%d Bear', '%d Bears', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></strong>
+				</a>
 				<button class="mobile-navigation-btn uppercase">menu <i aria-hidden="true" class="icon-arrow-down tiny"></i></button>
 				<nav role="navigation" class="site-navigation main-navigation">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary_header', 'menu_class' => 'clearfix menu', 'container' => false ) ); ?>

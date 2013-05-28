@@ -39,13 +39,19 @@ class Twitter_Feed extends WP_Widget {
 					for (i in tweets) {
 						var tweet = tweets[i];
 						output.push('<li class="tweet clearfix">'+
-										'<div class="tweet-authorphoto span two omega">'+
-											'<img width="36" src="'+tweet.user.profile_image_url +'" alt="'+''+'">'+
+										'<div class="span two alpha omega">' +
+											'<div class="tweet-authorphoto">' +
+												'<img src="'+tweet.user.profile_image_url +'" >'+
+											'</div>' +
 										'</div>'+
 										'<div class="tweet-content span eight">'+
-											'<div class="tweet-text arial small">'+tweet.text+'</div>'+
+											'<header class="tweet-header" >' +
+												'<span class="yanone-kaffeesatz-bold user-title uppercase">' + 'Bobby Brown' + '</span>' +
+												'&nbsp;&nbsp;<a class="open-sans user-name tiny">@' + tweet.user.screen_name + '</a>' +
+											'</header>' +
+											'<div class="tweet-text open-sans"><p class="tiny">'+tweet.text+'</p></div>'+
 											'<div class="tweet-meta">'+
-												'<span class="tweet-time tiny grey arial">'+relative_time(tweet.created_at)+' </span><br />'+
+												'<span class="tweet-time tiny grey arial"><i aria-hidden="true" class="icon-twitter blue"></i> '+relative_time(tweet.created_at)+' </span><br />'+
 												//'<a class="tweet-author tiny red arial bold" href="http://twitter.com/'+tweet.user.screen_name+'">'+tweet.user.screen_name+'</a>'+
 											'</div>'+
 										'</div>'+
@@ -87,7 +93,14 @@ class Twitter_Feed extends WP_Widget {
         <ul id="twitter-feed">
 	        	
         </ul>
-            
+        <footer class="twitter-footer">
+           	<div class="social-links">
+           		<a href="<?php echo get_gbteddybear_option('facebook_url'); ?>" class="facebook-btn" target="_blank"></a>
+				<a href="<?php echo get_gbteddybear_option('twitter_url'); ?>" class="twitter-btn"></a>
+				<a href="<?php echo get_gbteddybear_option('pinterest_url'); ?>" class="pinterest-btn"></a>
+				<a href="<?php echo get_gbteddybear_option('google_plus_url'); ?>" class="google-plus-btn"></a>
+			</div>
+        </footer>
 		<?php echo $args['after_widget'];
 	}
 }
