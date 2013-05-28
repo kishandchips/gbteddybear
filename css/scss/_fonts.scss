@@ -34,3 +34,28 @@
 .crimson-italic {
 	@include crimson-italic;
 }
+
+@mixin didot {
+	font-family: Didot, "Didot LT STD", 'Didot W01 Roman', "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.didot {
+	@include didot;
+}
+
+
+@mixin yanone-kaffeesatz-bold {
+	font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.yanone-kaffeesatz-bold {
+	@include yanone-kaffeesatz-bold;
+}
+
+

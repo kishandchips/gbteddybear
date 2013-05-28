@@ -53,6 +53,12 @@ function theme_options_do_page() {
 						 <input id="gbteddybear_theme_options[cart_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[cart_page_id]" value="<?php esc_attr_e( $options['cart_page_id'] ); ?>" />
 					</td>
 				</tr>
+
+				<tr valign="top"><th scope="row"><?php _e( 'Terms &amp; Conditions Page ID', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[tnc_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[tnc_page_id]" value="<?php esc_attr_e( $options['tnc_page_id'] ); ?>" />
+					</td>
+				</tr>
 				
 			</table>
 			<p class="submit">
@@ -69,5 +75,6 @@ function theme_options_do_page() {
 function theme_options_validate( $input ) {
 	$input['account_page_id'] = wp_filter_nohtml_kses( $input['account_page_id'] );
 	$input['cart_page_id'] = wp_filter_nohtml_kses( $input['cart_page_id'] );
+	$input['tnc_page_id'] = wp_filter_nohtml_kses( $input['tnc_page_id'] );
 	return $input;
 }

@@ -29,6 +29,12 @@ function gbteddybear_setup() {
 	require( get_template_directory() . '/inc/shortcodes.php' );
 
 	require( get_template_directory() . '/inc/options.php' );
+
+	require( get_template_directory() . '/inc/widgets/woocommerce-country-select.php' );
+
+	require( get_template_directory() . '/inc/widgets/twitter-feed.php' );
+
+
 	/**
 	 * Make theme available for translation
 	 * Translations can be filed in the /languages/ directory
@@ -143,16 +149,34 @@ function gbteddybear_widgets_init() {
 		'id' => 'default',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h4 class="widget-title red uppercase">',
+		'before_title' => '<h4 class="widget-title">',
 		'after_title' => '</h4>',
+	) );
+
+	register_sidebar( array(
+		'name' => __( 'Footer', 'gbteddybear' ),
+		'id' => 'footer',
+		'before_widget' => '<aside id="%1$s" class="widget span two equal-height %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h5 class="widget-title">',
+		'after_title' => '</h5>',
 	) );
 
 	/********************** Content ***********************/
 
+	register_sidebar( array(
+		'name' => __( 'Homepage Content', 'gbteddybear' ),
+		'id' => 'homepage_content',
+		'before_widget' => '<aside id="%1$s" class="widget span one-third equal-height %2$s">',
+		'after_widget' => '</div></aside>',
+		'before_title' => '<h5 class="widget-title text-center light-brown uppercase">',
+		'after_title' => '</h5><div class="inner">',
+	) );
+
 
 }
-//add_action( 'widgets_init', 'gbteddybear_widgets_init' );
 
+add_action( 'widgets_init', 'gbteddybear_widgets_init' );
 
 
 if ( ! function_exists( 'get_top_level_category' )) {

@@ -17,9 +17,12 @@ $device_widths: (100px, 200px, 300px, 400px, 500px, 600px, 700px, 800px, 900px, 
 	font-size: ($size / 10) + rem;
 }
 
-@import '//fonts.googleapis.com/css?family=Open+Sans:600|Roboto+Condensed:400,700';
+@import '//fonts.googleapis.com/css?family=Crimson+Text:400,700,400italic';
+@import '//fast.fonts.com/cssapi/0132a0ff-e516-41fe-8f2c-f4f99dc031d0.css';
 @import 'compass/css3';
 @import 'normalize';
+@import 'fonts';
+@import 'icons';
 @import 'classes';
 
 html {
@@ -44,7 +47,7 @@ body {
 	height: 100%;
 	background: #FFF;
 	color: #333333;
-	@include open-sans;
+	@include crimson;
 	@include font-size(14);
 	overflow-x: hidden;
 	padding: 10px;

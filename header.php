@@ -36,8 +36,7 @@
 	function load_assets() {
 
 		wp_enqueue_style('style', get_template_directory_uri().'/css/style.css');
-		wp_enqueue_style('fonts', '//fonts.googleapis.com/css?family=Crimson+Text:400,700,400italic');
-		
+
 		wp_enqueue_script('modernizr', get_template_directory_uri().'/js/libs/modernizr.min.js');
 		wp_enqueue_script('jquery', get_template_directory_uri().'/js/libs/jquery.min.js');
 		wp_enqueue_script('easing', get_template_directory_uri().'/js/plugins/jquery.easing.js', array('jquery'), '', true);
@@ -48,10 +47,10 @@
 		wp_enqueue_script('main', get_template_directory_uri().'/js/main.js', array('jquery'), '', true);
 	}
 	add_action('wp_enqueue_scripts', 'load_assets');
-	?>
-<?php wp_head(); ?>
-</head>
+	wp_head();
+?>
 
+</head>
 <body <?php body_class(); ?>>
 <div id="wrap" class="hfeed site">
 	<?php do_action( 'before' ); ?>
@@ -74,14 +73,23 @@
 						<i aria-hidden="true" class="icon-person"></i>&nbsp;&nbsp;<?php echo get_the_title(get_gbteddybear_option('account_page_id')); ?>
 					</a>
 				</li>
+				<?php global $woocommerce; ?>
 				<li class="cart">
 					<a href="<?php echo get_permalink(get_gbteddybear_option('cart_page_id')); ?>" class="white-btn" >
-						<i aria-hidden="true" class="icon-shopping-bag"></i>&nbsp;&nbsp;<?php echo get_the_title(get_gbteddybear_option('cart_page_id')); ?>
+						<i aria-hidden="true" class="icon-shopping-bag"></i>&nbsp;&nbsp;<?php echo get_the_title(get_gbteddybear_option('cart_page_id')); ?>:
+						<strong class="items"><?php echo sprintf(_n('%d Bear', '%d Bears', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></strong>
 					</a>
 				</li>
+				<?php if ( is_user_logged_in() ): ?>
+				<li class="logout">
+					<a href="<?php echo wp_logout_url('/'); ?>" class="white-btn" >
+						<?php _e("Logout") ?>
+					</a>
+				</li>
+				<?php endif; ?>
 			</ul>
 			<div class="info">
-				<h4 class="phone-number light-brown">
+				<h4 class="phone-number light-brown no-margin" >
 					<i aria-hidden="true" class="icon-phone tiny brown"></i> 08700429745
 				</h4>
 			</div>
