@@ -15,19 +15,15 @@ get_header(); ?>
 
 <div id="page" class="container">
 	<?php while ( have_posts() ) : the_post(); ?>
-	<div id="content" <?php post_class('content-area'); ?>>
-		<?php if(!$post->post_content == ''): ?>
-		<div class="page-content">
-			<?php the_content(); ?>
-		</div>
-		<?php endif; ?>
+	<div id="content" <?php post_class(); ?>>
+		
 		<?php if ( get_field('content')) :?>
 			<?php $i = 0; ?>
 			<?php while (the_flexible_field('content')) : ?>
 			<?php 
 				$layout = get_row_layout();
 			?>
-				<div class="row <?php if($i > 0) echo 'border-top';  ?>">
+				<div class="row">
 					<div class="inner clearfix">
 					<?php if($layout == 'one_column'): ?>
 						<div class="break-on-mobile span ten omega" style="<?php the_sub_field('css_column_one'); ?>">
@@ -57,6 +53,11 @@ get_header(); ?>
 				</div>
 			<?php $i++; ?>
 			<?php endwhile; ?>
+		<?php endif; ?>
+		<?php if(!$post->post_content == ''): ?>
+		<div class="page-content">
+			<?php the_content(); ?>
+		</div>
 		<?php endif; ?>
 	</div>
 	<?php endwhile; // end of the loop. ?>

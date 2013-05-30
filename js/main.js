@@ -58,13 +58,16 @@
 			});
 
 			var countrySelectorForm = $('#country-selector-form');
-			console.log(countrySelectorForm);
 			$('select[name=country]', countrySelectorForm).on('change', function(){
 				countrySelectorForm.submit();
 			});
 
 			$(window).resize(this.resize);
 			this.resize();
+
+
+
+			this.photos.init();
 		},
 
 		loaded: function(){
@@ -223,6 +226,41 @@
 				mainNavigation.hide();
 			} else if(windowWidth > 600 && !mainNavigation.is(':visible')) {
 				mainNavigation.show();
+			}
+		},
+
+		photos: {
+			init: function(){
+				var container = main.photos.container = $('#photos'),
+					scroller = main.photos.scroller = $('.photo-list-container', container),
+					currXPos = main.photos.currXPos = 0,
+					itemWidth = main.photos.itemWidth = ($('.item:eq(0)', scroller).outerWidth(true) + 3) * 2;
+				
+				scroller.on('scroll', function(e){
+					main.photos.currXPos = scroller.scrollLeft();
+				});
+
+				$('.photos-navigation a', container).on('click', function(){
+					main.photos.scroll($(this).data('direction'));
+				});
+			},
+			scroll: function(direction){
+				var	scroller = main.photos.scroller,
+					currXPos = main.photos.currXPos,
+					newXPos	 = currXPos;
+					itemWidth = main.photos.itemWidth;
+
+				switch(direction){
+					case 'left':
+						newXPos -= itemWidth;
+						break
+					case 'right':
+
+						newXPos += itemWidth;
+						break;
+				}
+				scroller.animate({scrollLeft: newXPos});
+				main.photos.currXPos = newXPos;
 			}
 		}
 	}

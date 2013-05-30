@@ -39,14 +39,14 @@ class Twitter_Feed extends WP_Widget {
 					for (i in tweets) {
 						var tweet = tweets[i];
 						output.push('<li class="tweet clearfix">'+
-										'<div class="span two alpha omega">' +
+										'<div class="span two">' +
 											'<div class="tweet-authorphoto">' +
-												'<img src="'+tweet.user.profile_image_url +'" >'+
-											'</div>' +
+												'<img src="'+tweet.user.profile_image_url +'" class="scale">'+
+											'</div>'+
 										'</div>'+
 										'<div class="tweet-content span eight">'+
 											'<header class="tweet-header" >' +
-												'<span class="yanone-kaffeesatz-bold user-title uppercase">' + 'Bobby Brown' + '</span>' +
+												'<span class="yanone-kaffeesatz-bold big user-title uppercase">' + 'Bobby Brown' + '</span>' +
 												'&nbsp;&nbsp;<a class="open-sans user-name tiny">@' + tweet.user.screen_name + '</a>' +
 											'</header>' +
 											'<div class="tweet-text open-sans"><p class="tiny">'+tweet.text+'</p></div>'+
@@ -63,8 +63,8 @@ class Twitter_Feed extends WP_Widget {
         	})(jQuery);
 
 			function relative_time(timeValue) {
-				var values = timeValue.split(" ");
-				timeValue = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
+				var values = timeValue.split(' ');
+				timeValue = values[1] + ' ' + values[2] + ', ' + values[5] + ' ' + values[3];
 				var parsedDate = Date.parse(timeValue);
 				var relativeTo = (arguments.length > 1) ? arguments[1] : new Date();
 				var delta = parseInt((relativeTo.getTime() - parsedDate) / 1000);
@@ -93,13 +93,13 @@ class Twitter_Feed extends WP_Widget {
         <ul id="twitter-feed">
 	        	
         </ul>
-        <footer class="twitter-footer">
-           	<div class="social-links">
+        <footer class="widget-footer twitter-footer">
+           	<p class="social-links">
            		<a href="<?php echo get_gbteddybear_option('facebook_url'); ?>" class="facebook-btn" target="_blank"></a>
 				<a href="<?php echo get_gbteddybear_option('twitter_url'); ?>" class="twitter-btn"></a>
 				<a href="<?php echo get_gbteddybear_option('pinterest_url'); ?>" class="pinterest-btn"></a>
 				<a href="<?php echo get_gbteddybear_option('google_plus_url'); ?>" class="google-plus-btn"></a>
-			</div>
+			</p>
         </footer>
 		<?php echo $args['after_widget'];
 	}

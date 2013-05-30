@@ -106,21 +106,21 @@ function gbteddybear_setup() {
 	add_filter('widget_text', 'do_shortcode');
 
 
-	// $company = new Custom_Post_Type( 'Company', 
- // 		array(
- // 			'rewrite' => array( 'with_front' => false, 'slug' => get_page_uri(get_gbteddybear_option('companies_page_id')) ),
- // 			'capability_type' => 'post',
- //		 		'publicly_queryable' => true,
- //   			'has_archive' => true, 
- //    		'hierarchical' => false,
- //    		'exclude_from_search' => false,
- //    		'menu_position' => null,
- //    		'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
- //    		'plural' => 'Companies'
- //   		)
- //   	);
+	$photo = new Custom_Post_Type( 'Photo', 
+ 		array(
+ 			'rewrite' => array( 'with_front' => false, 'slug' => get_page_uri(get_gbteddybear_option('gallery_page_id')) ),
+ 			'capability_type' => 'post',
+ 		 	'publicly_queryable' => true,
+   			'has_archive' => true, 
+    		'hierarchical' => false,
+    		'exclude_from_search' => false,
+    		'menu_position' => null,
+    		'supports' => array('title', 'thumbnail', 'page-attributes'),
+    		'plural' => 'Photos'
+   		)
+   	);
 
-
+	
  	// global $wp_rewrite;
 	// $wp_rewrite->flush_rules();
 	//add_rewrite_rule('case-studies/([^/]+)?', 'index.php?post_type=true&work=$matches[1]', 'top');
@@ -364,5 +364,30 @@ function add_grav_forms(){
 add_action('admin_init','add_grav_forms');
 
 
+remove_action( 'woocommerce_before_subcategory_title' , 'woocommerce_subcategory_thumbnail', 10);
+add_action( 'woocommerce_before_subcategory_title', 'custom_subcategory_thumbnail', 10);
+
+function custom_subcategory_thumbnail($category){
+	global $woocommerce;
+	$small_thumbnail_size  	= apply_filters( 'single_product_small_thumbnail_size', 'shop_catalog' );
+	$thumbnail_id  			= get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true  );
+	$mobile_thumbnail_id  	= get_field('mobile_thumbnail_id', 'product_cat_'.$category->term_id);
+	if ( $thumbnail_id ) {
+		$image = wp_get_attachment_image_src( $thumbnail_id, $small_thumbnail_size  );
+		$image = $image[0];
+
+		$mobile_image = wp_get_attachment_image_src( $mobile_thumbnail_id, $small_thumbnail_size  );
+		$mobile_image = $mobile_image[0];
+	} else {
+		$image = woocommerce_placeholder_img_src();
+		$mobile_image = $image;
+	}
+
+	if ( $image )
+		echo '<img class="large" src="' . $image . '" alt="' . $category->name . '"/>';
+
+	if ( $mobile_image )
+		echo '<img class="small" src="' . $mobile_image . '" alt="' . $category->name . '"/>';
+}
 
 

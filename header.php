@@ -105,6 +105,6 @@
 			</div>
 		</div>
 	</header><!-- #header -->
-
+	<?php if ( function_exists('yoast_breadcrumb') ) yoast_breadcrumb('<div id="breadcrumbs"><div class="inner container">','</div></div>'); ?>
 	<div id="main" class="site-main" role="main">
 		<div id="ajax-page"></div>

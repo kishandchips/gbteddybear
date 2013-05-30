@@ -4,7 +4,7 @@
 }
 
 @mixin crimson {
-	font-family: 'Crimson Text', TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+	font-family: 'Crimson Text', TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif;
 	font-weight: 400;
 	font-style: normal;
 }
@@ -14,7 +14,7 @@
 }
 
 @mixin crimson-bold {
-	font-family: 'Crimson Text', TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+	font-family: 'Crimson Text', TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif;
 	font-weight: 700;
 	font-style: normal;
 }
@@ -25,7 +25,7 @@
 }
 
 @mixin crimson-italic {
-	font-family: 'Crimson Text', TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+	font-family: 'Crimson Text', TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif;
 	font-weight: 400;
 	font-style: italic;
 }
@@ -36,7 +36,7 @@
 }
 
 @mixin didot {
-	font-family: Didot, "Didot LT STD", 'Didot W01 Roman', "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-family: Didot, 'Didot LT STD', 'Didot W01 Roman', 'Hoefler Text', Garamond, 'Times New Roman', serif;
 	font-weight: normal;
 	font-style: normal;
 }
@@ -48,7 +48,7 @@
 
 
 @mixin yanone-kaffeesatz-bold {
-	font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
 	font-weight: normal;
 	font-style: normal;
 }
@@ -60,7 +60,7 @@
 
 
 @mixin open-sans {
-	font-family: "Open Sans", sans-serif;;
+	font-family: 'Open Sans', sans-serif;;
 	font-weight: normal;
 	font-style: normal;
 }

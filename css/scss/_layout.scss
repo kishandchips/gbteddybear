@@ -36,7 +36,8 @@ body {
 	background: #FFF;
 	color: #333333;
 	@include crimson;
-	@include font-size(15);
+	@include font-size(14);
+	line-height: 1.4;
 	overflow-x: hidden;
 	min-width: 300px;
 }
@@ -288,7 +289,7 @@ body {
 		
 			
 #main {
-	padding: 1.4em 0 0 0;
+	padding: 1em 0 8em 0;
 }
 		
 #sidebar {}
@@ -371,19 +372,14 @@ body {
 	}
 }
 #breadcrumbs {
-	background: #000;
-	background: rgba(#000, 0.8);
-	padding: 10px 0;
 	text-transform: uppercase;
-	color: #FFF;
 	position: relative;
 	z-index: 100;
-	a {
-		color: #FFF;
-	}
+	color: #888888;
+	margin: 2em 0 0 0;
 
-	@include device-width(6){
-		font-size: 11px;
+	a {
+	
 	}
 }
 /* =============================================================================
@@ -454,6 +450,10 @@ body {
 					height: 100%; 
 					vertical-align: middle;
 					margin-right: -0.25em;
+
+					@include device-width(5){
+						display: none;
+					}
 				}
 
 				> .inner {
@@ -470,10 +470,8 @@ body {
 					-ms-word-break: break-all;
 					word-break: break-all;
 					word-break: break-word;
+					@include hyphens(auto);
 
-					-webkit-hyphens: auto;
-					-moz-hyphens: auto;
-					hyphens: auto;
 				}
 			}
 		}
@@ -488,25 +486,50 @@ body {
 
 	#widgets {
 		background: #f5f5f5;
-
-		> .inner {
+		> .container {
 			padding: 4em 0;
+			> .inner {
+				margin: 0 -10px;
+			}
 		}
+
 		.widget {
+			margin-bottom: 1em;
+			@include device-width(9){
+				width: 50%;
+			}
+
+			@include device-width(5){
+				width: 100%;
+			}
+
 			> .inner {
 				background: #FFF;
 				border-top: 3px solid #000;
+				border-bottom: 1px solid #cecece;
+				padding-bottom: 30px;
+				position: relative;
 			}
 
-
+			.widget-footer {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				border-top: 1px solid #ececec;
+			}
 			&.widget_twitter_feed {
+				@include device-width(9){
+					display: none;
+				}
 				#twitter-feed {
-					// height: 100%;
-					// overflow: auto;
+					height: 99.5%;
+					//max-height: 300px;
+					overflow: auto;
 				}
 
 				.twitter-footer {
-					padding: 0.3em;
+					padding: 0 0.3em;
 				}
 			}
 		}
@@ -514,81 +537,79 @@ body {
 
 	#content {
 		margin: 4em 0;
-		position: relative;
 		z-index: 200;
+	}
 
-		.boxes {
-			margin: 0 -10px;
+	#photos {
+		margin: 8em 0 0 0;
+		overflow: hidden;
 
-			.box {
-				margin: 0 0 3em 0;
-				position: relative;
-				@include device-width(7){
-					width: 50%;
-				}
+		@include device-width(6){
+			margin: 4em 0 0 0;
+		}
+		.photos-header {
+			border-bottom: 3px solid #000;
+		}
 
-				@include device-width(3){
+		.photo-list-container {
+			overflow: auto;
+		}
+
+		.photo-list {
+			display: inline-block;
+			padding: 0;
+			margin: 4px -4px;
+			list-style: none;
+			min-width: 100%;
+			white-space: nowrap;
+
+			li {
+				display: inline-block;
+				width: 174px;
+				height: 174px;
+				margin: 4px;
+				a {
 					width: 100%;
-				}
-
-				> a {
-					display: block;
-					cursor: pointer;
-					
-					&:hover {
-						.box-meta {
-							color: #000;
-							background: #FFF;
-						}
-					}
-				}
-				.box-meta {
-					border-bottom: 4px solid #00a3e0;
-					@include transition(all 0.3s ease);
-					color: #FFF;
-					padding: 1em 1em 1.5em 1em;
-					background: #000; 
-					height: 4.6em;
+					height: 100%;
 					overflow: hidden;
-
-					@include device-width(9){
-						padding-right: 0.5em;
-					}
+					display: block;
 				}
 
-				.content {
-					position: absolute;
-					top: 0;
-					left: 0;
-					z-index: 500;
-					width: 100%;
-					padding: 0 10px;
-					@include box-sizing(border-box);
-					
-					> .inner {
-						padding: 3em;
+				&.half {
+					clear: left;
+				}
 
-						@include device-width(10){
-							padding: 2em;
-						}
+				@include device-width(10){
+					width: 150px;
+					height: 150px;
+				}
 
-						@include device-width(9){
-							padding: 1em;
-						}
-					}
+				@include device-width(5){
+					width: 100px;
+					height: 100px;
+					margin: 3px;
+				}
 
-					.social-links {
-						list-style: none;
-						padding-left: 0;
-						margin: 0;
-						li {
-							@include border-radius(4px);
-							border: 1px solid #666;
-							background: #f1f1f1;
-							padding: 1em;
-							margin-bottom: 1em;
 
-						}
+			}
+		}
+		.photos-footer {
+			background: #f5f5f5;
+			padding: 0.3em;
+			position: relative;
+			.photos-navigation {
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 100%;
+
+				a {
+					padding: 1em;
+					display: inline-block;
+					background: #ebebeb;
+
+					&:hover {
+						background: #fdfdfd;
 					}
 				}
 			}
@@ -616,4 +637,93 @@ body {
 
 #error {}
 
-#page {}
+#page,
+#woocommerce {
+	.woocommerce {
+		margin: 3em 0 0 0;
+
+		.products {
+			margin: 0 -35px;
+
+			@include device-width(8){
+				margin: 0;
+			}
+			li {
+
+				&.product-category {
+					margin: 0 0 3em 0;
+					padding: 0 10px;
+					width: auto;
+
+					@include device-width(8){
+						@include box-sizing(border-box);
+						width: 50%;
+						text-align: center;
+					}
+
+					&.first {
+						clear: left;
+					}
+
+					a {
+						img {
+
+							width: auto;
+							@include box-shadow(none);
+							margin: 0;
+
+							@include device-width(12){
+								max-height: 200px;
+							}
+
+							@include device-width(11){
+								max-height: 180px;
+							}
+
+							@include device-width(10){
+								max-height: 160px;
+							}
+
+							@include device-width(9){
+								max-height: 140px;
+							}
+
+							@include device-width(8){
+								max-height: 160px;
+							}
+
+							@include device-width(7){
+								max-height: 140px;
+							}
+
+							@include device-width(6){
+								max-height: 120px;
+							}
+
+							@include device-width(5){
+								max-height: 100px;
+							}
+
+							@include device-width(4){
+								max-height: 80px;
+							}
+
+							&.small {
+								display: none;
+								@include device-width(8){
+									display: inline;
+								}
+							}
+
+							&.large {
+								@include device-width(8){
+									display: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

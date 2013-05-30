@@ -81,6 +81,10 @@ h1 {
 		@include font-size(30);
 	}
 
+	@include device-width(3){
+		@include font-size(24);
+	}
+
 }
 
 h2 {
@@ -110,6 +114,10 @@ h2 {
 
 	@include device-width(4){
 		@include font-size(24);
+	}
+
+	@include device-width(3){
+		@include font-size(20);
 	}
 }
 
@@ -155,7 +163,7 @@ h6 {
 
 p {
 	margin: 0.5em 0;
-	line-height: 1.5;
+	line-height: 1.4;
 }
 
 .huge {
@@ -209,6 +217,11 @@ b {
 .align-center,
 .text-center {
 	text-align:  center;
+}
+
+.align-middle,
+.text-middle {
+	vertical-align: middle;
 }
 
 .normal-style {
@@ -412,23 +425,23 @@ hr {
 
 
 .border {
-	border: 1px solid #969696;
+	border: 1px solid #ececec;
 }
 
 .border-bottom {
-	border-bottom: 1px solid #969696;	
+	border-bottom: 1px solid #ececec;	
 }
 
 .border-top {
-	border-top: 1px solid #969696;	
+	border-top: 1px solid #ececec;	
 }
 
 .border-left {
-	border-left: 1px solid #969696;	
+	border-left: 1px solid #ececec;	
 }
 
 .border-right {
-	border-right: 1px solid #969696;	
+	border-right: 1px solid #ececec;	
 }
 
 .thick-border-top {
@@ -748,6 +761,7 @@ blockquote {
 
 .scale {
 	width: 100%;
+	height: auto;
 	max-height: 100%;
 	max-width: 100%;
 	display: block;
@@ -1019,8 +1033,10 @@ a.thumbnail {
 			border-bottom: 1px solid #C6C6C6;
 
 			.tweet-authorphoto {
-				@include border-radius(10em);
-				border: 1px solid #c2c2c2;
+				img {
+					@include border-radius(10em);
+					border: 1px solid #c2c2c2;
+				}
 			}
 
 			.tweet-text {
@@ -1454,6 +1470,7 @@ button {
 .row {	
 	padding-top: 1.6em;
 	padding-bottom: 1.6em;
+	border-bottom: 1px solid #cecece;
 
 	@include device-width(6){
 		padding-top: 1em;
@@ -1572,6 +1589,14 @@ $i: 1;
 
 .right, .alignright {
 	float: right;
+}
+
+.clear-left {
+	clear: left;
+}
+
+.clear-right {
+	clear: right;
 }
 
 .aligncenter,

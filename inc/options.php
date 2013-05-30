@@ -59,6 +59,37 @@ function theme_options_do_page() {
 						 <input id="gbteddybear_theme_options[tnc_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[tnc_page_id]" value="<?php esc_attr_e( $options['tnc_page_id'] ); ?>" />
 					</td>
 				</tr>
+
+				<tr valign="top"><th scope="row"><?php _e( 'Gallery Page ID', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[gallery_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[gallery_page_id]" value="<?php esc_attr_e( $options['gallery_page_id'] ); ?>" />
+					</td>
+				</tr>
+
+				<tr valign="top"><th scope="row"><?php _e( 'Facebook URL', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[facebook_url]" class="regular-text" type="text" name="gbteddybear_theme_options[facebook_url]" value="<?php esc_attr_e( $options['facebook_url'] ); ?>" />
+					</td>
+				</tr>
+
+				<tr valign="top"><th scope="row"><?php _e( 'Twitter URL', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[twitter_url]" class="regular-text" type="text" name="gbteddybear_theme_options[twitter_url]" value="<?php esc_attr_e( $options['twitter_url'] ); ?>" />
+					</td>
+				</tr>
+
+				<tr valign="top"><th scope="row"><?php _e( 'Pinterest URL', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[pinterest_url]" class="regular-text" type="text" name="gbteddybear_theme_options[pinterest_url]" value="<?php esc_attr_e( $options['pinterest_url'] ); ?>" />
+					</td>
+				</tr>
+				
+
+				<tr valign="top"><th scope="row"><?php _e( 'Google Plus URL', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[google_plus_url]" class="regular-text" type="text" name="gbteddybear_theme_options[google_plus_url]" value="<?php esc_attr_e( $options['google_plus_url'] ); ?>" />
+					</td>
+				</tr>
 				
 			</table>
 			<p class="submit">
@@ -76,5 +107,10 @@ function theme_options_validate( $input ) {
 	$input['account_page_id'] = wp_filter_nohtml_kses( $input['account_page_id'] );
 	$input['cart_page_id'] = wp_filter_nohtml_kses( $input['cart_page_id'] );
 	$input['tnc_page_id'] = wp_filter_nohtml_kses( $input['tnc_page_id'] );
+	$input['gallery_page_id'] = wp_filter_nohtml_kses( $input['gallery_page_id'] );
+	$input['facebook_url'] = wp_filter_nohtml_kses( $input['facebook_url'] );
+	$input['twitter_url'] = wp_filter_nohtml_kses( $input['twitter_url'] );
+	$input['pinterest_url'] = wp_filter_nohtml_kses( $input['pinterest_url'] );
+	$input['google_plus_url'] = wp_filter_nohtml_kses( $input['google_plus_url'] );
 	return $input;
 }
