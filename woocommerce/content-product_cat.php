@@ -21,6 +21,8 @@ if ( empty( $woocommerce_loop['loop'] ) )
 if ( empty( $woocommerce_loop['columns'] ) )
 	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 4 );
 // Increase loop count
+
+
 $woocommerce_loop['loop']++;
 ?>
 <li class="product-category product<?php

@@ -57,8 +57,8 @@
 				$('.main-navigation', header).slideToggle(200);
 			});
 
-			var countrySelectorForm = $('#country-selector-form');
-			$('select[name=country]', countrySelectorForm).on('change', function(){
+			var countrySelectorForm = $('.country-selector-form');
+			$('select.country', countrySelectorForm).on('change', function(){
 				countrySelectorForm.submit();
 			});
 

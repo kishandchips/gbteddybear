@@ -54,41 +54,9 @@ get_header(); ?>
 	<?php if ( get_field('content')) :?>
 	<div id="content">
 		<div class="container">
-			<?php $i = 0; ?>
-			<?php while (the_flexible_field('content')) : ?>
-			<?php 
-				$layout = get_row_layout();
-			?>
-				<div class="row <?php if($i > 0) echo 'border-top';  ?>">
-					<div class="inner clearfix">
-					<?php if($layout == 'one_column'): ?>
-						<div class="break-on-mobile span ten omega" style="<?php the_sub_field('css_column_one'); ?>">
-							<?php the_sub_field('content_column_one'); ?>
-						</div>
-					<?php endif; ?>
-					<?php if($layout == 'two_columns'): ?>
-						<div class="break-on-mobile span five column-one" style="<?php the_sub_field('css_column_one'); ?>">
-							<?php the_sub_field('content_column_one'); ?>
-						</div>
-						<div class="break-on-mobile span five column-two" style="<?php the_sub_field('css_column_two'); ?>">
-							<?php the_sub_field('content_column_two'); ?>
-						</div>
-					<?php endif; ?>
-					<?php if($layout == 'three_columns'): ?>
-						<div class="break-on-mobile span one-third column-one" style="<?php the_sub_field('css_column_one'); ?>">
-							<?php the_sub_field('content_column_one'); ?>
-						</div>
-						<div class="break-on-mobile span one-third column-two " style="<?php the_sub_field('css_column_two'); ?>">
-							<?php the_sub_field('content_column_two'); ?>
-						</div>
-						<div class="break-on-mobile span one-third column-three" style="<?php the_sub_field('css_column_three'); ?>">
-							<?php the_sub_field('content_column_three'); ?>
-						</div>
-					<?php endif; ?>
-					</div>
-				</div>
-			<?php $i++; ?>
-			<?php endwhile; ?>
+			<?php if ( get_field('content')):?>
+			<?php get_template_part('inc/rows'); ?>
+			<?php endif; ?>
 		</div>
 	</div>
 	<?php endif; ?>

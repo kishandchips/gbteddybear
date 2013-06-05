@@ -1,6 +1,9 @@
+@mixin arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
 
 .arial {
-	font-family: Arial, Helvetica, sans-serif;
+	@include arial;
 }
 
 @mixin crimson {

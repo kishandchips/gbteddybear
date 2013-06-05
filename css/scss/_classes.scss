@@ -92,6 +92,7 @@ h2 {
 	margin: 0.5em 0;
 	@include font-size(40);
 	line-height: 0.9;
+	text-transform: uppercase;
 	&:before {
 		font-size: 70%;
 	}
@@ -125,7 +126,8 @@ h3 {
 	@include crimson;
 	margin: 0.5em 0;
 	@include font-size(30);
-	line-height: 1.3;
+	line-height: 1;
+	text-transform: uppercase;
 	&:before {
 		font-size: 70%;
 	}
@@ -134,8 +136,9 @@ h3 {
 h4 {
 	@include crimson;
 	margin: 0.5em 0;
-	@include font-size(24);
+	@include font-size(22);
 	line-height: 1.2;
+	text-transform: uppercase;
 	&:before {
 		font-size: 70%;
 	}
@@ -146,6 +149,7 @@ h5 {
 	margin: 0.5em 0;
 	@include font-size(18);
 	line-height: 1;
+	text-transform: uppercase;
 	&:before {
 		font-size: 70%;
 	}
@@ -162,7 +166,7 @@ h6 {
 }
 
 p {
-	margin: 0.5em 0;
+	margin: 0.8em 0;
 	line-height: 1.4;
 }
 
@@ -242,6 +246,10 @@ b {
 
 .white {
 	color: #fff;
+}
+
+a.white:hover {
+	color: #ffbbbb;
 }
 
 .grey {
@@ -351,13 +359,13 @@ a.light-brown:hover {
 
 .hide-on-tablet {
 	@include device-width(8){
-		display: none;
+		display: none !important;
 	}
 }
 
 .hide-on-mobile {
 	@include device-width(4){
-		display: none;
+		display: none !important;
 	}
 }
 
@@ -965,6 +973,21 @@ a.thumbnail {
 	}
 }
 
+.line-header {
+	background: #000;
+	height: 3px;
+	text-align: center;
+	.title {
+		position: relative;
+		background: #FFF;
+		top: -1.1em;
+		display: inline-block;
+		color: #7f502c;
+		padding: 0 1em;
+		text-transform: uppercase;
+	}
+}
+
 
 /* =============================================================================
    Widgets
@@ -1385,17 +1408,21 @@ button {
 	}
 }
 
-.red-btn {
+.red-btn,
+.green-btn,
+.blue-btn {
 	display: inline-block;
 	background: #890a0a;
 	border: 1px solid #000;
 	border: 1px solid rgba(#000, 0.4);
 	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5), inset 0 0 2px 2px rgba(#bc3434, 0.6));
-	padding: 0.4em 2em;
+	padding: 0.4em 1.5em;
+	text-shadow: none;
 	text-transform: uppercase;
 	@include font-size(18);
 	color: #FFF;
-
+	line-height: 1.3;
+	margin: 0 0 0.5em 0;
 	&:hover {
 		color: #FFF;
 		background: #710808;
@@ -1406,7 +1433,28 @@ button {
 	}
 
 	@include device-width(8){
-		font-size: 0.8em;
+		font-size: 1em;
+	}
+}
+
+.green-btn {
+	background: #7bae32;
+	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5), inset 0 0 2px 2px rgba(#cbe99f, 0.6));
+
+	&:hover {
+		background: #628a28;
+	}
+}
+
+.blue-btn {
+	background: #3b5a9b;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	text-transform: none;
+	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5), inset 0 0 2px 2px rgba(#5d85c9, 0.6));
+
+	&:hover {
+		background: #2d4475;
 	}
 }
 
@@ -1463,6 +1511,52 @@ button {
 }
 
 
+.show-all-bears-btn {
+	display: inline-block;
+	width: 200px;
+	height: 154px;
+	background: url(../images/buttons/show_all_bears.png) no-repeat;
+	@include transition(none);
+	text-indent: -9999px;
+	&:hover {
+		background-position: left bottom;
+	}
+}
+
+.overlay-btn {
+	position: relative;
+	display: block;
+	&:after {
+		@include transition(all 0.3s ease);
+		content: '';
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(#000, 0.3);
+
+		.no-opacity & {
+			display: none;
+		}
+	}
+
+
+	&:hover {
+		&:after {
+			opacity: 1;
+
+			.no-opacity & {
+				display: block;
+			}
+		}
+	}
+
+	> img {
+		display: block;
+	}
+}
 /* =============================================================================
    Grid
    ========================================================================== */
@@ -1662,24 +1756,16 @@ input[type=email],
 input[type=url],
 input[type=tel],
 input[type=number],
-input[type=password] {
-	height: 3em;
-}
-
-label.error {
-	color: #F00;
-}
-
-input[type=text],
-input[type=email],
-input[type=url],
-input[type=tel],
-input[type=number],
 input[type=password],
-textarea {
+textarea {	
+	@include border-radius(0);
 	background: #FFF;
-	padding: 8px 6px;
+	border: 1px solid #a1a1a1;
+	@include box-shadow(inset 0px 2px 5px -1px rgba(0, 0, 0, 0.3));
+	padding: 0.6em;
 	max-width: 100%;
+	@include open-sans;
+	@include font-size(12);
 }
 
 select {
@@ -1689,9 +1775,19 @@ select {
 	background: #FFF;
 	border: 1px solid #b0b0b0;
 	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5));
-	padding: 0.3em 0.8em;
-	@include font-size(16);
-	@include crimson;
+	padding: 0.6em;
+	@include font-size(12);
+	@include open-sans;
+	background: #f4f4f4;
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		display: block;
+		background: #000;
+		width: 10px;
+		height: 10px;
+	}
 }
 
 textarea {
@@ -1700,6 +1796,7 @@ textarea {
 
 input[type=submit],
 input[type=reset] {
+	@include crimson;
 	border: none;
 	cursor: pointer;	
 	color: #FFFFFF;
@@ -1717,6 +1814,17 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 	outline: none !important;
 }
 
+label {
+	@include open-sans;
+	font-weight: bold;
+	margin: 0 0 0.3em 0;
+	@include font-size(13);
+}
+
+fieldset {
+	border: none;
+	padding: 0;
+}
 /* =============================================================================
    Gravity
    ========================================================================== */

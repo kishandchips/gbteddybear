@@ -21,38 +21,27 @@ class WooCommerce_Country_Select extends WP_Widget {
 	}
 	
 	function widget($args, $instance) {
-		$customer = new WC_Customer();
-		$countries = new WC_Countries();
-		$curr_country = $customer->get_country();
-		$curr_state = '*';
-		if(isset($_POST['action']) && $_POST['action'] == 'set_country'){
-			$country = (isset($_POST['country'])) ? $_POST['country'] : $curr_country;
-			
-			if($curr_country != $country){
-				$curr_country = $country;
+		global $woocommerce;
 
-				$customer->set_country($curr_country);
-
-				if(strpos($curr_country, ':') !== false){
-					$curr_country_ary = explode(':', $curr_country);
-					$curr_country = $curr_country_ary[0];
-					if(isset($curr_country_ary[1])){
-						$curr_state = $curr_country_ary[1];
-					}
-				}
-
-			}
+		if(isset($_POST['calc_shipping']) && $_POST['calc_shipping'] == '1'){
+			$country = (isset($_POST['calc_shipping_country'])) ? $_POST['calc_shipping_country'] : '';
+			$woocommerce->customer->set_country($country);
+			$woocommerce->customer->set_shipping_country($country);
 		}
-
+	
 		$args['title'] = $instance['title'];
 		
 		echo $args['before_widget'] . $args['before_title'] . $args['title'] . $args['after_title'];
 		?>
-		<form id="country-selector-form" action="" method="POST">
-			<select name="country" class="center">
-				<?php $countries->country_dropdown_options($curr_country, $curr_state, false); ?>
+		<form class="country-selector-form" action="" method="POST">
+			<select name="calc_shipping_country" class="center country">
+				<option value=""><?php _e( 'Select a country&hellip;', 'woocommerce' ); ?></option>
+				<?php
+					foreach( $woocommerce->countries->get_allowed_countries() as $key => $value )
+						echo '<option value="' . esc_attr( $key ) . '"' . selected( $woocommerce->customer->get_shipping_country(), esc_attr( $key ), false ) . '>' . esc_html( $value ) . '</option>';
+				?>
 			</select>
-			<input type="hidden" name="action" value="set_country">
+			<input type="hidden" name="calc_shipping" value="1" />
 		</form>
 		<?php
 		echo $args['after_widget'];

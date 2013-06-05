@@ -86,7 +86,7 @@ function gbteddybear_setup() {
 
 	function remove_menus () {
 		global $menu;
-		$restricted = array(__('Links'),__('Comments'));
+		$restricted = array(__('Links'));
 		end ($menu);
 		while (prev($menu)){
 			$value = explode(' ',$menu[key($menu)][0]);
@@ -129,6 +129,8 @@ function gbteddybear_setup() {
 	add_editor_style('css/editor-styles.css');
 
 	add_filter("gform_tabindex", create_function("", "return false;"));
+
+	add_theme_support('woocommerce');
    
 }
 endif; // gbteddybear_setup
@@ -357,6 +359,14 @@ if ( ! function_exists( 'custom_tinymce_options' )) {
 }
 
 
+function get_queried_page(){
+	$curr_url = get_current_url();
+	$curr_uri = str_replace(site_url(), '', $curr_url);
+	$page = get_page_by_path($curr_uri);
+	if($page) return $page;
+	return null;
+}
+
 function add_grav_forms(){
 	$role = get_role('editor');
 	$role->add_cap('gform_full_access');
@@ -366,28 +376,202 @@ add_action('admin_init','add_grav_forms');
 
 remove_action( 'woocommerce_before_subcategory_title' , 'woocommerce_subcategory_thumbnail', 10);
 add_action( 'woocommerce_before_subcategory_title', 'custom_subcategory_thumbnail', 10);
+if ( ! function_exists( 'custom_subcategory_thumbnail' ) ) {
+	function custom_subcategory_thumbnail($category){
+		global $woocommerce;
+		$small_thumbnail_size  	= apply_filters( 'single_product_small_thumbnail_size', 'shop_catalog' );
+		$thumbnail_id  			= get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true  );
+		$mobile_thumbnail_id  	= get_field('mobile_thumbnail_id', 'product_cat_'.$category->term_id);
+		if ( $thumbnail_id ) {
+			$image = wp_get_attachment_image_src( $thumbnail_id, $small_thumbnail_size  );
+			$image = $image[0];
+		} else {
+			$image = woocommerce_placeholder_img_src();
+		}
 
-function custom_subcategory_thumbnail($category){
-	global $woocommerce;
-	$small_thumbnail_size  	= apply_filters( 'single_product_small_thumbnail_size', 'shop_catalog' );
-	$thumbnail_id  			= get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true  );
-	$mobile_thumbnail_id  	= get_field('mobile_thumbnail_id', 'product_cat_'.$category->term_id);
-	if ( $thumbnail_id ) {
-		$image = wp_get_attachment_image_src( $thumbnail_id, $small_thumbnail_size  );
-		$image = $image[0];
+		if($mobile_thumbnail_id){
+			$mobile_image = wp_get_attachment_image_src( $mobile_thumbnail_id, $small_thumbnail_size  );
+			$mobile_image = $mobile_image[0];
+		} else {
+			$mobile_image = $image;
+		}
 
-		$mobile_image = wp_get_attachment_image_src( $mobile_thumbnail_id, $small_thumbnail_size  );
-		$mobile_image = $mobile_image[0];
-	} else {
-		$image = woocommerce_placeholder_img_src();
-		$mobile_image = $image;
+		if(is_shop()) {
+			if ( $image)
+				echo '<img class="large category-image" src="' . $image . '" alt="' . $category->name . '"/>';
+
+			if ( $mobile_image )
+				echo '<img class="small category-image" src="' . $mobile_image . '" alt="' . $category->name . '"/>';
+		} else {
+			if ( $mobile_image )
+				echo '<img class="category-image" src="' . $mobile_image . '" alt="' . $category->name . '"/>';
+
+		}
 	}
+}
 
-	if ( $image )
-		echo '<img class="large" src="' . $image . '" alt="' . $category->name . '"/>';
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 
-	if ( $mobile_image )
-		echo '<img class="small" src="' . $mobile_image . '" alt="' . $category->name . '"/>';
+remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description', 10 );
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_show_messages', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'custom_loop_product_thumbnail', 10 );
+
+
+if ( ! function_exists( 'custom_loop_product_thumbnail' ) ) {
+
+	function custom_loop_product_thumbnail() {
+		global $post;
+		$size = 'thumbnail';
+		if ( has_post_thumbnail() )
+			echo get_the_post_thumbnail( $post->ID, $size );
+		elseif ( woocommerce_placeholder_img_src() )
+			echo woocommerce_placeholder_img( $size );
+	}
+}
+
+add_filter('single_add_to_cart_text', 'custom_add_to_cart_text');
+
+if ( ! function_exists( 'custom_add_to_cart_text' ) ) {
+
+	function custom_add_to_cart_text( $text ) {
+		return '<i class="icon-shopping-bag"></i>&nbsp;&nbsp;'.__("Add to shopping bag", 'gbteddybear');
+	}
 }
 
 
+if ( ! function_exists( 'woocommerce_product_categories' ) ) {
+
+	function woocommerce_product_categories( $args = array() ) {
+		global $woocommerce, $wp_query;
+
+		$defaults = array(
+			'before'  => '',
+			'after'  => '',
+			'force_display' => false,
+			'exclude' => '',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		extract( $args );
+	
+		$term 			= get_queried_object();
+		$parent_id 		= empty( $term->term_id ) ? 0 : $term->term_id;
+
+		
+		$args = array(
+			'child_of'		=> 0,
+			'menu_order'	=> 'ASC',
+			'hide_empty'	=> 1,
+			'hierarchical'	=> 0,
+			'taxonomy'		=> 'product_cat',
+			'pad_counts'	=> 1,
+			'exclude'		=> $exclude
+		);
+		$product_categories = get_categories( apply_filters( 'woocommerce_product_categories_args', $args ) );
+		$product_category_found = false;
+
+		if ( $product_categories ) {
+
+			foreach ( $product_categories as $category ) {
+				
+				if ( ! $product_category_found ) {
+					// We found a category
+					$product_category_found = true;
+					echo $before;
+				}
+
+				woocommerce_get_template( 'content-product_cat.php', array(
+					'category' => $category
+				) );
+
+			}
+
+		}
+
+		
+		wp_reset_query();
+		echo $after;
+		return true;
+	}
+}
+
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+add_action( 'woocommerce_single_product_summary', 'custom_template_single_product_delivery', 40 );
+
+if ( ! function_exists( 'custom_template_single_product_delivery' ) ) {
+
+	function custom_template_single_product_delivery( ) {
+		woocommerce_get_template( 'single-product/delivery.php' );
+	}
+}
+
+
+add_filter( 'woocommerce_product_description_heading', 'custom_product_description_heading'); 
+
+
+if ( ! function_exists( 'custom_product_description_heading' ) ) {
+
+	function custom_product_description_heading( ) {
+		return __("More about this bear", 'gbteddybear');
+	}
+}
+
+
+
+add_filter( 'woocommerce_product_tabs', 'custom_product_tabs' );
+
+
+if ( ! function_exists( 'custom_product_tabs' ) ) {
+
+	function custom_product_tabs( $tabs) {
+		$tabs['description'] = array(
+			'title'    => __( 'Description', 'woocommerce' ),
+			'priority' => 10,
+			'callback' => 'woocommerce_product_description_tab'
+		);
+
+		return $tabs;
+	}
+}
+
+
+
+// remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+// add_action( 'woocommerce_after_single_product_summary', 'output_product_reviews' );
+
+
+// if ( ! function_exists( 'output_product_reviews' ) ) {
+
+// 	function output_product_reviews( ) {
+// 		//woocommerce_get_template( 'single-product/review.php' );
+// 	}
+// }
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+add_action( 'woocommerce_after_single_product_summary', 'custom_upsell_display', 15 );
+add_action( 'woocommerce_after_single_product_summary', 'custom_related_products', 20 );
+
+
+if ( ! function_exists( 'custom_related_products' ) ) {
+
+	function custom_related_products() {
+		woocommerce_related_products( -1, 5 );
+	}
+}
+
+if ( ! function_exists( 'custom_upsell_display' ) ) {
+
+	function custom_upsell_display() {
+		woocommerce_upsell_display( -1, 5 );
+	}
+}
