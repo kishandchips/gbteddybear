@@ -2,31 +2,31 @@ html {
 	height: 100%;
 	font-size: 62.5%;
 	
-	@include device-width(10){
+	@include device-width(10) {
 		font-size: 60%;
 	}
 
-	@include device-width(9){
+	@include device-width(9) {
 		font-size: 60%;
 	}
 
-	@include device-width(8){
+	@include device-width(8) {
 		font-size: 58%;
 	}
 
-	@include device-width(7){
+	@include device-width(7) {
 		font-size: 56%;
 	}
 
-	@include device-width(6){
+	@include device-width(6) {
 		font-size: 54%;
 	}
 
-	@include device-width(5){
+	@include device-width(5) {
 		font-size: 52%;
 	}
 
-	@include device-width(4){
+	@include device-width(4) {
 		font-size: 50%;
 	}
 }
@@ -38,8 +38,16 @@ body {
 	@include crimson;
 	@include font-size(14);
 	line-height: 1.4;
-	overflow-x: hidden;
-	min-width: 300px;
+	min-width: 250px;
+	@include device-width(8) {
+		@include font-size(13);
+		line-height: 1.3;
+	}
+
+	@include device-width(6) {
+		@include font-size(12);
+		line-height: 1.2;
+	}
 }
 
 #wrap {
@@ -51,7 +59,7 @@ body {
 	z-index: 1000;	
 	padding: 1.5em 0 0 0;
 
-	@include device-width(8){
+	@include device-width(8) {
 		padding-top: 0.5em;
 	}
 
@@ -68,27 +76,27 @@ body {
 		@include transition(all 0.3s ease);
 		z-index: 0;
 
-		@include device-width(12){
+		@include device-width(12) {
 			height: $ratio * 400px;
 			width: 400px;
 		}
 		
-		@include device-width(10){
+		@include device-width(10) {
 			height: $ratio * 350px;
 			width: 350px;
 		}
 
-		@include device-width(8){
+		@include device-width(8) {
 			height: $ratio * 300px;
 			width: 300px;
 		}
 
-		@include device-width(6){
+		@include device-width(6) {
 			height: $ratio * 280px;
 			width: 280px;
 		}
 
-		@include device-width(3){
+		@include device-width(3) {
 			height: $ratio * 260px;
 			width: 260px;
 		}
@@ -119,21 +127,21 @@ body {
 			margin: 0 0 0 1em;
 
 			&.currency {
-				@include device-width(7){
+				@include device-width(7) {
 					display: none;
 				}
 			}
 
 			&.account, 
 			&.logout {
-				@include device-width(6){
+				@include device-width(6) {
 					display: none;
 				}
 			}
 
 			a {
 					
-				@include device-width(6){
+				@include device-width(6) {
 					border: none;
 					text-transform: uppercase;
 					@include box-shadow(none);
@@ -142,7 +150,7 @@ body {
 				}
 			}
 		}
-		@include device-width(6){
+		@include device-width(6) {
 			display: none;
 		}
 	}
@@ -158,7 +166,7 @@ body {
 			display: none;
 			padding: 1em 2em;
 			border-right: 1px solid #cecece;
-			@include device-width(6){
+			@include device-width(6) {
 				display: block;
 			}
 		}
@@ -171,7 +179,7 @@ body {
 			top: 0;
 			right: 0;
 
-			@include device-width(6){
+			@include device-width(6) {
 				display: inline-block;
 			}
 		}
@@ -182,7 +190,7 @@ body {
 		padding: 0;
 		margin: 0;
 
- 		@include device-width(6){
+ 		@include device-width(6) {
  			display: none;
  			border-right: none;
  		}
@@ -196,22 +204,22 @@ body {
 				position: relative;
 				@include transition(all 0.3s ease);
 
-			 	@include device-width(14){
+			 	@include device-width(14) {
 			 		padding-left: 1.5em;
 			 		padding-right: 1.5em;
 			 	}
 
-			 	@include device-width(10){
+			 	@include device-width(10) {
 			 		padding-left: 1em;
 			 		padding-right: 1em;
 			 	}
 
-			 	// @include device-width(9){
+			 	// @include device-width(9) {
 			 	// 	padding-left: 0.8em;
 			 	// 	padding-right: 0.8em;
 			 	// }
 
-			 	@include device-width(8){
+			 	@include device-width(8) {
 			 		
 			 		&:first-child {
 			 			padding-left: 0;
@@ -222,12 +230,12 @@ body {
 			 		}
 			 	}
 
-			 	@include device-width(7){
+			 	@include device-width(7) {
 			 		padding-left: 0.6em;
 			 		padding-right: 0.6em;
 			 	}
 
-			 	@include device-width(6){
+			 	@include device-width(6) {
 			 		float: none;
 			 		padding: 0;
 			 	}
@@ -239,22 +247,23 @@ body {
 			 		@include font-size(13);
 			 		@include crimson;
 			 		border-bottom: 2px solid #FFF;
+			 		border-bottom: 2px solid rgba(#FFF, 0);
 				 	position: relative;
 				 	color: #333333;
 
-				 	@include device-width(10){
+				 	@include device-width(10) {
 				 		@include font-size(12);
 				 	}
 
-				 	@include device-width(9){
+				 	@include device-width(9) {
 				 		@include font-size(11);
 				 	}
 
-				 	// @include device-width(7){
+				 	// @include device-width(7) {
 				 	// 	@include font-size(11);
 				 	// }
 
-				 	@include device-width(6){
+				 	@include device-width(6) {
 				 		display: block;
 				 		padding-left: 1em;
 				 		padding-right: 1em;
@@ -282,7 +291,7 @@ body {
 		bottom: 4em;
 		right: 0;
 
-		@include device-width(6){
+		@include device-width(6) {
 			bottom: auto;
 			top: 0;
 		}
@@ -317,7 +326,7 @@ body {
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
 
-		@include device-width(9){
+		@include device-width(9) {
 			width: 33%;
 			border-left: 1px solid #cecece;
 			&:nth-child(3n + 1) {
@@ -325,7 +334,7 @@ body {
 			}
 		}
 
-		@include device-width(5){
+		@include device-width(5) {
 			width: 50%;
 			border-left: none;
 		}
@@ -439,19 +448,19 @@ body {
 				color: #FFF;
 				text-align: center;
 
-				@include device-width(12){
+				@include device-width(12) {
 					width: 36%;
 				}
 
-				@include device-width(11){
+				@include device-width(11) {
 					//padding-top: 1%;
 					width: 38%;
 				}
-				@include device-width(10){
+				@include device-width(10) {
 					width: 40%;
 				}
 
-				@include device-width(6){
+				@include device-width(6) {
 					width: 44%;
 				}
 
@@ -461,10 +470,6 @@ body {
 					height: 100%; 
 					vertical-align: middle;
 					margin-right: -0.25em;
-
-					@include device-width(5){
-						display: none;
-					}
 				}
 
 				> .inner {
@@ -472,8 +477,8 @@ body {
 					display: inline-block;
 					vertical-align: middle;
 
-					@include device-width(4){
-						padding: 0 0.5em;
+					@include device-width(4) {
+						padding: 0;
 					}
 				}
 
@@ -488,7 +493,7 @@ body {
 		}
 
 		.scroller-navigation {
-			@include device-width(6){
+			@include device-width(6) {
 				left: 0;
 				right: auto;
 			}
@@ -502,15 +507,23 @@ body {
 			> .inner {
 				margin: 0 -10px;
 			}
+
+			@include device-width(5) {
+				padding: 2em 0;
+			}
+
+			@include device-width(4) {
+				padding: 1em 0;
+			}
 		}
 
 		.widget {
 			margin-bottom: 1em;
-			@include device-width(9){
+			@include device-width(9) {
 				width: 50%;
 			}
 
-			@include device-width(5){
+			@include device-width(5) {
 				width: 100%;
 			}
 
@@ -530,7 +543,7 @@ body {
 				border-top: 1px solid #ececec;
 			}
 			&.widget_twitter_feed {
-				@include device-width(9){
+				@include device-width(9) {
 					display: none;
 				}
 				#twitter-feed {
@@ -549,13 +562,21 @@ body {
 	#content {
 		margin: 4em 0;
 		z-index: 200;
+
+		@include device-width(5) {
+			margin: 2em 0;
+		}
+
+		@include device-width(4) {
+			margin: 1em 0;
+		}
 	}
 
 	#photos {
 		margin: 8em 0 0 0;
 		overflow: hidden;
 
-		@include device-width(6){
+		@include device-width(6) {
 			margin: 4em 0 0 0;
 		}
 		.photos-header {
@@ -590,12 +611,12 @@ body {
 					clear: left;
 				}
 
-				@include device-width(10){
+				@include device-width(10) {
 					width: 150px;
 					height: 150px;
 				}
 
-				@include device-width(5){
+				@include device-width(5) {
 					width: 100px;
 					height: 100px;
 					margin: 3px;
@@ -606,14 +627,21 @@ body {
 		}
 		.photos-footer {
 			background: #f5f5f5;
-			padding: 0.3em;
+			padding: 0.8em;
 			position: relative;
+			text-align: center;
+
+			@include device-width(5) {
+				text-align: left;
+			}
 			.photos-navigation {
 				position: absolute;
 				top: 0;
 				right: 0;
 				height: 100%;
-
+				@include device-width(3){
+					display: none;
+				}
 				a {
 					padding: 1em;
 					display: inline-block;
@@ -647,6 +675,132 @@ body {
 }
 
 #error {}
+
+#archive-photo {
+	#photos {
+		margin: 1em 0 0 0;
+		overflow: hidden;
+
+		.photo-list {
+			padding: 0;
+			margin: 0.5em -4px;
+			list-style: none;
+			min-width: 100%;
+
+			
+
+			li {
+				float: left;
+				width: 16.6%;
+				@include box-sizing(border-box);
+				padding: 4px;
+				a {
+					width: 100%;
+					height: 100%;
+					overflow: hidden;
+					display: block;
+				}
+
+				// @include device-width(10) {
+				// 	width: 150px;
+				// 	height: 150px;
+				// }
+
+				// @include device-width(5) {
+				// 	width: 100px;
+				// 	height: 100px;
+				// 	margin: 3px;
+				// }
+			}
+		}
+		.photos-footer {
+			margin: 1em 0; 
+			position: relative;
+			text-align: center;
+
+			@include device-width(5) {
+				text-align: left;
+			}
+			
+		}
+	}
+}
+
+#archive-celebrity-bear {
+	background: #e5e4d6 url(../images/backgrounds/beige_pattern.jpg);
+
+	#celebrity-bears {
+		.celebrity-bear-list {
+			list-style: none;
+			margin: 0;
+			padding: 4em 1em;
+			li {
+				float: left;
+				width: 33%;
+				@include box-sizing(border-box);
+				padding: 0 4%;
+				margin: 1em 0;
+
+				@include device-width(7) {
+					width: 50%;
+				}
+
+				@include device-width(4) {
+					width: 100%;
+				}
+
+				.thumbnail {
+					height: 24em;
+					line-height: 24em;
+					
+					@include device-width(12) {
+						height: 23em;
+						line-height: 23em;
+					}
+					@include device-width(11) {
+						height: 22em;
+						line-height: 22em;
+					}
+					@include device-width(10) {
+						height: 21em;
+						line-height: 21em;
+					}
+					@include device-width(9) {
+						height: 20em;
+						line-height: 20em;
+					}
+					@include device-width(8) {
+						height: 18em;
+						line-height: 18em;
+					}
+					@include device-width(7) {
+						height: 26em;
+						line-height: 26em;
+					}
+					@include device-width(6) {
+						height: 23em;
+						line-height: 23em;
+					}
+					@include device-width(5) {
+						height: 20em;
+						line-height: 20em;
+					}
+					@include device-width(4) {
+						height: auto;
+						line-height: auto;
+					}
+					
+					img {
+						vertical-align: middle;
+						display: inline-block;
+						max-width: none;
+						max-height: none;
+					}
+				}
+			}
+		}
+	}
+}
 
 #page,
 #woocommerce {
@@ -714,8 +868,12 @@ body {
 			color: #850000;
 		}
 
+		.woocommerce-pagination {
+			margin: 0 0 4em 0;
+		}
+
 		ul.products {
-			margin: 2.5em -10px;
+			margin: 2.5em -10px 0 -10px;
 
 			li {
 				&.product {
@@ -724,53 +882,55 @@ body {
 					width: 20%;
 					@include box-sizing(border-box);
 
-					@include device-width(8){
+					@include device-width(8) {
 						width: 25%;
 					}
 
-					@include device-width(6){
+					@include device-width(6) {
 						width: 33%;
 					}
 
-					@include device-width(4){
+					@include device-width(4) {
 						width: 50%;
 					}
 
 					&:nth-child(4n + 1) {
-						@include device-width(8){
+						@include device-width(8) {
 							clear: left;
 						}
 
-						@include device-width(6){
+						@include device-width(6) {
 							clear: none;
 						}
 					}
 
 
 					&:nth-child(3n + 1) {
-						@include device-width(6){
+						@include device-width(6) {
 							clear: left;
 						}
 
-						@include device-width(4){
+						@include device-width(4) {
 							clear: none;
 						}
 					}
 
 					&:nth-child(2n + 1) {
-						@include device-width(4){
+						@include device-width(4) {
 							clear: left;
 						}
 
 					}
 
 					&.first {
-						@include device-width(8){
+						@include device-width(8) {
 							clear: none;
 						}
 					}
 
 					img {
+						margin: 0;
+						width: 100% !important;
 						border: 1px solid #c1c1c1;
 						@include box-shadow(0 6px 2px -1px rgba(#000, 0.1));
 					}
@@ -830,7 +990,7 @@ body {
 			margin: 3em -35px 0 -35px;
 			list-style: none;
 			padding: 0;
-			@include device-width(8){
+			@include device-width(8) {
 				margin: 2em 0;
 			}
 			li {
@@ -842,7 +1002,7 @@ body {
 					margin: 0 0 3em 0;
 					width: auto;
 
-					@include device-width(8){
+					@include device-width(8) {
 						@include box-sizing(border-box);
 						width: 50%;
 						text-align: center;
@@ -854,28 +1014,28 @@ body {
 
 					&:last-child {
 						clear: none;
-						@include device-width(8){
+						@include device-width(8) {
 							width: 100%;
 						}
 						a {
 							.category-image.small {
-								@include device-width(12){
+								@include device-width(12) {
 									max-height: 140px;
 								}
 
-								@include device-width(10){
+								@include device-width(10) {
 									max-height: 120px;
 								}
 
-								@include device-width(8){
+								@include device-width(8) {
 									max-height: 140px;
 								}
 
-								@include device-width(6){
+								@include device-width(6) {
 									max-height: 120px;
 								}
 
-								@include device-width(4){
+								@include device-width(4) {
 									max-height: 100px;
 								}
 							}
@@ -894,63 +1054,67 @@ body {
 							margin: 0;
 							max-height: 134px;
 
-							@include device-width(12){
+							@include device-width(12) {
 								max-height: 120px;
 							}
 
-							@include device-width(11){
+							@include device-width(11) {
 								max-height: 100px;
 							}
 
-							@include device-width(9){
+							@include device-width(9) {
 								max-height: 85px;
 							}
 
-							@include device-width(8){
+							@include device-width(8) {
 								max-height: 160px;
 							}
 
-							@include device-width(7){
+							@include device-width(7) {
 								max-height: 140px;
 							}
 
-							@include device-width(6){
+							@include device-width(6) {
 								max-height: 120px;
 							}
 
-							@include device-width(5){
+							@include device-width(5) {
 								max-height: 100px;
 							}
 
-							@include device-width(4){
+							@include device-width(4) {
 								max-height: 80px;
+							}
+
+							@include device-width(3) {
+								max-height: 60px;
 							}
 
 							&.large {
 
 								max-height: 220px;
 	
-								@include device-width(13){
+								@include device-width(13) {
 									max-height: 210px;
 								}
 
-								@include device-width(12){
+								@include device-width(12) {
 									max-height: 200px;
 								}
 
-								@include device-width(11){
+								@include device-width(11) {
 									max-height: 180px;
 								}
 
-								@include device-width(10){
+								@include device-width(10) {
 									max-height: 160px;
 								}
 
-								@include device-width(9){
+								@include device-width(9) {
 									max-height: 140px;
 								}
 
-								@include device-width(8){
+								@include device-width(8) {
 									display: none;
 								}
 							}
@@ -958,7 +1122,7 @@ body {
 							&.small {
 								display: none;
 							
-								@include device-width(8){
+								@include device-width(8) {
 									display: inline;
 								}
 
@@ -1001,7 +1165,7 @@ body {
 			.qty {
 				padding-top: 0.3em;
 				padding-bottom: 0.3em;
-				height: 2.6em;
+				height: 3em;
 				background: #f4f4f4;
 				border-color: #a1a1a1;
 				@include border-radius(0);
@@ -1041,11 +1205,11 @@ body {
 
 			.images {
 
-				@include device-width(6){
+				@include device-width(6) {
 					width: 30%;
 				}
 
-				@include device-width(4){
+				@include device-width(4) {
 					width: 100%;
 				}
 				img {
@@ -1058,7 +1222,7 @@ body {
 					margin: 0 -5px;
 
 					a {
-						width: 16%;
+						width: 16.6%;
 						@include box-sizing(border-box);
 						padding: 4px 5px;
 						margin: 0;
@@ -1068,11 +1232,11 @@ body {
 			.summary {
 				width: 50%;
 
-				@include device-width(6){
+				@include device-width(6) {
 					width: 68%;
 				}
 
-				@include device-width(4){
+				@include device-width(4) {
 					width: 100%;
 				}
 
@@ -1168,7 +1332,7 @@ body {
 							clear: none;
 						}
 
-						@include device-width(6){
+						@include device-width(6) {
 							width: 100%;
 							float: none;
 						}
@@ -1224,7 +1388,7 @@ body {
 						width: 60%;
 						margin: 0 auto;
 
-						@include device-width(11){
+						@include device-width(11) {
 							width: 100%;
 						}
 					}
@@ -1241,7 +1405,7 @@ body {
 	
 			.cart {
 				border-top: none;
-				@include device-width(5){
+				@include device-width(5) {
 
 				}
 				@include border-radius(0);
@@ -1268,7 +1432,7 @@ body {
 				.actions {
 
 					.coupon{
-						@include device-width(5){
+						@include device-width(5) {
 							margin: 0 0 0.5em 0;
 							float: none;
 						}
@@ -1288,7 +1452,7 @@ body {
 
 						.input-text,
 						.button {
-							@include device-width(5){
+							@include device-width(5) {
 								float: none;
 							}
 						}
@@ -1310,7 +1474,7 @@ body {
 			.cart_totals {
 				float: left;
 				margin: 2em 0 0 0;
-				@include device-width(6){
+				@include device-width(6) {
 					width: 100%;
 				}
 				table {
@@ -1330,7 +1494,7 @@ body {
 			.shipping_calculator {
 				margin: 2em 0 0 0;
 
-				@include device-width(6){
+				@include device-width(6) {
 					width: 100%;
 				}
 				.shipping-calculator-form {
@@ -1382,7 +1546,7 @@ body {
 			#payment {
 				background: none;
 				@include border-radius(0);
-				@include device-width(6){
+				@include device-width(6) {
 					margin: 1em 0 0 0;
 				}
 				.payment_methods {
@@ -1437,7 +1601,7 @@ body {
 				width: 163px;
 				height: 521px;
 
-				@include device-width(12){
+				@include device-width(12) {
 					display: none;
 				}
 			}
@@ -1473,11 +1637,17 @@ body {
 		.col2-set {
 			.col-1,
 			.col-2 {
-				@include device-width(6){
+				@include device-width(6) {
 					float: none;
 					width: 100%;
 				}
 			}
+		}
+
+		.show-all-bears-btn {
+			position: absolute;
+			right: 0;
+			margin-top: -18%;
 		}
 	}
 }
@@ -1527,8 +1697,7 @@ body {
 	.pp_woocommerce {
 		
 		.pp_content_container {
-			padding: 3em 0 0 0;
+			padding: 3em 0;
 		}
 	}
 }
-

@@ -27,7 +27,6 @@ if ( ! $product->is_visible() )
 
 // Increase loop count
 $woocommerce_loop['loop']++;
-
 // Extra post classes
 $classes = array();
 if ( 0 == ( $woocommerce_loop['loop'] - 1 ) % $woocommerce_loop['columns'] || 1 == $woocommerce_loop['columns'] )

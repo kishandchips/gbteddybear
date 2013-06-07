@@ -1,8 +1,16 @@
 $device_widths: (100px, 200px, 300px, 400px, 500px, 600px, 700px, 800px, 900px, 1000px, 1100px, 1200px, 1300px, 1400px);
 
-@mixin device-width($i){}
+@mixin device-width($i){
+	@media only screen and (max-height: (nth($device_widths, 1))){
+		@content;
+	}
+}
 
-@mixin device-height($i){}
+@mixin device-height($i){
+	@media only screen and (max-height: (nth($device_widths, 1))){
+		@content;
+	}
+}
 
 @mixin font-size($size){
 	font-size: ($size) + px;

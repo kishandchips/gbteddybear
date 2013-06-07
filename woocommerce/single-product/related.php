@@ -33,7 +33,7 @@ if ( $products->have_posts() ) : ?>
 
 	<div class="related products">
 
-		<h2><?php _e( 'Related Products', 'woocommerce' ); ?></h2>
+		<header class="line-header"><h5 class="title"><?php _e( 'You may also like&hellip;', 'woocommerce' ) ?></h5></header>
 
 		<?php woocommerce_product_loop_start(); ?>
 

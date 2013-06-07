@@ -62,6 +62,10 @@
 				countrySelectorForm.submit();
 			});
 
+			if($.fn.fancybox){
+				$('.fancybox-btn').fancybox();
+			}
+
 			$(window).resize(this.resize);
 			this.resize();
 

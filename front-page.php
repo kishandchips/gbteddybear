@@ -15,7 +15,7 @@
 get_header(); ?>
 <section id="front-page" class="clearfix">
 	<?php if ( get_field('slides')) :?>
-		<div id="homepage-scroller" class="scroller container" >
+		<div id="homepage-scroller" class="scroller container" data-auto-scroll="true" >
 			<div class="outer">
 				<div class="inner">
 					<div class="scroller-mask">
@@ -55,7 +55,7 @@ get_header(); ?>
 	<div id="content">
 		<div class="container">
 			<?php if ( get_field('content')):?>
-			<?php get_template_part('inc/rows'); ?>
+			<?php get_template_part('inc/content'); ?>
 			<?php endif; ?>
 		</div>
 	</div>
@@ -64,12 +64,14 @@ get_header(); ?>
 	<?php
 	$query = new WP_Query( array('post_type' => array('photo')) );
 	if($query->have_posts()):
+		wp_enqueue_style('fancybox');
+		wp_enqueue_script('fancybox');
 		$gallery_page_id = get_gbteddybear_option('gallery_page_id');
 	?>
 	<div id="photos">
 		<div class="inner container">
 			<header class="photos-header">
-				<h5 class="title text-center light-brown uppercase"><?php echo get_the_title($gallery_page_id); ?></h5>
+				<h5 class="title text-center uppercase"><a href="<?php echo get_permalink($gallery_page_id); ?>" class="light-brown"><?php echo get_the_title($gallery_page_id); ?></a></h5>
 			</header>
 			<div class="photo-list-container clearfix">
 				<ul class="photo-list clearfix">
@@ -78,9 +80,11 @@ get_header(); ?>
 				$half = floor($query->found_posts / 2);
 				while($query->have_posts()):
 					$query->the_post();
+					$image_id = get_post_thumbnail_id();
+					$image = wp_get_attachment_image_src($image_id, 'full');
 			?>
 					<li class="item photo <?php if($i == $half) echo 'half'; ?>">
-						<a href="<?php the_permalink(); ?>">
+						<a href="<?php echo $image[0]; ?>" class="fancybox-btn overlay-btn" rel="gallery">
 							<?php the_post_thumbnail('thumbnail', array('class' => 'scale')); ?>
 						</a>
 					</li>
@@ -90,8 +94,8 @@ get_header(); ?>
 				</ul>
 			</div>
 			<footer class="photos-footer">
-				<p class="text-center">
-					<a href="<?php echo get_permalink($gallery_page_id); ?>" class="uppercase"><i aria-hidden="true" class="icon-camera big text-middle"></i>&nbsp;&nbsp;<?php _e("Send a photo for the gallery", 'gbteddybear') ?></a>
+				<p class="no-margin">
+					<a href="<?php echo get_permalink(get_gbteddybear_option('submit_photo_page_id')); ?>" class="uppercase"><i aria-hidden="true" class="icon-camera big text-middle"></i>&nbsp;&nbsp;<?php _e("Send a photo for the gallery", 'gbteddybear') ?></a>
 				</p>
 				<div class="photos-navigation">
 					<a class="prev-btn icon-arrow-left" data-direction="left"></a>

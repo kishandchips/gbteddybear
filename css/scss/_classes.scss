@@ -61,27 +61,27 @@ h1 {
 		font-size: 70%;
 	}
 
-	@include device-width(12){
+	@include device-width(12) {
 		@include font-size(45);
 	}
 
-	@include device-width(10){
+	@include device-width(10) {
 		@include font-size(42);
 	}
 
-	@include device-width(8){
+	@include device-width(8) {
 		@include font-size(38);
 	}
 
-	@include device-width(6){
+	@include device-width(6) {
 		@include font-size(34);
 	}
 
-	@include device-width(4){
-		@include font-size(30);
+	@include device-width(4) {
+		@include font-size(28);
 	}
 
-	@include device-width(3){
+	@include device-width(3) {
 		@include font-size(24);
 	}
 
@@ -97,27 +97,27 @@ h2 {
 		font-size: 70%;
 	}
 
-	@include device-width(12){
+	@include device-width(12) {
 		@include font-size(38);
 	}
 
-	@include device-width(10){
+	@include device-width(10) {
 		@include font-size(36);
 	}
 
-	@include device-width(8){
+	@include device-width(8) {
 		@include font-size(32);
 	}
 
-	@include device-width(6){
+	@include device-width(6) {
 		@include font-size(28);
 	}
 
-	@include device-width(4){
+	@include device-width(4) {
 		@include font-size(24);
 	}
 
-	@include device-width(3){
+	@include device-width(3) {
 		@include font-size(20);
 	}
 }
@@ -131,6 +131,30 @@ h3 {
 	&:before {
 		font-size: 70%;
 	}
+
+	@include device-width(12) {
+		@include font-size(28);
+	}
+
+	@include device-width(10) {
+		@include font-size(26);
+	}
+
+	@include device-width(8) {
+		@include font-size(24);
+	}
+
+	@include device-width(6) {
+		@include font-size(22);
+	}
+
+	@include device-width(4) {
+		@include font-size(20);
+	}
+
+	@include device-width(3) {
+		@include font-size(18);
+	}
 }
 
 h4 {
@@ -142,6 +166,30 @@ h4 {
 	&:before {
 		font-size: 70%;
 	}
+
+	@include device-width(12) {
+		@include font-size(21);
+	}
+
+	@include device-width(10) {
+		@include font-size(20);
+	}
+
+	@include device-width(8) {
+		@include font-size(19);
+	}
+
+	@include device-width(6) {
+		@include font-size(18);
+	}
+
+	@include device-width(4) {
+		@include font-size(17);
+	}
+
+	@include device-width(3) {
+		@include font-size(16);
+	}
 }
 
 h5 {
@@ -152,6 +200,30 @@ h5 {
 	text-transform: uppercase;
 	&:before {
 		font-size: 70%;
+	}
+
+	@include device-width(12) {
+		@include font-size(17);
+	}
+
+	@include device-width(10) {
+		@include font-size(20);
+	}
+
+	@include device-width(8) {
+		@include font-size(16);
+	}
+
+	@include device-width(6) {
+		@include font-size(15);
+	}
+
+	@include device-width(4) {
+		@include font-size(14);
+	}
+
+	@include device-width(3) {
+		@include font-size(13);
 	}
 }
 
@@ -167,7 +239,6 @@ h6 {
 
 p {
 	margin: 0.8em 0;
-	line-height: 1.4;
 }
 
 .huge {
@@ -358,13 +429,13 @@ a.light-brown:hover {
 
 
 .hide-on-tablet {
-	@include device-width(8){
+	@include device-width(8) {
 		display: none !important;
 	}
 }
 
 .hide-on-mobile {
-	@include device-width(4){
+	@include device-width(4) {
 		display: none !important;
 	}
 }
@@ -424,7 +495,7 @@ hr {
 	background-color: #999;
 	border: 0;
     height: 1px;
-	margin: 0 auto;
+	margin: 1em auto;
 
 	&.thick {
 		height: 4px;	
@@ -533,7 +604,7 @@ hr {
 		height: 0;
 		z-index: 200;
 
-		@include device-width(8){
+		@include device-width(8) {
 			font-size: 0.8em;
 		}
 
@@ -860,14 +931,14 @@ blockquote {
 					color: #ed2724;
 				}
 
-				@include device-width(9){
+				@include device-width(9) {
 					width: auto;
 					padding-left: 15px;
 					padding-right: 15px;
 
 				}
 
-				@include device-width(7){
+				@include device-width(7) {
 					font-size: 12px;
 				}
 			}
@@ -919,7 +990,7 @@ a.thumbnail {
 	background: #FFF;
 	@include background(rgba(#FFF, 0.8));
 
-	@include device-width(6){
+	@include device-width(6) {
 		padding: 0em 2em 0.5em 2em;
 		margin-bottom: 2em;
 	}
@@ -988,6 +1059,37 @@ a.thumbnail {
 	}
 }
 
+.pages {
+	margin: 4em 0 0 0;
+	.page-list {
+		margin: 1em -10px;
+		padding: 0;
+		list-style: none;
+
+		.page {
+			margin: 1em 0;
+			float: left;
+			width: 20%;
+
+			@include device-width(7) {
+				width: 33%;
+				&:nth-child(3n+4) {
+					clear: left;
+				}
+			}
+
+			@include device-width(5) {
+				width: 50%;
+				&:nth-child(3n+4) {
+					clear: none;
+				}
+				&:nth-child(2n+3) {
+					clear: left;
+				}
+			}
+		}
+	}
+}
 
 /* =============================================================================
    Widgets
@@ -1231,7 +1333,7 @@ a.thumbnail {
 				}
 
 				.image {
-					@include device-width(7){
+					@include device-width(7) {
 						width: 100px;
 					}
 				}
@@ -1394,7 +1496,7 @@ button {
 	display: inline-block;
 	background: #FFF;
 	border: 1px solid #b0b0b0;
-	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5));
+	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3));
 	padding: 0.3em 0.8em;
 	@include font-size(16);
 	color: #000;
@@ -1415,7 +1517,7 @@ button {
 	background: #890a0a;
 	border: 1px solid #000;
 	border: 1px solid rgba(#000, 0.4);
-	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5), inset 0 0 2px 2px rgba(#bc3434, 0.6));
+	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3), inset 0 0 2px 2px rgba(#bc3434, 0.6));
 	padding: 0.4em 1.5em;
 	text-shadow: none;
 	text-transform: uppercase;
@@ -1428,18 +1530,22 @@ button {
 		background: #710808;
 	}
 
+	&.small {
+		@include font-size(14);
+	}
+
 	strong, b, .bold {
 		line-height: 1;
 	}
 
-	@include device-width(8){
+	@include device-width(8) {
 		font-size: 1em;
 	}
 }
 
 .green-btn {
 	background: #7bae32;
-	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5), inset 0 0 2px 2px rgba(#cbe99f, 0.6));
+	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3), inset 0 0 2px 2px rgba(#cbe99f, 0.6));
 
 	&:hover {
 		background: #628a28;
@@ -1451,7 +1557,7 @@ button {
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 	text-transform: none;
-	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5), inset 0 0 2px 2px rgba(#5d85c9, 0.6));
+	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3), inset 0 0 2px 2px rgba(#5d85c9, 0.6));
 
 	&:hover {
 		background: #2d4475;
@@ -1566,9 +1672,9 @@ button {
 	padding-bottom: 1.6em;
 	border-bottom: 1px solid #cecece;
 
-	@include device-width(6){
-		padding-top: 1em;
-		padding-bottom: 1em;
+	@include device-width(6) {
+		padding-top: 1em !important;
+		padding-bottom: 1em !important;
 	}
 	> .inner {
 		margin-left: -10px;
@@ -1613,11 +1719,11 @@ button {
 	position: relative;
 	*zoom: 1;
 
-	@include device-width(7){
+	@include device-width(7) {
 		width: 95%;
 	}
 
-	// @media only screen and (max-width: (860px)){
+	// @media only screen and (max-width: (860px)) {
 	//  width: auto;
 	// 	padding-left: 5%;
 	// 	padding-right: 5%;
@@ -1666,14 +1772,18 @@ $i: 1;
 }
 
 .span.break-on-tablet {
-	@include device-width(8){
-		width: auto !important;
+	@include device-width(8) {
+		width: 100% !important;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
 
 .span.break-on-mobile {
-	@include device-width(4){
-		width: auto !important;
+	@include device-width(4) {
+		width: 100% !important;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
 
@@ -1774,7 +1884,7 @@ select {
 	display: inline-block;
 	background: #FFF;
 	border: 1px solid #b0b0b0;
-	@include box-shadow(0px 2px 2px -1px rgba(0, 0, 0, 0.5));
+	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3));
 	padding: 0.6em;
 	@include font-size(12);
 	@include open-sans;
@@ -1797,9 +1907,28 @@ textarea {
 input[type=submit],
 input[type=reset] {
 	@include crimson;
-	border: none;
 	cursor: pointer;	
-	color: #FFFFFF;
+	display: inline-block;
+	background: #e3e3e3;
+	border: 1px solid #000;
+	border: 1px solid rgba(#000, 0.1);
+	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3), inset 0 0 2px 2px rgba(#dddddd, 0.6));
+	padding: 0.4em 1.5em;
+	text-shadow: none;
+	text-transform: uppercase;
+	@include font-size(14);
+	color: #8f8f8f;
+	line-height: 1.3;
+	margin: 0 0 0.5em 0;
+	&:hover {
+		color: #FFF;
+		background: #cfcfcf;
+	}
+
+
+	@include device-width(8) {
+		font-size: 1em;
+	}
 }
 
 button::-moz-focus-inner,
@@ -1829,19 +1958,24 @@ fieldset {
    Gravity
    ========================================================================== */
 
- .gform_wrapper {
-
+.gform_wrapper {
+	max-width: 100% !important;
+ 
 // 	color: #FFF;
 
-// 	.gform_heading {
-// 		margin: 10px 0;
-// 	}
+	.gform_heading {
+		.gform_title {
+			font-weight: normal;
+			@include font-size(20);
+		}
+	}
 
 // 	.validation_error {
 // 		color: #a40000;
 // 	}
 
  	.gform_body {
+
 // 		margin: 20px 0;
 // 		font-family: Arial, Helvetica, sans-serif;
 
@@ -1855,14 +1989,17 @@ fieldset {
 
  			.gfield {
 // 				margin: 0 0 20px 0;
-// 				.gfield_label {
 
-// 					font-size: 14px;
-// 					.gfield_required {
-// 						color: #a40000;
-// 						padding: 0 0 0 5px;
-// 					}
-// 				}
+				&.gsection {
+					border-bottom: 1px solid #ececec;
+				}
+				.gfield_label {
+					@include crimson;
+					@include font-size(15);
+					margin: 0.8em 0 0.3em 0;
+					font-weight: bold;
+					
+				}
 
 // 				.gfield_description {
 // 					font-size: 10px;
@@ -1875,8 +2012,50 @@ fieldset {
 // 				}
 
 				&.gfield_error {
-					background: #d6ebff;
-					border-color: #0b7be0;
+					margin: 0 !important;
+					padding: 0 !important;
+					background: none;
+					border: none;
+
+					&.gfield_contains_required {
+						margin: 0 !important;
+						padding: 0 !important;
+					}
+
+					&.gf_left_half {
+						width: 46%;
+					}
+
+					.ginput_container {
+						margin: 0 !important;
+						max-width: 100%;
+					}
+				}
+
+				&.large-container {
+					.ginput_container {
+						@include border-radius(3px);
+						background: #f2f2eb;
+						background: rgba(#FFF, 0.5);
+						border: 1px solid #c3c2bb;
+						padding: 6em 8em;
+
+						@include device-width(9){
+							padding-left: 4em;
+							padding-right: 4em;	
+						}
+					}
+				}
+
+				&.gf_left_half,
+				&.gf_right_half {
+					width: 46% !important;
+
+					@include device-width(6){
+						width: 100% !important;
+						float: none !important;
+						clear: none !important;
+					}
 				}
 
  				.ginput_container {
@@ -1890,11 +2069,8 @@ fieldset {
 						@include box-sizing(none);
 						background: #FFF;
 						padding: 8px 6px;
-						width: 100%;
 						max-width: 100%;
-						font-size: 12px;
-						border: 1px solid #787878;
-
+						
 						// &.small {
 						// 	width: 25%;
 						// }
@@ -1907,37 +2083,55 @@ fieldset {
 						// 	width: 100%;
 						// }
 					}
- 				}		
+
+					select {
+						@include border-radius(0);
+						-webkit-appearance: none;
+						display: inline-block;
+						background: #FFF;
+						border: 1px solid #b0b0b0;
+						@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3));
+						padding: 0.6em;
+						@include font-size(12);
+						@include open-sans;
+						background: #f4f4f4;
+						position: relative;
+
+						&.medium {
+							width: 45%;
+						}
+					}
+ 				}	
+
+ 				.gfield_description {
+ 					&.validation_message {
+ 						padding: 6px 0 0 0 !important;
+ 					}
+ 				}	
  			}
 // 		}
  	}
 
  	.gform_footer,
  	.gform_page_footer {
+ 		width: 99.2%;
+ 		text-align: right;
  		.button,
  		input.button,
  		input[type=submit],
  		input.button.gform_button {
- 			height: 36px;
- 			margin: 0;
-			color: #c2ed00;
-			padding: 0 30px;
-			display: inline-block;
-			border: 1px solid rgba(0, 0, 0, 0.2);
-			background: #000;
-			@include transition(background 1s ease);
-			@include font-size(16);
-			line-height: 14px;
-			@include crimson;
-			text-transform: uppercase;
+ 			@extend .red-btn;
+		}
+ 	}
 
-			&:hover {
-				color: #FFF;
+ 	&.beige_wrapper {
+ 		background: #e5e4d6 url(../images/backgrounds/beige_pattern.jpg);
+ 		padding: 2em;
+
+ 		.gfield {
+			&.gsection {
+				border-bottom: 1px solid #a19f86;
 			}
-
-// 			&:active {
-// 				@include box-shadow(rgba(0, 0, 0, 1) 0 0 3px 0, rgba(255, 255, 255, 0.8) 0px 0px 2px 0 inset);
-// 			}
 		}
  	}
 }

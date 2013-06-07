@@ -22,7 +22,7 @@ get_header(); ?>
 		</div>
 		<?php endif; ?>
 		<?php if ( get_field('content')):?>
-		<?php get_template_part('inc/rows'); ?>
+		<?php get_template_part('inc/content'); ?>
 		<?php endif; ?>
 	</div>
 	<?php endwhile; // end of the loop. ?>

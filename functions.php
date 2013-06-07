@@ -113,16 +113,31 @@ function gbteddybear_setup() {
  		 	'publicly_queryable' => true,
    			'has_archive' => true, 
     		'hierarchical' => false,
-    		'exclude_from_search' => false,
+    		'exclude_from_search' => true,
     		'menu_position' => null,
     		'supports' => array('title', 'thumbnail', 'page-attributes'),
     		'plural' => 'Photos'
    		)
    	);
 
+
+	$celebrity_bear = new Custom_Post_Type( 'Celebrity Bear', 
+ 		array(
+ 			'rewrite' => array( 'with_front' => false, 'slug' => get_page_uri(get_gbteddybear_option('celebrity_bear_page_id')) ),
+ 			'capability_type' => 'post',
+ 		 	'publicly_queryable' => true,
+   			'has_archive' => true, 
+    		'hierarchical' => false,
+    		'exclude_from_search' => true,
+    		'menu_position' => null,
+    		'supports' => array('title', 'thumbnail', 'page-attributes'),
+    		'plural' => 'Celebrity Bears'
+   		)
+   	);
+
 	
- 	// global $wp_rewrite;
-	// $wp_rewrite->flush_rules();
+ 	//global $wp_rewrite;
+	//$wp_rewrite->flush_rules();
 	//add_rewrite_rule('case-studies/([^/]+)?', 'index.php?post_type=true&work=$matches[1]', 'top');
    	//$shop->add_taxonomy('Shop Category', array('hierarchical' => true), array('plural' => 'Shop Categories'));
 
@@ -573,5 +588,37 @@ if ( ! function_exists( 'custom_upsell_display' ) ) {
 
 	function custom_upsell_display() {
 		woocommerce_upsell_display( -1, 5 );
+	}
+}
+
+remove_action( 'woocommerce_view_order', 'woocommerce_order_details_table', 10 );
+add_action( 'woocommerce_view_order', 'custom_order_details', 10 );
+
+
+if ( ! function_exists( 'custom_order_details' ) ) {
+
+	function custom_order_details( $order_id  ) {
+		if ( ! $order_id ) return;
+
+		woocommerce_get_template( 'order/order.php', array(
+			'order_id' => $order_id
+		) );
+	}
+}
+
+
+add_filter( 'woocommerce_product_thumbnails_columns', 'custom_product_thumbnails_columns', 3 );
+
+if ( ! function_exists( 'custom_product_thumbnails_columns' ) ) {
+
+	function custom_product_thumbnails_columns(   ) {
+		return 6;
+	}
+}
+
+add_filter('loop_shop_columns', 'custom_loop_columns');
+if (!function_exists('custom_loop_columns')) {
+	function custom_loop_columns() {
+		return 5;
 	}
 }

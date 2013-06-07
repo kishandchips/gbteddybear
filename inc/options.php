@@ -66,6 +66,18 @@ function theme_options_do_page() {
 					</td>
 				</tr>
 
+				<tr valign="top"><th scope="row"><?php _e( 'Submit Photo Page ID', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[submit_photo_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[submit_photo_page_id]" value="<?php esc_attr_e( $options['submit_photo_page_id'] ); ?>" />
+					</td>
+				</tr>
+
+				<tr valign="top"><th scope="row"><?php _e( 'Celebrity Bear Page ID', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[celebrity_bear_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[celebrity_bear_page_id]" value="<?php esc_attr_e( $options['celebrity_bear_page_id'] ); ?>" />
+					</td>
+				</tr>
+
 				<tr valign="top"><th scope="row"><?php _e( 'All Bears Category ID', 'gbteddybear' ); ?></th>
 					<td>
 						 <input id="gbteddybear_theme_options[all_bears_category_id]" class="regular-text" type="text" name="gbteddybear_theme_options[all_bears_category_id]" value="<?php esc_attr_e( $options['all_bears_category_id'] ); ?>" />
@@ -115,6 +127,8 @@ function theme_options_validate( $input ) {
 	$input['cart_page_id'] = wp_filter_nohtml_kses( $input['cart_page_id'] );
 	$input['tnc_page_id'] = wp_filter_nohtml_kses( $input['tnc_page_id'] );
 	$input['gallery_page_id'] = wp_filter_nohtml_kses( $input['gallery_page_id'] );
+	$input['submit_photo_page_id'] = wp_filter_nohtml_kses( $input['submit_photo_page_id'] );
+	$input['celebrity_bear_page_id'] = wp_filter_nohtml_kses( $input['celebrity_bear_page_id'] );
 	$input['all_bears_category_id'] = wp_filter_nohtml_kses( $input['all_bears_category_id'] );
 	$input['facebook_url'] = wp_filter_nohtml_kses( $input['facebook_url'] );
 	$input['twitter_url'] = wp_filter_nohtml_kses( $input['twitter_url'] );

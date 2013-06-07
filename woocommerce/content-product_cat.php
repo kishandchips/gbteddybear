@@ -12,14 +12,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce_loop;
-
 // Store loop count we're currently on
 if ( empty( $woocommerce_loop['loop'] ) )
 	$woocommerce_loop['loop'] = 0;
 
 // Store column count for displaying the grid
-if ( empty( $woocommerce_loop['columns'] ) )
+if ( empty( $woocommerce_loop['columns'] ) ){
 	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 4 );
+}
 // Increase loop count
 
 
