@@ -46,6 +46,7 @@
 		wp_enqueue_script('imagesloaded', get_template_directory_uri().'/js/plugins/jquery.imagesloaded.js', array('jquery'), '', true);
 		wp_enqueue_script('transit', get_template_directory_uri().'/js/plugins/jquery.transit.js', array('jquery'), '', true);
 		wp_register_script('fancybox', get_template_directory_uri().'/js/plugins/jquery.fancybox.min.js', array('jquery'), '', true);
+		wp_register_script('threesixty', get_template_directory_uri().'/js/plugins/jquery.threesixty.js', array('jquery'), '', true);
 		wp_enqueue_script('main', get_template_directory_uri().'/js/main.js', array('jquery'), '', true);
 	}
 	add_action('wp_enqueue_scripts', 'load_assets');
@@ -92,7 +93,7 @@
 			</ul>
 			<div class="info">
 				<h4 class="phone-number light-brown no-margin" >
-					<i aria-hidden="true" class="icon-phone tiny brown"></i> 08700429745
+					<i aria-hidden="true" class="icon-phone tiny brown"></i> 08700 429 745
 				</h4>
 			</div>
 			<div class="navigation-container">

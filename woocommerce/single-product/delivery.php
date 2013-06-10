@@ -10,7 +10,8 @@
 	<h5 class="uppercase">Delivery</h5>
 	<div class="clearfix">
 		<div class="span alpha four break-on-tablet">
-			<p class="small no-margin"><?php _e("Orders placed before 1PM UK time are dispatched the same day. You've selected for your order to be shipped to United Kingdom which usually takes 5 days.", 'gbteddybear'); ?></p>
+			<p class="small no-margin"><?php _e("Orders placed before 1PM UK time are dispatched the same day.", 'gbteddybear'); ?></p>
+			<!--p class="small no-margin"><?php _e("You've selected for your order to be shipped to United Kingdom which usually takes 5 days.", 'gbteddybear'); ?></p-->
 		</div>
 		<form class="country-selector-form span four break-on-tablet alpha" action="" method="POST">
 			<select name="product_calc_shipping_country" class="country">

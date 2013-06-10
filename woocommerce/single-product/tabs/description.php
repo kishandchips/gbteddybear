@@ -10,7 +10,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce, $post;
-
+$id = ($post) ? $post->ID : null;
+if($post->post_content || get_field('content', $id)):
 $heading = esc_html( apply_filters('woocommerce_product_description_heading', __( 'Product Description', 'woocommerce' ) ) );
 ?>
 <div class="description">
@@ -19,9 +20,9 @@ $heading = esc_html( apply_filters('woocommerce_product_description_heading', __
 		<?php if($post->post_content): ?>
 		<div class="product-content"><?php the_content(); ?></div>
 		<?php endif; ?>
-		<?php $id = ($post) ? $post->ID : null; ?>
 		<?php if ( get_field('content', $id)) :?>
-		<?php include(locate_template('inc/rows.php')); ?>
+		<?php include(locate_template('inc/content.php')); ?>
 		<?php endif; ?>
 	</div>
 </div>
+<?php endif; ?>

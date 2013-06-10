@@ -114,10 +114,11 @@
 						}
 					}
 					if(!firstLoad){
-						currItem.animate({'left': -targetX}, speed, easing, function(){
-							$(this).removeClass('current');
+						currItem.css({position: 'absolute'}).animate({'left': -targetX}, speed, easing, function(){
+							$(this).removeClass('current').css({position: 'relative'});
 						});
-						nextItem.css({'left': targetX}).addClass('current').animate({'left': 0}, speed, easing, function(){
+						nextItem.css({'left': targetX, position: 'absolute'}).addClass('current').animate({'left': 0}, speed, easing, function(){
+							$(this).css({position: 'relative'});
 							currItem = nextItem;
 							canScroll = false;
 						});
@@ -127,11 +128,11 @@
 						canScroll = false;
 					}
 				}
-				
-				$('.scroller-pagination li', scroller).removeClass('current');
-				$('.scroller-pagination li a[data-id='+nextItem.data('id')+']', scroller).parent().addClass('current');
+				var scrollerPagination = $('.scroller-pagination');
+				$('li', scrollerPagination).removeClass('current');
+				$('li a[data-id='+nextItem.data('id')+']', scrollerPagination).parent().addClass('current');
 				if(options.resize){
-					scroller.animate({height: nextItem.outerHeight()}, speed, easing);
+					scroller.animate({height: nextItem.outerHeight() + scrollerPagination.height()}, speed, easing);
 				}
 				scroller.trigger('onChange', [nextItem]);
 				
@@ -173,12 +174,16 @@
 					$('.scroll-item', scroller).removeClass('hover');
 				});
 
-				$('.scroll-item', scroller).on('click', function(){
-					gotoItem($(this).data('id'));
+				$('.scroll-item', scroller).on('click', function(e){
+					e.preventDefault();
+					gotoItem($(this).data('id'));	
+					return false;
 				});
 
-				$('.scroller-pagination a', scroller).on('click', function(){
+				$('.scroller-pagination a', scroller).on('click', function(e){
+					e.preventDefault();
 					gotoItem($(this).data('id'));
+					return false;
 				});
 				
 				$('.prev-btn', scroller).on('click', gotoPrevItem);
@@ -205,7 +210,7 @@
 			scroller.bind('refresh', refresh);
 
 			$(window).load(function(){
-				if(options.resize) scroller.css({height: currItem.outerHeight()}, 500, 'easeInOutQuad');
+				if(options.resize) scroller.css({height: currItem.outerHeight() + $('.scroller-pagination').height()}, 500, 'easeInOutQuad');
 			});
 			
 			firstLoad = false;

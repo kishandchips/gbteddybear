@@ -25,6 +25,9 @@
 						case 4:
 							$class = 'one-fourth';
 							break;
+						case 5:
+							$class = 'one-fifth';
+							break;
 						case 1:
 						default:
 							$class = 'ten';

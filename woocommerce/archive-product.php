@@ -25,7 +25,7 @@ get_header('shop'); ?>
 	?>
 		<div class="content">
 		<?php $id = ($curr_page) ? $curr_page->ID : null; ?>
-		<?php if ( get_field('content', $id)) :?>
+		<?php if ( get_field('content', $id) && !is_product_category()) :?>
 		<?php include(locate_template('inc/content.php')); ?>
 		<?php else: ?>
 			<div class="row">
@@ -71,6 +71,7 @@ get_header('shop'); ?>
 				?>
 			<?php endif; ?>
 			<?php if(!is_shop()): ?>
+			<?php woocommerce_reset_loop(); ?>
 			<header class="line-header"><h5 class="title"><?php _e("More Great British Teddy Bears", 'gbteddybear'); ?></h5></header>
 			<?php $woocommerce_loop['columns'] = 3;?>
 			<?php woocommerce_product_categories(array('before' => '<ul class="categories clearfix">', 'after' => '</ul>', 'exclude' => get_gbteddybear_option('all_bears_category_id'))); ?>

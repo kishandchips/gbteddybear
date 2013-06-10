@@ -1204,7 +1204,7 @@ body {
 		.product {
 
 			.images {
-
+				margin: 0;
 				@include device-width(6) {
 					width: 30%;
 				}
@@ -1214,18 +1214,44 @@ body {
 				}
 				img {
 					@include box-shadow(none);
-					border: 1px solid #c1c1c1;
 				}
 
 				.thumbnails {
 					padding-top: 4px;
-					margin: 0 -5px;
-
-					a {
+					margin: 0;
+					li {
+						float: left;
+						padding: 5px;
 						width: 16.6%;
 						@include box-sizing(border-box);
-						padding: 4px 5px;
-						margin: 0;
+						a {
+							width: 100%;
+							display: block;
+							padding: 0;
+							margin: 0;
+							border: 1px solid #c1c1c1;
+							position: relative;
+						}
+
+						&.current {
+							a {
+								&:after {
+									opacity: 1;
+
+									.no-opacity & {
+										display: block;
+									}
+								}
+							}
+						}
+					}
+				}
+
+
+				&.scroller {
+					border: 1px solid #c1c1c1;
+					> .scroller-mask {
+						
 					}
 				}
 			}
@@ -1648,6 +1674,12 @@ body {
 			position: absolute;
 			right: 0;
 			margin-top: -18%;
+		}
+
+		.stars {
+			a {
+				@include transition(none);
+			}
 		}
 	}
 }

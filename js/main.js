@@ -21,6 +21,7 @@
 							func($(this), nextItem);
 						});
 					}
+
 					scroller.scroller(options);
 				});
 			}
@@ -64,6 +65,10 @@
 
 			if($.fn.fancybox){
 				$('.fancybox-btn').fancybox();
+			}
+
+			if($.fn.threeSixty){
+				$('.threesixty').threeSixty();
 			}
 
 			$(window).resize(this.resize);
