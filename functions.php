@@ -463,17 +463,17 @@ if ( ! function_exists( 'custom_add_to_cart_text' ) ) {
 if ( ! function_exists( 'woocommerce_product_categories' ) ) {
 
 	function woocommerce_product_categories( $args = array() ) {
-		global $woocommerce, $wp_query;
+		global $woocommerce, $wp_query, $woocommerce_loop;
 
 		$defaults = array(
 			'before'  => '',
 			'after'  => '',
 			'force_display' => false,
-			'exclude' => '',
+			'exclude' => ''
 		);
-
+		
 		$args = wp_parse_args( $args, $defaults );
-
+		
 		extract( $args );
 	
 		$term 			= get_queried_object();
@@ -491,7 +491,7 @@ if ( ! function_exists( 'woocommerce_product_categories' ) ) {
 		);
 		$product_categories = get_categories( apply_filters( 'woocommerce_product_categories_args', $args ) );
 		$product_category_found = false;
-
+		
 		if ( $product_categories ) {
 
 			foreach ( $product_categories as $category ) {

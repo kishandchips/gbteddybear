@@ -60,11 +60,12 @@
             this.totalFrames = items.size();
 
             element.mousedown(function (e) {
-                // Prevents the original event handler behaciour
+                // Prevents the original event handler behaviour
                 e.preventDefault();
                 // Stores the pointer x position as the starting position
                 instance.pointerStartPosX = instance.getPointerEvent(e).pageX;
                 // Tells the pointer tracking function that the user is actually dragging the pointer and it needs to track the pointer changes
+                element.addClass('grabbing');
                 instance.dragging = true;
             });
 
@@ -76,6 +77,7 @@
                 // Prevents the original event handler behaciour
                 e.preventDefault();
                 // Tells the pointer tracking function that the user finished dragging the pointer and it doesn't need to track the pointer changes anymore
+                element.removeClass('grabbing');
                 instance.dragging = false;
             });
 

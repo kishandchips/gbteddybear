@@ -1092,12 +1092,30 @@ a.thumbnail {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	cursor: drag;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
 
+	&.grabbing {
+
+		li {
+			a {
+				cursor: grabbing;
+				cursor: -webkit-grabbing;
+				cursor: -moz-grabbing;	
+			}
+		}
+	}
 	li {
 		display: none;
 
 		&.current {
 			display: block;
+		}
+
+		a {
+			cursor: -webkit-grab;
+			cursor: -moz-grab;
 		}
 	}
 }
@@ -1629,7 +1647,7 @@ button {
 
 .show-all-bears-btn {
 	display: inline-block;
-	width: 200px;
+	width: 210px;
 	height: 154px;
 	background: url(../images/buttons/show_all_bears.png) no-repeat;
 	@include transition(none);
@@ -1892,7 +1910,6 @@ select {
 	@include border-radius(0);
 	-webkit-appearance: none;
 	display: inline-block;
-	background: #FFF;
 	border: 1px solid #b0b0b0;
 	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3));
 	padding: 0.6em;
@@ -1900,13 +1917,11 @@ select {
 	@include open-sans;
 	background: #f4f4f4;
 	position: relative;
-	&:after {
-		content: '';
-		position: absolute;
-		display: block;
-		background: #000;
-		width: 10px;
-		height: 10px;
+	
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+		padding-right: 40px;
+		background: #f4f4f4 url(../images/misc/dropdown.jpg) no-repeat center right;
+		background-size: contain;
 	}
 }
 
@@ -2106,6 +2121,12 @@ fieldset {
 						@include open-sans;
 						background: #f4f4f4;
 						position: relative;
+
+						@media screen and (-webkit-min-device-pixel-ratio:0) {
+							padding-right: 40px;
+							background: #f4f4f4 url(../images/misc/dropdown.jpg) no-repeat center right;
+							background-size: contain;
+						}
 
 						&.medium {
 							width: 45%;

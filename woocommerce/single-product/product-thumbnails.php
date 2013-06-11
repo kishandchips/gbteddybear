@@ -46,7 +46,18 @@ if ( $attachment_ids ) {
 			$loop++;
 		}
 } else {
+	if ( has_post_thumbnail() ) {
 
+		$image       		= get_the_post_thumbnail( $post->ID, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ) );
+		$image_title 		= esc_attr( get_the_title( get_post_thumbnail_id() ) );
+		$image_link  		= wp_get_attachment_url( get_post_thumbnail_id() );
+
+		?>
+		<li>
+			<?php echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<a href="%s" itemprop="image" class="overlay-btn" title="%s" data-id="'.get_post_thumbnail_id().'" >%s</a>', $image_link, $image_title, $image ), $post->ID ); ?>
+		</li>
+	<?php
+	}
 }
 
 	$threesixty_images = get_field('360_images');
