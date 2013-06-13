@@ -1299,14 +1299,14 @@ body {
 				}
 
 				.cart {
-					margin: 2em 0 0 0;
+					margin: 2em 0;
 
 					.single_add_to_cart_button {
 						@include font-size(16);
 					}
 
 					.group_table {
-						margin: 0 0 0.5em 0;
+						margin: 0 0 2em 0;
 						
 						td {
 							vertical-align: middle;
@@ -1349,6 +1349,10 @@ body {
 					}
 				}
 			}
+
+			.addintional-information {
+				margin: 2em 0 0 0;
+			} 
 		}
 
 
@@ -1689,7 +1693,7 @@ body {
 		.show-all-bears-btn {
 			position: absolute;
 			right: 1em;
-			margin-top: -6em;
+			margin-top: -2em;
 
 		}
 

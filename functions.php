@@ -445,8 +445,9 @@ if ( ! function_exists( 'custom_loop_product_thumbnail' ) ) {
 		$size = 'thumbnail';
 		if ( has_post_thumbnail() )
 			echo get_the_post_thumbnail( $post->ID, $size );
-		elseif ( woocommerce_placeholder_img_src() )
-			echo woocommerce_placeholder_img( $size );
+		elseif ( woocommerce_placeholder_img_src() ){
+			echo woocommerce_placeholder_img( 'shop_thumbnail' );
+		}
 	}
 }
 
