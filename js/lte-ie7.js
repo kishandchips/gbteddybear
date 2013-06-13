@@ -25,7 +25,8 @@ window.onload = function() {
 			'icon-arrow-down' : '&#x32;',
 			'icon-alert' : '&#x33;',
 			'icon-untitled' : '&#x70;',
-			'icon-shopping-bag' : '&#x73;'
+			'icon-shopping-bag' : '&#x73;',
+			'icon-ce-logo' : '&#x64;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
