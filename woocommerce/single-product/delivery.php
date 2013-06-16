@@ -11,7 +11,7 @@
 	<div class="clearfix">
 		<div class="span alpha four break-on-tablet">
 			<p class="small no-margin"><?php _e("Orders placed before 1PM UK time are dispatched the same day.", 'gbteddybear'); ?></p>
-			<p class="small no-margin"><?php _e("Orders placed before 1PM UK time are dispatched the same day. Deliveries within the United Kingdom take 5 days; International deliveries arrive within 10 days.", 'gbteddybear'); ?></p>
+			<p class="small no-margin"><?php _e("Deliveries within the United Kingdom take 5 days; International deliveries arrive within 10 days.", 'gbteddybear'); ?></p>
 		</div>
 		<form class="country-selector-form span four break-on-tablet alpha" action="" method="POST">
 			<select name="product_calc_shipping_country" class="country">

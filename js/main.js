@@ -46,14 +46,7 @@
 			this.lightbox.init();
 			this.ajaxPage.init();
 
-			// $('#search-form input[name=s]', header).focus(function(){
-			// 	header.addClass('search-focused');
-			// });
-
-			// $('#search-form input[name=s]', header).blur(function(){
-			// 	header.removeClass('search-focused');
-			// });
-
+		
 			$('.mobile-navigation-btn', header).on('click', function(){
 				$('.main-navigation', header).slideToggle(200);
 			});
@@ -62,6 +55,18 @@
 			$('select.country', countrySelectorForm).on('change', function(){
 				countrySelectorForm.submit();
 			});
+
+			$('select.currency').on('change', function(){
+				var currencyCode = $('option:selected', $(this)).data('currencycode');
+				$('ul.currency_switcher li a[data-currencycode='+currencyCode+']').trigger('click');
+			}).trigger('click');
+
+			$('body').bind('currency_converter_switch', function(){
+				setTimeout(function(){
+					currencyCode = $('ul.currency_switcher li a.active').data('currencycode');
+					$('select.currency').val(currencyCode);
+				}, 100);
+			}).trigger('currency_converter_switch');
 
 			if($.fn.fancybox){
 				$('.fancybox-btn').fancybox();

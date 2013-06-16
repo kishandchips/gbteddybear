@@ -63,14 +63,35 @@
 				<a class="logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 			</h1>
 			<ul class="ecommerce-options clearfix">
+				<?php global $woocommerce_currency_converter; ?>
+				<?php if(isset($woocommerce_currency_converter)): ?>
+				<?php 
+				$currenies = get_woocommerce_currencies();
+
+				if(isset($_COOKIE['woocommerce_current_currency'])){
+					$current_currency = $_COOKIE['woocommerce_current_currency'];
+				} else {
+					$current_currency = get_option( 'woocommerce_currency' );
+				}
+				?>
 				<li class="currency">
 					<span class="label uppercase"><?php _e("Currency:", 'gbteddybear'); ?></span>&nbsp;&nbsp;
-					<select data-icon="&#x69;" class="currency-select">
-						<option>&pound;GB</option>
-						<option></option>
-						<option></option>
+					<select data-icon="&#x69;" class="currency">
+						<?php foreach($currenies as $currency_code => $currency): ?>
+							<option value="<?php echo $currency_code ?>" data-currencycode="<?php echo $currency_code ?>"><?php echo $currency_code; ?></option>
+						<?php endforeach; ?>
 					</select>
+
+					<ul class="currency_switcher hide">
+						<?php foreach($currenies as $currency_code => $currency): ?>
+						<?php $class = ($currency_code == $current_currency) ? 'default reset': ''; ?>
+						<li>
+							<a class="<?php echo $class; ?>" data-currencycode="<?php echo $currency_code; ?>"><?php echo $currency_code; ?></a>
+						</li>
+						<?php endforeach;?>
+					</ul>
 				</li>
+				<?php endif; ?>
 				<li class="account">
 					<a href="<?php echo get_permalink(get_gbteddybear_option('account_page_id')); ?>" class="white-btn account-btn" >
 						<i aria-hidden="true" class="icon-person"></i>&nbsp;&nbsp;<?php echo get_the_title(get_gbteddybear_option('account_page_id')); ?>
