@@ -836,7 +836,7 @@ blockquote {
 
 .scale {
 	width: 100%;
-	height: auto;
+	height: auto !important;
 	max-height: 100%;
 	max-width: 100%;
 	display: block;
@@ -1179,6 +1179,7 @@ a.thumbnail {
 		 list-style: none;
 		 padding: 0;
 		 margin: 0;
+		 position: absolute;
 
 		.tweet {
 			list-style: none;
@@ -1189,6 +1190,12 @@ a.thumbnail {
 				img {
 					@include border-radius(10em);
 					border: 1px solid #c2c2c2;
+				}
+
+				&:hover {
+					img {
+						border: 1px solid #850000;
+					}
 				}
 			}
 
@@ -1950,10 +1957,13 @@ input[type=reset] {
 		background: #cfcfcf;
 	}
 
-
 	@include device-width(8) {
 		font-size: 1em;
 	}
+}
+
+input[type=submit].green-btn {
+	@extend .green-btn;
 }
 
 button::-moz-focus-inner,

@@ -33,7 +33,7 @@ function gbteddybear_setup() {
 
 	require( get_template_directory() . '/inc/widgets/woocommerce-country-select.php' );
 
-	require( get_template_directory() . '/inc/widgets/twitter-feed.php' );
+	require( get_template_directory() . '/inc/widgets/twitter/twitter-feed.php' );
 
 
 	/**

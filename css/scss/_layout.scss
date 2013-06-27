@@ -187,8 +187,13 @@ body {
 	
 
 	.main-navigation { 
-		padding: 0;
+		padding: 0 2.3em;
 		margin: 0;
+
+		@include device-width(8) {
+			padding-left: 0;
+			padding-right: 0;
+		}
 
  		@include device-width(6) {
  			display: none;
@@ -197,48 +202,54 @@ body {
 		> ul {
 			margin: 0;
 			padding: 0;
+			text-align: justify;
+		    font-size: 0.1px;
 
+			&:after {
+			    content: '';
+			    display: inline-block;
+			    width: 100%;
+			}
 			> li {
-			 	padding: 0 2.4em;
-			 	float: left;
+			 	display: inline-block;
 				position: relative;
 				@include transition(all 0.3s ease);
-
-			 	@include device-width(14) {
-			 		padding-left: 1.5em;
-			 		padding-right: 1.5em;
-			 	}
-
-			 	@include device-width(10) {
-			 		padding-left: 1em;
-			 		padding-right: 1em;
-			 	}
-
-			 	// @include device-width(9) {
-			 	// 	padding-left: 0.8em;
-			 	// 	padding-right: 0.8em;
+				
+			 	// @include device-width(14) {
+			 	// 	padding-left: 1.5em;
+			 	// 	padding-right: 1.5em;
 			 	// }
 
-			 	@include device-width(8) {
+			 	// @include device-width(10) {
+			 	// 	padding-left: 1em;
+			 	// 	padding-right: 1em;
+			 	// }
+
+			 	// // @include device-width(9) {
+			 	// // 	padding-left: 0.8em;
+			 	// // 	padding-right: 0.8em;
+			 	// // }
+
+			 	// @include device-width(8) {
 			 		
-			 		&:first-child {
-			 			padding-left: 0;
-			 		}
+			 	// 	&:first-child {
+			 	// 		padding-left: 0;
+			 	// 	}
 
-			 		&:last-child {
-			 			padding-right: 0;
-			 		}
-			 	}
+			 	// 	&:last-child {
+			 	// 		padding-right: 0;
+			 	// 	}
+			 	// }
 
-			 	@include device-width(7) {
-			 		padding-left: 0.6em;
-			 		padding-right: 0.6em;
-			 	}
+			 	// @include device-width(7) {
+			 	// 	padding-left: 0.6em;
+			 	// 	padding-right: 0.6em;
+			 	// }
 
-			 	@include device-width(6) {
-			 		float: none;
-			 		padding: 0;
-			 	}
+			 	// @include device-width(6) {
+			 	// 	float: none;
+			 	// 	padding: 0;
+			 	// }
 
 			 	> a {
 			 		display: inline-block;
@@ -539,8 +550,11 @@ body {
 				position: absolute;
 				bottom: 0;
 				left: 0;
+				@include box-sizing(border-box);
 				width: 100%;
 				border-top: 1px solid #ececec;
+				background: #FFF;
+				z-index: 200;
 			}
 			&.widget_twitter_feed {
 				@include device-width(9) {
@@ -549,7 +563,9 @@ body {
 				#twitter-feed {
 					height: 99.5%;
 					//max-height: 300px;
+					padding: 0 0 2.7em 0;
 					overflow: auto;
+					@include box-sizing(border-box);
 				}
 
 				.twitter-footer {
@@ -1298,6 +1314,11 @@ body {
 					}
 				}
 
+				.stock {
+					color: #850000;
+					margin: 0;
+				}
+
 				.cart {
 					margin: 2em 0;
 
@@ -1314,6 +1335,18 @@ body {
 							&.label {
 								padding-left: 0;
 							}
+						}
+					}
+
+					.variations {
+						margin: 0 0 1em 0;
+						.label {
+							padding-top: 1em;
+						}
+
+						.reset_variations {
+							margin-top: 0.2em;
+							display: inline-block;
 						}
 					}
 				}
@@ -1554,7 +1587,7 @@ body {
 				}
 
 				.button {
-					margin: 1em 0 0 0;
+					margin: 0;
 					width: auto;
 				}
 			}

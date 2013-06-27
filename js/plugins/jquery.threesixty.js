@@ -14,13 +14,14 @@
             this.monitorInt = 10;
             this.pointerDistance = 0;
 
-            this.ticker = 0,
-            this.speedMultiplier = 10,
-            this.totalFrames = 0,
-            this.currentFrame = 20,
-            this.frames = [],
-            this.endFrame = -720,
+            this.ticker = 0;
+            this.speedMultiplier = 10;
+            this.totalFrames = 0;
+            this.currentFrame = 0;
+            this.frames = [];
+            this.endFrame = 0;
             this.loadedImages = 0;
+
             this.init();
         },
         init = function (options) {
@@ -58,12 +59,16 @@
 
             this.ready = true;
             this.totalFrames = items.size();
+            this.currentFrame = this.totalFrames;
 
             element.mousedown(function (e) {
                 // Prevents the original event handler behaviour
                 e.preventDefault();
                 // Stores the pointer x position as the starting position
                 instance.pointerStartPosX = instance.getPointerEvent(e).pageX;
+                if(!instance.pointerStartPosX ){
+                    instance.pointerStartPosX = instance.getPointerEvent(e).clientX;
+                }
                 // Tells the pointer tracking function that the user is actually dragging the pointer and it needs to track the pointer changes
                 element.addClass('grabbing');
                 instance.dragging = true;
@@ -170,8 +175,10 @@
                 Replaces the 'current-image' class with the 'previous-image' one on the image.
                 It calls the 'getNormalizedCurrentFrame' method to translate the 'currentFrame' value to the 'totalFrames' range (1-180 by default).
             */
-            //console.log(this.frames);
-            this.frames[this.getNormalizedCurrentFrame()].removeClass('current');
+            var frame = this.frames[this.getNormalizedCurrentFrame()];
+            if(frame){
+                frame.removeClass('current');
+            }
         },
 
         /**
@@ -182,7 +189,11 @@
                 Replaces the 'current-image' class with the 'previous-image' one on the image.
                 It calls the 'getNormalizedCurrentFrame' method to translate the 'currentFrame' value to the 'totalFrames' range (1-180 by default).
             */
-            this.frames[this.getNormalizedCurrentFrame()].addClass('current');
+            var frame = this.frames[this.getNormalizedCurrentFrame()];
+            
+            if(frame){
+                frame.addClass('current');
+            }
         },
 
         /**
@@ -190,6 +201,7 @@
         */
         getNormalizedCurrentFrame: function() {
             var c = Math.ceil(this.currentFrame % this.totalFrames);
+          
             if (c < 0) {
                 c += (this.totalFrames - 1);
             }
@@ -212,6 +224,9 @@
             if (this.ready && this.dragging) {
                 // Stores the last x position of the pointer
                 this.pointerEndPosX = this.getPointerEvent(e).pageX;
+                if(!this.pointerEndPosX) {
+                    this.pointerEndPosX = this.getPointerEvent(e).clientX;
+                }
                 // Checks if there is enough time past between this and the last time period of tracking
                 if(this.monitorStartTime < new Date().getTime() - this.monitorInt) {
 
@@ -226,6 +241,9 @@
                     this.monitorStartTime = new Date().getTime();
                     // Stores the the pointer X position as the starting position (because we started a new tracking period)
                     this.pointerStartPosX = this.getPointerEvent(e).pageX;
+                    if(!this.pointerStartPosX) {
+                        this.pointerStartPosX = this.getPointerEvent(e).clientX;
+                    }
                 }
             }
         }
