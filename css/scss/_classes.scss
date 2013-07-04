@@ -311,6 +311,10 @@ b {
 	text-transform: uppercase;
 }
 
+.normalcase {
+	text-transform: none;
+}
+
 .black {
 	color: #000;
 }
@@ -686,10 +690,28 @@ img.border {
 }
 
 blockquote {
-	border-top: 4px solid #484848;
-	background: #d6d6d6;
-	padding: 20px;
-	margin: 0;
+	padding: 0 0 0 2.5em;
+	position: relative;
+	margin: 1em 0;
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		@include font-size(25);
+		color: #9f9f9f;
+		@extend [data-icon]:before;
+		@extend .icon-open-quote:before;
+	}
+
+	&:after {		
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		@include font-size(25);
+		color: #9f9f9f;
+		@extend [data-icon]:before;
+		@extend .icon-close-quote:before;
+	}
 }
 
 .post-category {

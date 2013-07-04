@@ -17,7 +17,7 @@
 		</div>
 		<div class="bottom">
 			<div class="container inner">
-				<p>&copy; Copyright <?php _e("The Great British Teddy Bear Company Ltd.", 'gbteddybear'); ?>&nbsp;&nbsp;<a href="<?php echo get_permalink(get_gbteddybear_option('tnc_page_id')); ?>"><?php echo get_the_title(get_gbteddybear_option('tnc_page_id')); ?></a></p> 
+				<p><?php _e("&copy; 2013 The Great British Teddy Bear Company&reg; all rights reserved.", 'gbteddybear'); ?>&nbsp;&nbsp;<a href="<?php echo get_permalink(get_gbteddybear_option('tnc_page_id')); ?>"><?php echo get_the_title(get_gbteddybear_option('tnc_page_id')); ?></a></p> 
 			</div>
 		</div>
 	</footer><!-- #footer .site-footer -->

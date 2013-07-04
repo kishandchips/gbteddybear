@@ -147,7 +147,22 @@ $woocommerce->show_messages();
 <?php do_action( 'woocommerce_after_cart_table' ); ?>
 
 </form>
-
+<?php $current_cc = $woocommerce->customer->get_shipping_country(); ?>
+<?php if ( $woocommerce->cart->cart_contents_count == 1 && $current_cc !== 'GB') : ?>
+<div class="save-shipping clearfix">
+	<div class="content">
+		<h5 class="no-margin brown uppercase"><?php _e("Save on Shipping!", 'gbteddybear'); ?></h5>
+		<div class="clearfix">
+			<div class="span alpha five break-on-mobile">
+				<h6 class="no-margin"><?php _e("Why not add another Teddy Bear for <b>no extra shipping cost!</b>", 'gbteddybear'); ?></h6>
+			</div>
+			<div class="span omega five right break-on-mobile">
+				<p class="no-margin text-center"><a href="<?php echo get_permalink(get_option('woocommerce_shop_page_id')); ?>" class="green-btn small"><?php _e("Back to our bears", 'gbteddybear'); ?></a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
 <div class="cart-collaterals">
 
 	<?php do_action('woocommerce_cart_collaterals'); ?>

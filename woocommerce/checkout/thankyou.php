@@ -34,7 +34,7 @@ if ( $order ) : ?>
 	<?php else : ?>
 		<div class="content">
 			<div class="row">
-				<h3 class="page-title brown no-margin uppercase no-margin"><?php _e( 'Order recieved!', 'woocommerce' ); ?></h3>
+				<h3 class="page-title brown no-margin uppercase no-margin"><?php _e( 'Order received!', 'woocommerce' ); ?></h3>
 				<p><?php _e("Thank you for ordering your Great British Teddy Bear!", 'woocommerce'); ?></p>
 			</div>
 		</div>

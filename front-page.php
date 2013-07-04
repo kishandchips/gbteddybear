@@ -77,7 +77,7 @@ get_header(); ?>
 				<ul class="photo-list clearfix">
 			<?php
 				$i = 0;
-				$half = floor($query->found_posts / 2);
+				$half = floor($query->found_posts / 2) - 1;
 				while($query->have_posts()):
 					$query->the_post();
 					$image_id = get_post_thumbnail_id();
@@ -95,12 +95,14 @@ get_header(); ?>
 			</div>
 			<footer class="photos-footer">
 				<p class="no-margin">
-					<a href="<?php echo get_permalink(get_gbteddybear_option('submit_photo_page_id')); ?>" class="uppercase"><i aria-hidden="true" class="icon-camera big text-middle"></i>&nbsp;&nbsp;<?php _e("Send a photo for the gallery", 'gbteddybear') ?></a>
+					<a href="<?php echo get_permalink(get_gbteddybear_option('submit_photo_page_id')); ?>" class="uppercase"><i aria-hidden="true" class="icon-camera big text-middle"></i>&nbsp;&nbsp;<?php _e("Upload your photos to here!", 'gbteddybear') ?></a>
 				</p>
+				<?php if($query->found_posts > 12): ?>
 				<div class="photos-navigation">
 					<a class="prev-btn icon-arrow-left" data-direction="left"></a>
 					<a class="next-btn icon-arrow-right" data-direction="right"></a>
 				</div>
+				<?php endif; ?>
 			</footer>
 		</div>
 	</div>
