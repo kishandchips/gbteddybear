@@ -58,7 +58,8 @@ function gbteddybear_setup() {
 	 * This theme uses wp_nav_menu() in one location.
 	 */
 	register_nav_menus( array(
-		'primary_header' => __( 'Primary Menu', 'gbteddybear' )
+		'primary_header' => __( 'Primary Menu', 'gbteddybear' ),
+		'primary_footer' => __( 'Footer Menu', 'gbteddybear' )
 	) );
 
 	add_image_size( 'custom_large', 530, 650, true);
@@ -637,5 +638,33 @@ if ( ! function_exists( 'get_currency_from_country' ) ) {
 		);
 
 		return $currencies[$country];
+	}
+}
+
+add_filter( 'loop_shop_per_page', 'custom_shop_per_page', 20 );
+
+function custom_shop_per_page($columns){
+	return 20;
+}
+
+
+add_filter('woocommerce_gateway_icon', 'custom_gateway_icon', 20, 3);
+
+if ( ! function_exists( 'custom_gateway_icon' ) ) {
+	function custom_gateway_icon($icon, $id){
+		if($id == 'sagepaydirect'){
+			$icon = '';
+			$sage_payment_gateway = new DS_Sagepay_Direct();
+			$available_cardtypes = explode(',', SAGEPAY_CARDTYPES);
+            for ($i = 0; $i < count($available_cardtypes); $i += 2){
+                if($sage_payment_gateway->settings['cardtype-' . $available_cardtypes[$i]] == 'yes'){
+                    $card = strtolower($available_cardtypes[$i]);
+                    if(file_exists(get_template_directory().'/images/icons/cards/'.$card.'.png')){
+	                	$icon .= '<img src="'.get_stylesheet_directory_uri().'/images/icons/cards/'.$card.'.png" />';
+    				}
+            	}
+            }
+		}
+		return $icon;
 	}
 }

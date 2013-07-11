@@ -140,4 +140,6 @@ $order = new WC_Order( $order_id );
 	</div><!-- /.col-2 -->
 </div><!-- /.col2-set -->
 <?php endif; ?>
-<p class="text-center"><a href="<?php echo get_permalink(get_option('woocommerce_shop_page_id')); ?>" class="red-btn"><?php _e("Back to our Bears", 'gbteddybear') ?></a></p>
+<p class="text-center">
+	<a href="<?php echo get_permalink(get_option('woocommerce_shop_page_id')); ?>" class="red-btn"><?php _e("Back to our Bears", 'gbteddybear') ?></a>
+</p>

@@ -26,14 +26,14 @@
 				});
 			}
 
-			$('a[href^=#].scroll-to-btn').click(function(){
+			$('a[href^=#].scroll-to-btn').on('click', function(){
 				var target = $($(this).attr('href'));
 				var offsetTop = (target.length != 0) ? target.offset().top : 0;
 				//$('body, html').animate({scrollTop: offsetTop}, 500, 'easeInOutQuad');
 				return false;
 			});
 
-			$('.share-popup-btn').click(function(){
+			$('.share-popup-btn').on('click', function(){
 				var url = $(this).attr('href');
 				var width = 640;
 				var height = 305;
@@ -41,6 +41,12 @@
 				var top = ($(window).height() - height) / 2;
 				window.open(url, 'sharer', 'toolbar=0,status=0,width='+width+',height='+height+',left='+left+', top='+top);
 				return false;
+			});
+
+			$('.print-btn').on('click', function(e){
+				console.log('hello');
+				e.preventDefault();
+				window.print();
 			});
 
 			this.lightbox.init();
@@ -82,6 +88,32 @@
 
 
 			this.photos.init();
+			this.tabs.init();
+
+			var variationForm = $('.variations_form');
+			variationForm.on('found_variation', function(e, variation){
+				var images = scroller = $('.product .images')
+				if(variation.image_src){
+					var image = $('.woocommerce-main-image img', images);
+					//image.css({opacity: 0});
+					image.hide();
+					setTimeout(function(){
+					//	image.animate({opacity: 1});
+						image.fadeIn('slow');
+
+						var firstScrollitem = $('.scroll-item:eq(0)', images);
+						if(!firstScrollitem.is(':visible')){
+							scroller.trigger('gotoItem', firstScrollitem.data('id'), 'prev');
+						}
+					}, 500);
+				}
+			});
+
+			$('.checkout-button').on('click', function(){
+				var form = $('.cart-form');
+				$('.proceed').val(1);
+				form.submit();
+			})
 		},
 
 		loaded: function(){
@@ -275,6 +307,29 @@
 				}
 				scroller.animate({scrollLeft: newXPos});
 				main.photos.currXPos = newXPos;
+			}
+		},
+
+		tabs: {
+			init: function() {
+				var container = main.tabs.container = $('.tabs'),
+					content = main.tabs.content = $('.tab-content', container),
+					navigationItems = main.tabs.navigationItems = $('.tab-navigation li', container);
+
+				$('a', navigationItems).on('click', function(){
+					main.tabs.goto($(this).data('id'));
+				});
+			},
+			goto: function(id){
+				var navigationItems = main.tabs.navigationItems,
+					content = main.tabs.content;
+				navigationItems.removeClass('current');
+				$('a[data-id='+id+']').parent().addClass('current');
+
+				$('.tab', content).hide();
+				$('.tab[data-id='+id+']', content).fadeIn();
+
+
 			}
 		}
 	}

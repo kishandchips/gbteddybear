@@ -17,7 +17,14 @@
 		</div>
 		<div class="bottom">
 			<div class="container inner">
-				<p><?php _e("&copy; 2013 The Great British Teddy Bear Company&reg; all rights reserved.", 'gbteddybear'); ?>&nbsp;&nbsp;<a href="<?php echo get_permalink(get_gbteddybear_option('tnc_page_id')); ?>"><?php echo get_the_title(get_gbteddybear_option('tnc_page_id')); ?></a></p> 
+				<div class="span five alpha">
+					<p><?php _e("&copy; 2013 The Great British Teddy Bear Company&reg; all rights reserved.", 'gbteddybear'); ?></p>
+				</div>
+				<div class="span five omega">
+					<nav role="navigation" class="footer-navigation right">
+						<?php wp_nav_menu( array( 'theme_location' => 'primary_footer', 'menu_class' => 'clearfix menu', 'container' => false ) ); ?>
+					</nav><!-- .site-navigation .main-navigation -->
+				</div>
 			</div>
 		</div>
 	</footer><!-- #footer .site-footer -->

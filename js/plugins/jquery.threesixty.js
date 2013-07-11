@@ -212,7 +212,7 @@
         * Returns a simple event regarding the original event is a mouse event or a touch e.
         */
         getPointerEvent: function(e) {
-            return e.originalEvent.targetTouches ? e.originalEvent.targetTouches[0] : event;
+            return e.originalEvent.targetTouches ? e.originalEvent.targetTouches[0] : e;
         },
 
         /**

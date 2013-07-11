@@ -10,7 +10,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
+global $wp_query;
 get_header('shop'); ?>
 
 	<?php
@@ -48,14 +48,15 @@ get_header('shop'); ?>
 				<?php do_action( 'woocommerce_before_shop_loop' ); ?>
 			<!-- </div> -->
 			<?php $woocommerce_loop['columns'] = 2; ?>
-			<?php woocommerce_product_subcategories(array('before' => '<ul class="categories clearfix">', 'after' => '</ul>')); ?>
+			<?php woocommerce_product_subcategories(array('before' => '<ul class="top-level-categories categories clearfix">', 'after' => '</ul>')); ?>
 
+				<?php query_posts(array_merge($wp_query->query_vars, array('meta_key' => 'exclude_from_archive', 'meta_value' => 0))); ?>
 				<?php if(have_posts()): ?>
 				<?php woocommerce_product_loop_start(); ?>
 				<?php $woocommerce_loop['loop'] = 0; ?>
 				<?php $woocommerce_loop['columns'] = 5; ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-					
+					<?php //the_field('exclude_from_archive'); ?>
 					<?php woocommerce_get_template_part( 'content', 'product' ); ?>
 
 				<?php endwhile; // end of the loop. ?>

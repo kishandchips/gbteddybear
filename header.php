@@ -67,7 +67,6 @@
 				<?php if(isset($woocommerce_currency_converter)): ?>
 				<?php 
 				$currenies = get_woocommerce_currencies();
-
 				if(isset($_COOKIE['woocommerce_current_currency'])){
 					$current_currency = $_COOKIE['woocommerce_current_currency'];
 				} else {
@@ -78,7 +77,7 @@
 					<span class="label uppercase"><?php _e("Currency:", 'gbteddybear'); ?></span>&nbsp;&nbsp;
 					<select data-icon="&#x69;" class="currency">
 						<?php foreach($currenies as $currency_code => $currency): ?>
-							<option value="<?php echo $currency_code ?>" data-currencycode="<?php echo $currency_code ?>"><?php echo $currency_code; ?></option>
+							<option value="<?php echo $currency_code ?>" data-currencycode="<?php echo $currency_code ?>" <?php if($current_currency == $currency_code) echo 'selected'; ?>><?php echo $currency_code; ?></option>
 						<?php endforeach; ?>
 					</select>
 

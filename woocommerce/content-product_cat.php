@@ -30,7 +30,7 @@ $woocommerce_loop['loop']++;
         echo ' first';
 	if ( $woocommerce_loop['loop'] % $woocommerce_loop['columns'] == 0 )
 		echo ' last';
-	?>">
+	?> <?php the_field('class', 'product_cat_'.$category->term_id); ?>" >
 
 	<?php do_action( 'woocommerce_before_subcategory', $category ); ?>
 

@@ -69,8 +69,10 @@ if ( $order ) : ?>
 					<?php endif; ?>
 				</ul>
 			</div>
+			<p>
+				<a class="print-btn grey-btn small uppercase"><?php _e("Print your order", 'gbteddybear'); ?></a>
+			</p>
 		</div>
-		
 		<?php endif; ?>
 		<div class="col-2">
 			<?php do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>

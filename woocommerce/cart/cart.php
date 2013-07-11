@@ -129,14 +129,14 @@ $woocommerce->show_messages();
 
 						<?php do_action('woocommerce_cart_coupon'); ?>
 
+
 					</div>
 				<?php } ?>
 
-				<input type="submit" class="button" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" /> <input type="submit" class="checkout-button button alt" name="proceed" value="<?php _e( 'Proceed to Checkout &rarr;', 'woocommerce' ); ?>" />
-
+				<input type="submit" class="button" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" /> 
 				<?php do_action('woocommerce_proceed_to_checkout'); ?>
-
 				<?php $woocommerce->nonce_field('cart') ?>
+				<input type="hidden" name="proceed" value="0" class="proceed" />
 			</td>
 		</tr>
 
@@ -167,10 +167,12 @@ $woocommerce->show_messages();
 
 	<?php do_action('woocommerce_cart_collaterals'); ?>
 
-	<?php woocommerce_cart_totals(); ?>
-
 	<?php woocommerce_shipping_calculator(); ?>
 
+	<?php woocommerce_cart_totals(); ?>
 </div>
 
+<footer class="cart-footer clearfix">
+	<input type="submit" class="right checkout-button button alt" name="proceed" value="<?php _e( 'Proceed to Checkout &rarr;', 'woocommerce' ); ?>" />
+</footer>
 <?php do_action( 'woocommerce_after_cart' ); ?>

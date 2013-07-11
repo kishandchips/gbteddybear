@@ -11,8 +11,9 @@
  * @package gbteddybear
  * @since gbteddybear 1.0
  */
+global $wp_query;
 get_header(); ?>
-
+<?php query_posts(array_merge($wp_query->query_vars, array('orderby' => 'menu_order', 'order' => 'ASC'))); ?>
 <div id="archive-celebrity-bear" class="container">
 	<div class="inner">
 		<?php $curr_page = get_queried_page(); ?>
@@ -34,8 +35,6 @@ get_header(); ?>
 			</ul>
 			<div class="pagination">
 				<?php
-				global $wp_query;
-
 				$big = 999999999; // need an unlikely integer
 
 				echo paginate_links( array(

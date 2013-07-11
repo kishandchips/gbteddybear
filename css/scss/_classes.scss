@@ -485,6 +485,11 @@ a.light-brown:hover {
 	vertical-align: middle;	
 }
 
+.valign-center {
+	position: absolute;
+	top: 50%;
+	@include translateY(-50%)
+}
 .dropshadow {
 	@include box-shadow(3px 3px 4px #666 );
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#666666')";
@@ -839,22 +844,101 @@ blockquote {
 	}
 }
 
-.tab-navigation {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-	@extend .clearfix;
+.tabs {
+	margin: 1.5em 0;
+	.tab-navigation {
+		position: relative;
+		top: 1px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		@extend .clearfix;
+		z-index: 500;
+		li {
+			float: left;
+			margin: 0 0.4em 0 0;
+			a {
+				display: block;
+				text-transform: uppercase;
+				padding: 0.5em 1em;
+				border: 1px solid #c1c1c1;
+				color: #000;
+				&:hover {
+					color: #7d563b;
+				}
+			}
 
-	li {
-		background: #FFFFFF;
-		float: left;
-		color: #a40000;
-		font-size: 10px;
-		padding: 10px 20px;
-		@include border-top-left-radius(4px);
-		@include border-top-right-radius(4px);
+			&.current {
+				a {
+					border-bottom: 1px solid #FFF;
+					color: #7d563b;
+					position: relative;
+
+					&:after {
+						content: '';
+						display: block;
+						width: 100%;
+						height: 3px;
+						top: 0;
+						left: 0;
+						margin: -1px 0 0 0;
+						position: absolute;
+						background: #7d563b;
+					}
+				}
+			}
+		}
+	}
+
+	.tab-content-container {
+		position: relative;
+		.fade-top {
+			display: block;
+			position: absolute;
+			top: 1px;
+			left: 0;
+			right: 1px;
+			height: 1em;
+			@include background(linear-gradient(top, #FFF, rgba(#FFF, 0)));
+			z-index: 200;
+
+		}
+
+		.fade-bottom {
+			display: block;
+			position: absolute;
+			bottom: 1px;
+			left: 0;
+			right: 1px;
+			height: 1em;
+			@include background(linear-gradient(top, rgba(#FFF, 0), #FFF));
+			z-index: 200;
+		}
+	}
+
+	.tab-content {
+		z-index: 100;
+		border-top: 1px solid #c1c1c1;
+		border-right: 1px solid #c1c1c1;
+		border-bottom: 1px solid #c1c1c1;
+		max-height: 20.5em;
+		overflow: auto;
+		position: relative;
+		
+		
+
+		> .tab {
+			display: none;
+			padding: 0.2em 1em 0.2em 0;
+
+			&.current {
+				display: block;
+			}
+
+		}
 	}
 }
+
 
 .scale {
 	width: 100%;
@@ -1141,6 +1225,23 @@ a.thumbnail {
 		}
 	}
 }
+
+.ce-info {
+	padding: 0 0 0 2em;
+	margin: 0.8em 0;
+	position: relative;
+	&:before {
+		position: absolute;
+		top: 0.2em;
+		left: 0;
+		@include font-size(14);
+		color: #9f9f9f;
+		@extend [data-icon]:before;
+		@extend .icon-ce-logo:before;
+	}
+}
+
+
 /* =============================================================================
    Widgets
    ========================================================================== */
@@ -1569,13 +1670,14 @@ button {
 
 .red-btn,
 .green-btn,
-.blue-btn {
+.blue-btn,
+.grey-btn {
 	display: inline-block;
 	background: #890a0a;
 	border: 1px solid #000;
 	border: 1px solid rgba(#000, 0.4);
 	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3), inset 0 0 2px 2px rgba(#bc3434, 0.6));
-	padding: 0.4em 1.5em;
+	padding: 0.5em 1.5em;
 	text-shadow: none;
 	text-transform: uppercase;
 	@include font-size(18);
@@ -1589,6 +1691,8 @@ button {
 
 	&.small {
 		@include font-size(14);
+		padding-top: 0.6em;
+		padding-bottom: 0.6em;
 	}
 
 	strong, b, .bold {
@@ -1598,6 +1702,11 @@ button {
 	@include device-width(8) {
 		font-size: 1em;
 	}
+
+
+	@media print {
+		display: none;
+	}
 }
 
 .green-btn {
@@ -1605,7 +1714,8 @@ button {
 	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3), inset 0 0 2px 2px rgba(#cbe99f, 0.6));
 
 	&:hover {
-		background: #628a28;
+		background: #628a28 !important;
+		@include background(linear-gradient(top, #628a28, #628a28));
 	}
 }
 
@@ -1618,6 +1728,16 @@ button {
 
 	&:hover {
 		background: #2d4475;
+	}
+}
+
+.grey-btn {
+	background: #aeaeae;
+	text-transform: none;
+	@include box-shadow(0px 4px 2px -1px rgba(0, 0, 0, 0.3), inset 0 0 2px 2px rgba(#d4d4d4, 0.6));
+
+	&:hover {
+		background: #5a5a5a;
 	}
 }
 
@@ -1686,6 +1806,24 @@ button {
 	}
 }
 
+.buy-a-bear-btn {
+	display: inline-block;
+	width: 335px;
+	height: 216px;
+	background: url(../images/buttons/buy_a_bear.png) no-repeat;
+	@include transition(none);
+	text-indent: -9999px;
+	&:hover {
+		background-position: left bottom;
+	}
+
+	@include device-width(10){
+		background-size: cover;
+		width: 255px;
+		height: 160px;
+	}
+}
+
 .overlay-btn {
 	position: relative;
 	display: block;
@@ -1718,6 +1856,20 @@ button {
 
 	> img {
 		display: block;
+	}
+}
+
+.move-up-btn {
+	position: relative;
+						
+	&:hover {
+		top: -0.5em;
+	}
+}
+
+.print-btn {
+	@media print {
+		display: none;
 	}
 }
 /* =============================================================================
@@ -2038,11 +2190,11 @@ fieldset {
 
 // 		font-size: 11px;
 
-// 		.gform_fields {
-// 			margin: 0;
-// 			padding: 0;
-// 			list-style: none;
-	
+		.gform_fields {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			@extend .clearfix;
 
  			.gfield {
 // 				margin: 0 0 20px 0;
@@ -2106,7 +2258,7 @@ fieldset {
 
 				&.gf_left_half,
 				&.gf_right_half {
-					width: 46% !important;
+					width: 44% !important;
 
 					@include device-width(6){
 						width: 100% !important;
@@ -2172,7 +2324,7 @@ fieldset {
  					}
  				}	
  			}
-// 		}
+ 		}
  	}
 
  	.gform_footer,

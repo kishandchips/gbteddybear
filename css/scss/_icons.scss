@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-tick, .icon-twitter, .icon-stars, .icon-ribbon-bear, .icon-pinterest, .icon-phone, .icon-person, .icon-open-quote, .icon-info, .icon-google-plus, .icon-facebook, .icon-expand, .icon-camera, .icon-arrow-up, .icon-arrow-right, .icon-arrow-left, .icon-arrow-down, .icon-alert, .icon-untitled, .icon-shopping-bag, .icon-ce-logo, .icon-close-quote {
+.icon-tick, .icon-twitter, .icon-stars, .icon-pinterest, .icon-phone, .icon-person, .icon-open-quote, .icon-info, .icon-google-plus, .icon-facebook, .icon-expand, .icon-camera, .icon-arrow-up, .icon-arrow-right, .icon-arrow-left, .icon-arrow-down, .icon-alert, .icon-untitled, .icon-shopping-bag, .icon-ce-logo, .icon-close-quote, .icon-ribbon-bear {
 	font-family: 'icons';
 	speak: none;
 	font-style: normal;
@@ -45,9 +45,6 @@ you can use the generic selector below, but it's slower:
 }
 .icon-stars:before {
 	content: "\39";
-}
-.icon-ribbon-bear:before {
-	content: "\71";
 }
 .icon-pinterest:before {
 	content: "\34";
@@ -102,4 +99,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon-close-quote:before {
 	content: "\66";
+}
+.icon-ribbon-bear:before {
+	content: "\67";
 }

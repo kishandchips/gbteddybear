@@ -62,7 +62,7 @@ get_header(); ?>
 	<?php endif; ?>
 
 	<?php
-	$query = new WP_Query( array('post_type' => array('photo')) );
+	$query = new WP_Query( array('post_type' => array('photo'), 'posts_per_page' => -1) );
 	if($query->have_posts()):
 		wp_enqueue_style('fancybox');
 		wp_enqueue_script('fancybox');

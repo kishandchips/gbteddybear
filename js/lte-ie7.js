@@ -9,7 +9,6 @@ window.onload = function() {
 			'icon-tick' : '&#x61;',
 			'icon-twitter' : '&#x37;',
 			'icon-stars' : '&#x39;',
-			'icon-ribbon-bear' : '&#x71;',
 			'icon-pinterest' : '&#x34;',
 			'icon-phone' : '&#x35;',
 			'icon-person' : '&#x36;',
@@ -27,7 +26,8 @@ window.onload = function() {
 			'icon-untitled' : '&#x70;',
 			'icon-shopping-bag' : '&#x73;',
 			'icon-ce-logo' : '&#x64;',
-			'icon-close-quote' : '&#x66;'
+			'icon-close-quote' : '&#x66;',
+			'icon-ribbon-bear' : '&#x67;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

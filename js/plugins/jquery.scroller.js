@@ -159,26 +159,27 @@
 		
 		function init(){
 			if(totalItems > 1){
+				if(options.scrollAll){
+					$('.scroll-item', scroller).hover(function(){
+						if($(this).data('id') == currItem.prev().data('id')){
+							$('.prev-btn', scroller).addClass('hover');
+							currItem.prev().addClass('hover');
+						} else if($(this).data('id') == currItem.next().data('id')){
+							$('.next-btn', scroller).addClass('hover');
+							currItem.next().addClass('hover');
+						}
+					}, function(){
+						$('.prev-btn', scroller).removeClass('hover');
+						$('.next-btn', scroller).removeClass('hover');
+						$('.scroll-item', scroller).removeClass('hover');
+					});
+				}
 
-				$('.scroll-item', scroller).hover(function(){
-					if($(this).data('id') == currItem.prev().data('id')){
-						$('.prev-btn', scroller).addClass('hover');
-						currItem.prev().addClass('hover');
-					} else if($(this).data('id') == currItem.next().data('id')){
-						$('.next-btn', scroller).addClass('hover');
-						currItem.next().addClass('hover');
-					}
-				}, function(){
-					$('.prev-btn', scroller).removeClass('hover');
-					$('.next-btn', scroller).removeClass('hover');
-					$('.scroll-item', scroller).removeClass('hover');
-				});
-
-				$('.scroll-item', scroller).on('click', function(e){
-					e.preventDefault();
-					gotoItem($(this).data('id'));	
-					return false;
-				});
+				// $('.scroll-item', scroller).on('click', function(e){
+				// 	e.preventDefault();
+				// 	gotoItem($(this).data('id'));	
+				// 	return false;
+				// });
 
 				$('.scroller-pagination a', scroller).on('click', function(e){
 					e.preventDefault();
@@ -208,12 +209,18 @@
 			}
 
 			scroller.bind('refresh', refresh);
+			scroller.bind('gotoItem', gotoItemHandler);
 
 			$(window).load(function(){
 				if(options.resize) scroller.css({height: currItem.outerHeight() + $('.scroller-pagination').height()}, 500, 'easeInOutQuad');
 			});
 			
 			firstLoad = false;
+		}
+
+		function gotoItemHandler(e, id, direction){
+			var direction = direction || 'next';
+			gotoItem(id, direction);
 		}
 
 		function refresh(){

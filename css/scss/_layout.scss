@@ -59,6 +59,10 @@ body {
 	z-index: 1000;	
 	padding: 1.5em 0 0 0;
 
+	@media print {
+		display: none;
+	}
+
 	@include device-width(8) {
 		padding-top: 0.5em;
 	}
@@ -320,6 +324,10 @@ body {
 	
 #footer {
 	
+	@media print {
+		display: none;
+	}
+	
 	> .top {
 		> .inner {
 			border-top: 4px double #cecece;
@@ -371,18 +379,20 @@ body {
 
 		select {
 			width: 80%;
-			position: relative;
-			&:after {
-				content: 'hello';
-				position: absolute;
-				top: 0;
-				left: 0;
-				color: #000;
-				display: block;
+		}
+	}
+
+	.footer-navigation {
+		margin: 0.8em;
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				float: left;
+				padding: 0 1em;
 			}
 		}
-
-
 	}
 }
 
@@ -403,6 +413,11 @@ body {
 	}
 }
 #breadcrumbs {
+
+	@media print {
+		display: none;
+	}
+
 	text-transform: uppercase;
 	position: relative;
 	z-index: 100;
@@ -475,18 +490,21 @@ body {
 					width: 44%;
 				}
 
-				&:before {
-					content: '';
-					display: inline-block;
-					height: 100%; 
-					vertical-align: middle;
-					margin-right: -0.25em;
-				}
+				// &:before {
+				// 	content: '';
+				// 	display: inline-block;
+				// 	height: 100%; 
+				// 	vertical-align: middle;
+				// 	margin-right: -0.25em;
+				// }
 
 				> .inner {
+					width: 100%;
+					@include box-sizing(border-box);
+					position: absolute;
+					top: 50%;
+					@include translateY(-50%);
 					padding: 0 1em;
-					display: inline-block;
-					vertical-align: middle;
 
 					@include device-width(4) {
 						padding: 0;
@@ -544,6 +562,10 @@ body {
 				border-bottom: 1px solid #cecece;
 				padding-bottom: 30px;
 				position: relative;
+			}
+
+			.widget-title {
+
 			}
 
 			.widget-footer {
@@ -606,7 +628,7 @@ body {
 		.photo-list {
 			display: inline-block;
 			padding: 0;
-			margin: 4px -4px;
+			margin: 3px 0;
 			list-style: none;
 			min-width: 100%;
 			white-space: nowrap;
@@ -615,12 +637,16 @@ body {
 				display: inline-block;
 				width: 174px;
 				height: 174px;
-				margin: 4px;
+				margin: 3px;
 				a {
 					width: 100%;
 					height: 100%;
 					overflow: hidden;
 					display: block;
+
+					img {
+						display: block;
+					}
 				}
 
 				&.half {
@@ -760,12 +786,27 @@ body {
 				padding: 0 4%;
 				margin: 1em 0;
 
+				&:nth-child(3n + 1) {
+					clear: left;
+				}
+
 				@include device-width(7) {
 					width: 50%;
+
+					&:nth-child(3n + 1) {
+						clear: none;
+					}
+					&:nth-child(2n + 1) {
+						clear: left;
+					}
 				}
 
 				@include device-width(4) {
 					width: 100%;
+
+					&:nth-child(2n + 1) {
+						clear: none;
+					}
 				}
 
 				.thumbnail {
@@ -985,7 +1026,8 @@ body {
 					}
 
 					a {
-						display: inline-block;
+						display: block;
+						width: 100%;
 						&:hover {
 
 							img {
@@ -1016,6 +1058,20 @@ body {
 			@include device-width(8) {
 				margin: 2em 0;
 			}
+
+			&.top-level-categories {
+				li {
+					&.first-child,
+					&:first-child {
+						width: 100%;
+
+						@include device-width(8){
+							width: 50%;
+						}
+					}
+				}
+			}
+			
 			li {
 				margin: 0 0 3em 0;
 				padding: 0 10px;
@@ -1037,16 +1093,7 @@ body {
 					}
 
 
-					&.first-child,
-					&:first-child {
-						width: 100%;
-
-						@include device-width(8){
-							width: 50%;
-						}
-					}
-
-					&:last-child {
+					&.show-all-bears {
 						clear: none;
 						@include device-width(8) {
 							width: 100%;
@@ -1189,6 +1236,15 @@ body {
 			@include font-size(13);
 			padding: 0.5em 0.8em;
 			margin: 0 0 0.5em 0;
+
+			&.alt {
+				@extend .green-btn;
+				@include font-size(15);
+
+				&:hover {
+					@extend .green-btn:hover;
+				}
+			}
 		}
 
 		#content .quantity, 
@@ -1332,9 +1388,11 @@ body {
 					}
 				}
 
+				
 				.stock {
 					color: #850000;
-					margin: 0;
+					@include font-size(20);
+					margin: 1em 0 0 0 !important;
 				}
 
 				.cart {
@@ -1364,11 +1422,14 @@ body {
 
 						.reset_variations {
 							margin-top: 0.2em;
-							display: inline-block;
+							///display: inline-block;
+							display: none !important;
 						}
 					}
 				}
 			}
+
+			
 
 			.delivery {
 				padding: 1.4em 0 0 0;
@@ -1527,7 +1588,7 @@ body {
 				}
 
 				.actions {
-
+					padding: 1em;
 					.coupon{
 						@include device-width(5) {
 							margin: 0 0 0.5em 0;
@@ -1544,7 +1605,11 @@ body {
 							max-width: 100%;
 							@include open-sans;
 							@include font-size(12);
-							width: 6em;
+							width: 10em;
+
+							@include device-width(6){
+								width: 6em;
+							}
 						}
 
 						.input-text,
@@ -1555,21 +1620,17 @@ body {
 						}
 					}
 					.button {
-						margin: 0 0.2em;
-						&.alt {
-							@extend .green-btn;
-							@include font-size(13);
-						}
+						margin: 0 0 0 1em !important;
 					}
 				}
 			}
 		}
 
 		.cart-collaterals {
-			margin: 3em 0 0 0;
+			margin: 3em 0 2em 0;
 			@extend .clearfix;
 			.cart_totals {
-				float: left;
+				float: right;
 				margin: 2em 0 0 0;
 				@include device-width(6) {
 					width: 100%;
@@ -1577,11 +1638,18 @@ body {
 				table {
 					@include border-radius(0);
 					width: 100%;
-					margin: 1em 0 0 0;
+					margin: 2em 0 0 0;
 					border: 1px solid #ececec;
-					tr th,
-					tr td {
-						border-color: #ececec;
+					tr {
+						&.shipping {
+							color: #7bae32;
+						}
+
+						th,
+						td {
+							padding: 10px 10px;
+							border-color: #ececec;
+						}
 					}
 				}
 
@@ -1590,6 +1658,7 @@ body {
 
 			.shipping_calculator {
 				margin: 2em 0 0 0;
+				float: left;
 
 				@include device-width(6) {
 					width: 100%;
@@ -1731,7 +1800,7 @@ body {
 				position: absolute;
 				background: url(../images/misc/balloons_bear.png) no-repeat;
 				top: -1em;
-				right: -2em;
+				right: -3em;
 				width: 163px;
 				height: 521px;
 
@@ -1772,6 +1841,16 @@ body {
 			.col-1,
 			.col-2 {
 				@include device-width(6) {
+					float: none;
+					width: 100%;
+				}
+			}
+		}
+
+		> .col2-set {
+			.col-1,
+			.col-2 {
+				@media print{
 					float: none;
 					width: 100%;
 				}
