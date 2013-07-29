@@ -48,6 +48,9 @@
 		wp_register_script('fancybox', get_template_directory_uri().'/js/plugins/jquery.fancybox.min.js', array('jquery'), '', true);
 		wp_register_script('threesixty', get_template_directory_uri().'/js/plugins/jquery.threesixty.js', array('jquery'), '', true);
 		wp_enqueue_script('main', get_template_directory_uri().'/js/main.js', array('jquery'), '', true);
+
+		wp_deregister_script('wc-add-to-cart-variation');
+		wp_register_script( 'wc-add-to-cart-variation', get_template_directory_uri().'/js/plugins/jquery.add-to-cart-variation.js', array( 'jquery' ), '', true );
 	}
 	add_action('wp_enqueue_scripts', 'load_assets');
 	wp_head();

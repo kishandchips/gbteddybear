@@ -57,7 +57,6 @@
                 element = instance.element,
                 items = $('li', element);
 
-            this.ready = true;
             this.totalFrames = items.size();
             this.currentFrame = this.totalFrames;
 
@@ -133,6 +132,75 @@
                 instance.frames.push($(this));
             });
             items.filter(':first-child').addClass('current');
+            this.load();
+        },
+        load: function(){
+            var instance = this,
+                element = this.element,
+                images = $('img', element),
+                totalImages = images.length;
+
+            element.addClass('loading');
+            images.load(function(){
+                totalImages--;
+                if(totalImages === 1){
+                    setTimeout(function(){
+                        instance.loaded();
+                    }, 1000);
+                }
+            });
+
+        },
+        loaded: function(){
+            var instance = this,
+                element = this.element,
+                items = $('li', element),
+                totalItems = items.length;
+           
+            
+            items.each(function(i){
+                var item = $(this);
+
+                    
+                setTimeout(function(){
+                    items.removeClass('current');
+                    item.addClass('current');
+                    if(i === totalItems - 1){
+                        setTimeout(function(){
+                            instance.ready = true;
+                            element.removeClass('loading');
+                        }, 500);
+                        items.removeClass('current');
+                        instance.showCurrentFrame();
+                    }
+                }, (i * 30));
+            });
+
+        },
+        spin: function(){
+            var instance = this,
+                element = this.element,
+                items = $('li', element),
+                totalItems = items.length;
+           
+            instance.ready = false;
+
+            items.each(function(i){
+                var item = $(this);
+
+                    
+                setTimeout(function(){
+                    items.removeClass('current');
+                    item.addClass('current');
+                    if(i === totalItems - 1){
+                        setTimeout(function(){
+                            instance.ready = true;
+                        }, 500);
+                        items.removeClass('current');
+                        instance.showCurrentFrame();
+                    }
+                }, (i * 30));
+            });
         },
         render: function(){
         // The rendering function only runs if the 'currentFrame' value hasn't reached the 'endFrame' one

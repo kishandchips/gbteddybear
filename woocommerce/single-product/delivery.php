@@ -9,7 +9,7 @@
 
 	<h5 class="uppercase">Delivery</h5>
 	<div class="clearfix">
-		<div class="span alpha four break-on-tablet">
+		<div class="span alpha five break-on-tablet">
 			<p class="small no-margin"><?php _e("Orders placed before 1PM UK time are dispatched the same day.", 'gbteddybear'); ?></p>
 			<p class="small no-margin"><?php _e("Deliveries within the United Kingdom take 5 days; International deliveries arrive within 10 days.", 'gbteddybear'); ?></p>
 		</div>

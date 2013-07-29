@@ -209,6 +209,9 @@ body {
 			text-align: justify;
 		    font-size: 0.1px;
 
+		    @include device-width(6) {
+				text-align: left;
+			}
 			&:after {
 			    content: '';
 			    display: inline-block;
@@ -218,6 +221,11 @@ body {
 			 	display: inline-block;
 				position: relative;
 				@include transition(all 0.3s ease);
+				zoom: 0;
+
+				@include device-width(6) {
+					display: block;
+				}
 				
 			 	// @include device-width(14) {
 			 	// 	padding-left: 1.5em;
@@ -584,6 +592,7 @@ body {
 				}
 				#twitter-feed {
 					height: 99.5%;
+					width: 100%;
 					//max-height: 300px;
 					padding: 0 0 2.7em 0;
 					overflow: auto;
@@ -1321,6 +1330,21 @@ body {
 					}
 				}
 
+				.spin-btn {
+					position: absolute;
+					z-index: 400;
+					top: 1em;
+					right: 1em;
+					text-transform: uppercase;
+					text-align: center;
+					@include font-size(11);
+					.icon-spin {
+						@include font-size(30);
+						display: block;
+						margin: 0 0 0.1em 0;
+					}
+				}
+
 				.thumbnails {
 					padding-top: 4px;
 					margin: 0;
@@ -1357,6 +1381,14 @@ body {
 					border: 1px solid #c1c1c1;
 					> .scroller-mask {
 						
+					}
+				}
+
+				.variation-360 {
+					display: none;
+
+					&.current {
+						display: block;
 					}
 				}
 			}
@@ -1503,6 +1535,7 @@ body {
 						}
 						
 						.meta {
+							color: #7f502c;
 							.author {
 								@include font-size(20);
 								color: #7f502c;
@@ -1526,6 +1559,7 @@ body {
 								position: absolute;
 								top: 0;
 								left: -2em;
+								color: #ccc;
 							}
 
 							p {
@@ -1790,7 +1824,7 @@ body {
 		}
 
 		.order-details-container {
-			background: url(../images/backgrounds/beige_pattern.jpg);
+			background: #ecebe1 url(../images/backgrounds/beige_pattern.jpg);
 			border: 1px solid #b2b09d;
 			margin: 1em 0 0 0;
 			position: relative;
@@ -1848,8 +1882,8 @@ body {
 		}
 
 		> .col2-set {
-			.col-1,
-			.col-2 {
+			> .col-1,
+			> .col-2 {
 				@media print{
 					float: none;
 					width: 100%;

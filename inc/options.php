@@ -84,6 +84,12 @@ function theme_options_do_page() {
 					</td>
 				</tr>
 
+				<tr valign="top"><th scope="row"><?php _e( 'Customer Service Page ID', 'gbteddybear' ); ?></th>
+					<td>
+						 <input id="gbteddybear_theme_options[customer_service_page_id]" class="regular-text" type="text" name="gbteddybear_theme_options[customer_service_page_id]" value="<?php esc_attr_e( $options['customer_service_page_id'] ); ?>" />
+					</td>
+				</tr>
+
 				<tr valign="top"><th scope="row"><?php _e( 'Facebook URL', 'gbteddybear' ); ?></th>
 					<td>
 						 <input id="gbteddybear_theme_options[facebook_url]" class="regular-text" type="text" name="gbteddybear_theme_options[facebook_url]" value="<?php esc_attr_e( $options['facebook_url'] ); ?>" />
@@ -130,6 +136,7 @@ function theme_options_validate( $input ) {
 	$input['submit_photo_page_id'] = wp_filter_nohtml_kses( $input['submit_photo_page_id'] );
 	$input['celebrity_bear_page_id'] = wp_filter_nohtml_kses( $input['celebrity_bear_page_id'] );
 	$input['all_bears_category_id'] = wp_filter_nohtml_kses( $input['all_bears_category_id'] );
+	$input['customer_service_page_id'] = wp_filter_nohtml_kses( $input['customer_service_page_id'] );
 	$input['facebook_url'] = wp_filter_nohtml_kses( $input['facebook_url'] );
 	$input['twitter_url'] = wp_filter_nohtml_kses( $input['twitter_url'] );
 	$input['pinterest_url'] = wp_filter_nohtml_kses( $input['pinterest_url'] );

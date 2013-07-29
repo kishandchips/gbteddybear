@@ -23,7 +23,7 @@ window.onload = function() {
 			'icon-arrow-left' : '&#x31;',
 			'icon-arrow-down' : '&#x32;',
 			'icon-alert' : '&#x33;',
-			'icon-untitled' : '&#x70;',
+			'icon-spin' : '&#x70;',
 			'icon-shopping-bag' : '&#x73;',
 			'icon-ce-logo' : '&#x64;',
 			'icon-close-quote' : '&#x66;',

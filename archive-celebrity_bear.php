@@ -27,7 +27,7 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<li class="item celebrity-bear">
 					<div class="thumbnail">
-						<?php the_post_thumbnail('full', array('class' => 'scale')); ?>
+						<?php the_post_thumbnail('medium', array('class' => 'scale')); ?>
 					</div>
 					<h5 class="text-center"><?php the_title(); ?></h5>
 				</li>
@@ -49,7 +49,7 @@ get_header(); ?>
 	</div>
 	<footer class="celebrity-bears-footer">
 		<p class="text-center big">
-			<?php _e("Send your celebrity bear pictures to:", 'gbteddybear'); ?>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:celebritybear@gbteddybear.co.uk" class="red-btn"><i aria-hidden="true" class="icon-camera text-middle"></i>&nbsp;&nbsp;<span class="normalcase">celebritybear@gbteddybear.co.uk</span></a>
+			<?php _e("Send your celebrity bear pictures to:", 'gbteddybear'); ?>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:celebritybear@britishteddies.com" class="red-btn"><i aria-hidden="true" class="icon-camera text-middle"></i>&nbsp;&nbsp;<span class="normalcase">celebritybear@britishteddies.com</span></a>
 		</p>
 	</footer>
 </div>

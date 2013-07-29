@@ -148,6 +148,7 @@ function gbteddybear_setup() {
 	add_filter("gform_tabindex", create_function("", "return false;"));
 
 	add_theme_support('woocommerce');  
+
 }
 endif; // gbteddybear_setup
 
@@ -378,7 +379,8 @@ if ( ! function_exists( 'custom_tinymce_options' )) {
 
 function get_queried_page(){
 	$curr_url = get_current_url();
-	$curr_uri = str_replace(site_url(), '', $curr_url);
+
+	$curr_uri = str_replace(get_bloginfo('url'), '', $curr_url);
 	$page = get_page_by_path($curr_uri);
 	if($page) return $page;
 	return null;
@@ -668,3 +670,56 @@ if ( ! function_exists( 'custom_gateway_icon' ) ) {
 		return $icon;
 	}
 }
+
+add_filter('woocommerce_product_related_posts', 'custom_product_related_posts', 20);
+
+if ( ! function_exists( 'custom_product_related_posts' ) ) {
+	function custom_product_related_posts($args){
+
+		if(isset($args['orderby'])){
+			$args['orderby'] = 'menu_order';
+		}
+		if(isset($args['tax_query'][0]['terms'])){
+			$terms = $args['tax_query'][0]['terms'];
+			$args['tax_query'][0]['terms'] = array();
+			foreach($terms as $term){
+				if($term != get_gbteddybear_option('all_bears_category_id')){
+					$args['tax_query'][0]['terms'][] = $term;
+				}
+			}
+		}
+
+		return $args;
+	}
+}
+
+add_filter( 'comment_text', 'custom_comment_text'); 
+
+if ( ! function_exists( 'custom_comment_text' ) ) {
+	function custom_comment_text($comment){
+		return $comment.'&nbsp;&nbsp;&nbsp;&nbsp;<i aria-hidden="hidden" class="icon-close-quote light-grey"></i>';
+	}
+}
+
+
+add_filter( 'woocommerce_stock_html', 'custom_stock_html', 1 );
+
+if ( ! function_exists( 'custom_stock_html' ) ) {
+	function custom_stock_html($availability){
+		return str_replace('Out of stock', 'Sorry this item is currently unavailable.</p><p class="small">If you would like to preorder please contact <a href="'.get_permalink(get_gbteddybear_option('customer_service_page_id')).'">Customer Service</a>', $availability);
+	}
+}
+
+
+add_action('woocommerce_check_cart_items', 'woocommerce_ready');
+
+if ( ! function_exists( 'woocommerce_ready' ) ) {
+	function woocommerce_ready(){
+		global $woocommerce;
+		if ($woocommerce->cart->cart_contents_count > 24){
+			$woocommerce->add_error(__('Sorry, it seems that there are no available shipping methods for your location.<br />If you require assistance or wish to make alternate arrangements please contact <a href="'.get_permalink(get_gbteddybear_option('customer_service_page_id')).'">customer service</a>.'));
+		}
+	}
+}
+
+

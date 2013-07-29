@@ -154,11 +154,11 @@ $available_methods = $woocommerce->shipping->get_available_shipping_methods();
 					} else {
 						current( $available_gateways )->set_current();
 					}
-
 					foreach ( $available_gateways as $gateway ) {
 						?>
 						<li>
-							<input type="radio" id="payment_method_<?php echo $gateway->id; ?>" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> />
+							<input type="radio" id="payment_method_<?php echo $gateway->id; ?>" class="input-radio <?php echo (count($available_gateways) <= 1) ? 'hide' : ''; ?>" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php if ($gateway->chosen) echo 'checked="checked"'; ?> />
+							
 							<label for="payment_method_<?php echo $gateway->id; ?>"><?php echo $gateway->get_title(); ?> <?php echo $gateway->get_icon(); ?></label>
 							<?php
 								if ( $gateway->has_fields() || $gateway->get_description() ) :

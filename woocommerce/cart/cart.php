@@ -148,7 +148,7 @@ $woocommerce->show_messages();
 
 </form>
 <?php $current_cc = $woocommerce->customer->get_shipping_country(); ?>
-<?php if ( $woocommerce->cart->cart_contents_count == 1 && $current_cc !== 'GB') : ?>
+<?php if ( $woocommerce->cart->cart_contents_count == 2 && $current_cc !== 'GB') : ?>
 <div class="save-shipping clearfix">
 	<div class="content">
 		<h5 class="no-margin brown uppercase"><?php _e("Save on Shipping!", 'gbteddybear'); ?></h5>
@@ -173,6 +173,8 @@ $woocommerce->show_messages();
 </div>
 
 <footer class="cart-footer clearfix">
+	<?php if ($woocommerce->cart->cart_contents_count <= 24): ?>
 	<input type="submit" class="right checkout-button button alt" name="proceed" value="<?php _e( 'Proceed to Checkout &rarr;', 'woocommerce' ); ?>" />
+	<?php endif; ?>
 </footer>
 <?php do_action( 'woocommerce_after_cart' ); ?>

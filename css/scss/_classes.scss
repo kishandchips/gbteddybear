@@ -1201,6 +1201,9 @@ a.thumbnail {
 	cursor: drag;
 	cursor: -webkit-grab;
 	cursor: -moz-grab;
+	position: relative;
+	background: url(../images/misc/loader.gif) no-repeat center center;
+	
 
 	&.grabbing {
 
@@ -1212,9 +1215,15 @@ a.thumbnail {
 			}
 		}
 	}
+
+	&.loading {
+		li {
+			opacity: 0.1;
+		}
+	}
 	li {
 		display: none;
-
+		@include transition(opacity 0.3s ease);
 		&.current {
 			display: block;
 		}
@@ -1350,6 +1359,10 @@ a.thumbnail {
 			a {
 				color: #000000;
 				text-transform: uppercase;
+
+				&:hover {
+					color: #7E0606;
+				}
 			}
 
 			&.current-menu-item a {

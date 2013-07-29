@@ -30,15 +30,21 @@ get_header('shop'); ?>
 		<?php else: ?>
 			<div class="row">
 				<div class="inner clearfix">
-					<div class="span six break-on-mobile">
+					<div class="span seven break-on-mobile">
 						<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 							<h3 class="page-title brown no-margin"><?php woocommerce_page_title(); ?></h3>
 							<?php do_action( 'woocommerce_archive_description' ); ?>
 						<?php endif; ?>
 					</div>
-					<div class="span four hide-on-mobile">
-						<a href="<?php echo get_permalink(get_gbteddybear_option('all_bears_category_id')); ?>" class="show-all-bears-btn">Show all bears</a>
+					<?php
+					$term = get_term_by('slug', get_query_var('product_cat'), 'product_cat');
+					$term_id = (isset($term->term_id)) ? $term->term_id : null;
+					?>
+					<?php if($term_id != get_gbteddybear_option('all_bears_category_id') && !is_shop()): ?>
+					<div class="span three hide-on-mobile">
+						<a href="<?php echo get_term_link((int) get_gbteddybear_option('all_bears_category_id'), 'product_cat'); ?>" class="show-all-bears-btn">Show all bears</a>
 					</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		<?php endif; ?>
