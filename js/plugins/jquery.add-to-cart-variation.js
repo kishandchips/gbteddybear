@@ -1,6 +1,7 @@
 /*!
  * Variations Plugin
  */
+
 ;(function ( $, window, document, undefined ) {
 
     $.fn.wc_variation_form = function () {
@@ -365,6 +366,8 @@
 			        }
 
 			        $single_variation_wrap.slideDown('200').trigger( 'show_variation', [ variation ] );
+
+
 
 				});
     };

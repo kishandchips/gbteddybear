@@ -389,6 +389,9 @@ function get_queried_page(){
 function add_grav_forms(){
 	$role = get_role('editor');
 	$role->add_cap('gform_full_access');
+
+	$role = get_role('shop_manager');
+	$role->add_cap('gform_full_access');
 }
 add_action('admin_init','add_grav_forms');
 
@@ -722,4 +725,125 @@ if ( ! function_exists( 'woocommerce_ready' ) ) {
 	}
 }
 
+add_action('gform_after_submission_1', 'mark_emails_as_read', 10, 2);
 
+if ( ! function_exists( 'mark_emails_as_read' ) ) {
+	function mark_emails_as_read($entry, $form){
+		if(isset($entry['id'])){
+			RGFormsModel::update_lead_property($entry['id'], 'is_read', 1);
+ 		}
+ 	}
+}
+
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+add_action( 'woocommerce_after_product_images', 'woocommerce_template_single_sharing', 30);
+
+
+//remove_action( 'woocommerce_share', array( $WC_ShareThis, 'sharethis_code' ) );
+
+
+add_action('woocommerce_after_checkout_validation', 'custom_checkout_validation', 10, 1);
+
+function custom_checkout_validation($posted){
+	global $woocommerce;
+	$fields = array(
+		array(
+			'title' => __("Billing Title"),
+			'name' => 'billing_title',
+			'max_characters' => 15
+		),
+		array(
+			'title' => __("Billing First Name"),
+			'name' => 'billing_first_name',
+			'max_characters' => 15
+		),
+		array(
+			'title' => __("Billing Last Name"),
+			'name' => 'billing_last_name',
+			'max_characters' => 25
+		),
+		array(
+			'title' => __("Billing Company"),
+			'name' => 'billing_company',
+			'max_characters' => 50
+		),
+		array(
+			'title' => __("Billing Address - Line 1"),
+			'name' => 'billing_address_1',
+			'max_characters' => 35
+		),
+		array(
+			'title' => __("Billing Address - Line 2"),
+			'name' => 'billing_address_2',
+			'max_characters' => 35
+		),
+		array(
+			'title' => __("Billing Country"),
+			'name' => 'billing_country',
+			'max_characters' => 2
+		),
+		array(
+			'title' => __("Billing Postcode"),
+			'name' => 'billing_postcode',
+			'max_characters' => 8
+		),
+		array(
+			'title' => __("Billing Email"),
+			'name' => 'billing_email',
+			'max_characters' => 50
+		),
+		array(
+			'title' => __("Billing Title"),
+			'name' => 'billing_phone',
+			'max_characters' => 35
+		),
+		
+		array(
+			'title' => __("Shipping Title"),
+			'name' => 'shipping_title',
+			'max_characters' => 15
+		),
+		array(
+			'title' => __("Shipping First Name"),
+			'name' => 'shipping_first_name',
+			'max_characters' => 15
+		),
+		array(
+			'title' => __("Shipping Last Name"),
+			'name' => 'shipping_last_name',
+			'max_characters' => 25
+		),
+		array(
+			'title' => __("Shipping Company"),
+			'name' => 'shipping_company',
+			'max_characters' => 50
+		),
+		array(
+			'title' => __("Shipping Address - Line 1"),
+			'name' => 'shipping_address_1',
+			'max_characters' => 35
+		),
+		array(
+			'title' => __("Shipping Address - Line 2"),
+			'name' => 'shipping_address_2',
+			'max_characters' => 35
+		),
+		array(
+			'title' => __("Shipping Country"),
+			'name' => 'shipping_country',
+			'max_characters' => 2
+		),
+		array(
+			'title' => __("Shipping Postcode"),
+			'name' => 'shipping_postcode',
+			'max_characters' => 8
+		)
+	);
+	foreach($fields as $field){
+		if(isset($posted[$field['name']]) && strlen($posted[$field['name']]) > $field['max_characters']){
+			$message = sprintf(__("%s, is too long. Please reduce down to a maximum of %d characters"), $field['title'], $field['max_characters']);
+			$woocommerce->add_error($message);
+		}
+	}
+}

@@ -318,6 +318,24 @@ body {
 			bottom: auto;
 			top: 0;
 		}
+
+		> * {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.addthis_toolbox {
+			height: 20px;
+
+			@include device-width(5){
+				display: none;
+			}
+		}
+
+		.phone-number {
+			margin-left: 1.5em;
+			line-height: 0.8;
+		}
 	}
 }
 		
@@ -511,8 +529,19 @@ body {
 					@include box-sizing(border-box);
 					position: absolute;
 					top: 50%;
-					@include translateY(-50%);
 					padding: 0 1em;
+					margin-top: -7em;
+
+					.csstransitions & {
+						margin-top: 0;
+						@include translateY(-50%);
+					}
+
+					.lt-ie9 & {
+						// word-break: break-all;
+						// word-break: break-word;
+						//@include hyphens(auto);
+					}
 
 					@include device-width(4) {
 						padding: 0;
@@ -520,10 +549,9 @@ body {
 				}
 
 				.title {
-					-ms-word-break: break-all;
-					word-break: break-all;
-					word-break: break-word;
-					@include hyphens(auto);
+					// word-break: break-all;
+					// word-break: break-word;
+					// @include hyphens(auto);
 
 				}
 			}
@@ -1377,7 +1405,7 @@ body {
 				}
 
 
-				&.scroller {
+				.scroller {
 					border: 1px solid #c1c1c1;
 					> .scroller-mask {
 						
@@ -1472,9 +1500,7 @@ body {
 			.social {
 				text-align: left;
 				padding: 1.4em 0 0 0;
-				border-top: 1px solid #c1c1c1;
-				margin: 2em 0 0 0;
-
+				
 				span {
 					margin: 0 1px 0 0;
 				}

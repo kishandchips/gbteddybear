@@ -9,11 +9,11 @@
  */
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html xmlns:fb="http://ogp.me/ns/fb#" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html xmlns:fb="http://ogp.me/ns/fb#" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html xmlns:fb="http://ogp.me/ns/fb#" class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html xmlns:fb="http://ogp.me/ns/fb#" class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html xmlns:fb="http://ogp.me/ns/fb#" class="no-js"> <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -115,6 +115,24 @@
 				<?php endif; ?>
 			</ul>
 			<div class="info">
+				<p class="social-links no-margin">
+	           		<?php if(get_gbteddybear_option('facebook_url')): ?>
+	    			<a href="<?php echo get_gbteddybear_option('twitter_url'); ?>" class="twitter-btn" target="_blank"></a>
+					<?php endif; ?>
+		       		<?php if(get_gbteddybear_option('pinterest_url')): ?>
+	    			<a href="<?php echo get_gbteddybear_option('pinterest_url'); ?>" class="pinterest-btn" target="_blank"></a>
+					<?php endif; ?>
+		       		<?php if(get_gbteddybear_option('google_plus_url')): ?>
+	    			<a href="<?php echo get_gbteddybear_option('google_plus_url'); ?>" class="google-plus-btn" target="_blank"></a>
+					<?php endif; ?>
+					<?php if(get_gbteddybear_option('facebook_url')): ?>
+	           		<a href="<?php echo get_gbteddybear_option('facebook_url'); ?>" class="facebook-btn" target="_blank"></a>
+		           	<?php endif; ?>
+		       		
+				</p>
+				<div class="addthis_toolbox addthis_default_style" >
+					<a class="addthis_button_facebook_like" fb:like:href="<?php echo get_gbteddybear_option('facebook_url'); ?>"></a>
+				</div>
 				<h4 class="phone-number light-brown no-margin" >
 					<i aria-hidden="true" class="icon-phone tiny brown"></i> 08700 429 745
 				</h4>

@@ -27,14 +27,14 @@ class Twitter_Feed extends WP_Widget {
 		require_once('oauth/twitteroauth.php');
 		$args['title'] = $instance['title'];
 		
-		$args['username'] = (isset($instance['username'])) ? $instance['username'] : '';
+		$args['username'] = (isset($instance['username'])) ? $instance['username'] : 'BritishTeddies';
 		echo $args['before_widget'] . $args['before_title'] . '<a href="http://twitter.com/'.$args['username'].'" target="_blank" style="color: inherit;">' . $args['title'] . '</a>'. $args['after_title'];
-		$key = 'CR3kwTyTMFtKJGTqFY4C4w';
-		$secret = 'K6dN0Zve1Rds8zrcz3oSo28sS13MmvJz0jQFwmPmM';
+		$key = 'PsYqPIz78oVFNAieHZn1pg';
+		$secret = 't08PgTwn9JLPhBt3TbGZZakTCavJDq5wK6cb9eU';
 		$token = '1361869022-Smh5Dmu0auCoaol9Bhy5CcFMWd5x6vbVFMH8paL';
 		$token_secret = 'zoZIhrRztmS6jRqWVQ8DTC7brfhfhvobbGyQUhSI';
 		$connection = new TwitterOAuth($key, $secret, $token, $token_secret);
-		$tweets = $connection->get('statuses/user_timeline', array('screen_name' => 'BritishTeddies', 'trim_user' => false, 'exclude_replies' => false, 'include_rts' => true));
+		$tweets = $connection->get('statuses/user_timeline', array('screen_name' => 'BritishTeddies', 'count' => 20,'trim_user' => false, 'exclude_replies' => false, 'include_rts' => true));
 		if(isset($tweets)):
 
 		?>
